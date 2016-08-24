@@ -54,6 +54,26 @@
 % * Publish
 % * View
 
+%% This is the start of a something called a 'Section' in MATLAB.
+
+% If you didn't notice already, some text in this script is green. This
+% indicates that the text is a 'comment'. Comments are ignored by MATLAB
+% when we actually run a script. Any line that begins with the '%' symbol
+% is a comment.
+
+% Anything that starts with '%%' is a section (assuming 'Sections' are
+% enabled in the MATLAB preferences).
+
+% Sections allow you to step through your code and run only sections of it.
+% It is a really useful tool when your code/scripts get to be hundreds or
+% thousands of lines.
+
+% On that note, look at the line numbers on the left. These will be useful
+% for debugging output later. When errors occur, the MATLAB command window
+% with tell you on which line the errored occurred so that you can quickly
+% find the line that's giving you trouble.
+
+
 %% Useful commands for begginners
 
 % Let's first type >>"help help" in the command window
@@ -91,6 +111,11 @@ a=1+1
 %%
 % is the same as 
 a  =  1 +      1
+%%
+% * ';' are important though
+x = 1 y = 2
+%%
+x = 1; y = 2
 %%
 % To suppress the output you can type
 clear a
