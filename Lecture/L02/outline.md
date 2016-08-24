@@ -14,6 +14,8 @@ GEOS397 folder can be found [here](https://github.com/dylanmikesell/GEOS397).
 
 #### MATLAB desktop application
 
+Once logged into [Mathworks.com](http://www.mathworks.com), you should be able to download MATLAB 2016a from [here](http://www.mathworks.com/downloads/web_downloads/select_release?mode=gwylf).
+
 Get familiar with 
 
 	- Editor
@@ -26,6 +28,10 @@ Get familiar with
 	- Figures
 	
 You can refer to **Section 1.2** in the textbook for a reminder of the MATLAB GUI.
+
+#### MATLAB web application
+
+You can also run MATLAB through your [browser](https://matlab.mathworks.com) if you have a [Mathworks.com](http://www.mathworks.com) account. 
 
 ---
 #### MATLAB publishing
