@@ -2,6 +2,7 @@ clear all
 close all
 clc
 
+
 %% A) Simple scalar arithmetic (Section 2.1.1)
 
 % You can use MATLAB just like a calculator!!
@@ -18,13 +19,13 @@ clc
 % Given that 2^6.5 = 90.5097 can you added parentheses to the following
 % MATLAB expression to obtain a value of 90.5097. 
 
-12 / 4 - 1 ^ 4 - 2 + 3 * 1.5
+(12 / 4 - 1) ^ (4 - 2 + 3 * 1.5);
 
 %%
 % Next, can you insert only two pairs of parentheses into the following
 % expression to again obtain a value of 90.5097. 
 
-4 ^ 0.5 ^ 10 - 2 ^ 1 + 1 + 0.5
+(4 ^ 0.5) ^ (10 - (2 ^ 1 + 1 + 0.5))
 
 %% C) Using named variables (Section 2.1.3)
 
@@ -34,7 +35,7 @@ magnifiers = 9
 
 %%
 
-hammers*45.32 + compasses*23.17 + magnifiers*4.99
+(hammers*45.32) + compasses*23.17 + magnifiers*4.99
 
 %%
 
@@ -112,25 +113,44 @@ a = 1;
 %
 % To make a row vector we could write
 a = [1, 1, 1]
+% comma = new column
+
 %%
 % this uses the comma "," to separate the different entries. To make a
 % column vector we could write
 b = [1; 2; 3]
+% semicolon = new row
+
 %%
 % using the semicolon ";" to separate the different entries. To _transpose_
 % _b_ to same shape as _a_ there are two options:
 btrans = transpose( b ) 
+
+%%
+% Tranpose takes the matrix [MxN] and makes it [NxM] by swapping rows for
+% columns
+a = [1 , 1; 2, 2; 3, 3]
+
+atrans = transpose(a)
+
 %%
 % or the shorthand version
-btrans = b'
+atrans = a'
 
 %% ways to make vectors
 
+% x = [start : delta : end]
 x = [0.8: 0.15: 1.4] % by hand
 
 % or 
 
-x = linspace(0.8, 1.4, 5) % by a MATLAB function
+x = linspace(0.8, 1.4, 6) % by a MATLAB function
+
+delta = (1.4-0.8)/5
+
+% or 
+
+delta = x(2)-x(1)
 
 %%
 % *Matrices*
@@ -152,7 +172,13 @@ whos
 %%
 % You can also assign a complete row or column in MATLAB using the colon
 % ":" operator. For example
-d( 2, : ) = 2
+d( 3 ) = 2
+
+% Two ways to index matrix elements
+% d(i,j)
+
+%d(index) --> index counts columnwise
+
 %%
 % or
 d( :, 1 ) = 0
@@ -166,7 +192,7 @@ e = zeros( 3, 3, 3)
 %--------------------------------------------------------------------------
 % Let's look at arithmetic operations on vectors
 
-x = [0.8: 0.15: 1.4]';
+x = [0.8: 0.15: 1.4]'
 
 %% addition
 y = x + 2
@@ -182,6 +208,7 @@ y = x / 2.5
 
 %% we can also just modify certain elements using 'indexing'
 y = x(1:2) + 5
+
 
 %% F)
 
