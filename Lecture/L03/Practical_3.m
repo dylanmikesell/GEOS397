@@ -1,8 +1,108 @@
+clear all
+close all
+clc
 
 
-%% Vectors and Matrices
+%% A) Simple scalar arithmetic (Section 2.1.1)
+
+% You can use MATLAB just like a calculator!!
+
+%% B) Order of operations (a.k.a. evaluation) (Section 2.1.2)
+
+% 1. Parentheses (brackets), innermost first.
+% 2. Exponentiation, left to right.
+% 3. Multiplication and division with equal importance, left to right. 
+% 4. Addition and subtraction with equal important, left to right.
+
+%%
+
+% Given that 2^6.5 = 90.5097 can you added parentheses to the following
+% MATLAB expression to obtain a value of 90.5097. 
+
+(12 / 4 - 1) ^ (4 - 2 + 3 * 1.5);
+
+%%
+% Next, can you insert only two pairs of parentheses into the following
+% expression to again obtain a value of 90.5097. 
+
+(4 ^ 0.5) ^ (10 - (2 ^ 1 + 1 + 0.5))
+
+%% C) Using named variables (Section 2.1.3)
+
+hammers = 6
+compasses = 2
+magnifiers = 9
+
+%%
+
+(hammers*45.32) + compasses*23.17 + magnifiers*4.99
+
+%%
+
+cost = hammers*45.32 + compasses*23.17 + magnifiers*4.99
+
+%%
+
+items = hammers + compasses + magnifiers
+
+%%
+
+average_cost = cost / items
+
+
+%% D) Rules for naming variables (Matlab's own restrictions)
+
+% ? Variable names must start with a letter.
+% ? Names can only be based on the letters A-Z & a-z, numbers 0-9 and underscore ?. 
+% ? Only the first 31 characters in a variable name are recognized by MATLAB
+% ? Names are case sensitive: name, Name, NAME are different.
+
+%% From the style guide
+
+% 1) Variable names should be in mixed case starting with lower case and
+% discriptive
+
+% linearity, credibleThreat, qualityOfLife
+
+% 2) The prefix n should be used for variables representing the number of
+% objects. 
+
+% nFiles, nSegments
+
+% 3) A MATLAB-specific addition is the use of m for number of rows (based on
+% matrix notation), as in 
+
+% mRows
+
+% We usually give the dimensions of a matrix as [m x n] (i.e. [rows x columns])
+
+% 4) A convention on pluralization should be followed consistently.
+
+% point,   pointArray
+
+% 5) Variables representing a single entity number can be suffixed by No or
+% prefixed by i. 
+
+% tableNo, employeeNo
+
+% 6) The i prefix effectively makes the variables named iterators.
+
+% iTable, iEmployee
+
+% 7) Negated boolean variable names should be avoided.
+
+% Use isFound
+
+% Avoid isNotFound
+
+% 8) Named constants should be all uppercase using underscore to separate
+% words. 
+
+% MAX_ITERATIONS, COLOR_RED
+
+%% E) Vectors and Matrices
 % 
-% MATLAB is so useful as a computing language because it is build to linear
+% MATLAB is so useful as a computing language because it is built for linear
 % algebra and has many features that allow for rapid development with
 % vectors and matrices. In the previous examples we used what is known as a
 % "singleton". For example,
@@ -13,17 +113,44 @@ a = 1;
 %
 % To make a row vector we could write
 a = [1, 1, 1]
+% comma = new column
+
 %%
 % this uses the comma "," to separate the different entries. To make a
 % column vector we could write
 b = [1; 2; 3]
+% semicolon = new row
+
 %%
 % using the semicolon ";" to separate the different entries. To _transpose_
 % _b_ to same shape as _a_ there are two options:
 btrans = transpose( b ) 
+
+%%
+% Tranpose takes the matrix [MxN] and makes it [NxM] by swapping rows for
+% columns
+a = [1 , 1; 2, 2; 3, 3]
+
+atrans = transpose(a)
+
 %%
 % or the shorthand version
-btrans = b'
+atrans = a'
+
+%% ways to make vectors
+
+% x = [start : delta : end]
+x = [0.8: 0.15: 1.4] % by hand
+
+% or 
+
+x = linspace(0.8, 1.4, 6) % by a MATLAB function
+
+delta = (1.4-0.8)/5
+
+% or 
+
+delta = x(2)-x(1)
 
 %%
 % *Matrices*
@@ -45,7 +172,13 @@ whos
 %%
 % You can also assign a complete row or column in MATLAB using the colon
 % ":" operator. For example
-d( 2, : ) = 2
+d( 3 ) = 2
+
+% Two ways to index matrix elements
+% d(i,j)
+
+%d(index) --> index counts columnwise
+
 %%
 % or
 d( :, 1 ) = 0
@@ -54,142 +187,59 @@ d( :, 1 ) = 0
 % we can allocate a 3x3x3 matrix (or tensor)
 e = zeros( 3, 3, 3)
 
-%% Plotting
-%
-% Now that we can make a vector, let's plot a sine function. First we need
-% to build the independent variable _x_. Let's make _x_ go from 0 to pi,
-% with a sample interval of pi/180. 
-dx = pi / 180;
-x = 0 : dx : 2*pi - dx;
-%%
-% Let's compute the dependent variable _y_ = sin(x).
-y = sin(x); % keep in mind that this function need input in radians. If _x_ were in degrees we would use _sind()_
-%%
-% To plot we use MATLAB's built in plot command
-plot( x, y );
-%%
-% We can see straight away that this is a very bare plot. In order to make
-% a better plot we want to add axes labels, remove extra white space, and
-% maybe even add a legend or title. We have a few options to accomplish
-% this. I will talk about 2 of them.
-%%
-% 
-% # Using the graphic's GUI
-% # Directly at the command line
-% 
-%%
-% 1.
-plot( x, y);
-%%
-% 2.
-plot( x, y); xlabel('X'); ylabel('Y'); title('Our first plot');
-axis('tight'); % type "help axis" to see other built-in options
-%%
-% For much more on MATLAB plotting look at 
-% http://www.mathworks.com/help/matlab/plotting-basics.html
-% You can plot surfaces, 3D shapes, etc. In reality you can almost plot
-% anything you want. It can some effort to figure out how, but MATLAB
-% usually has examples at the bottom of every "help" or a quick online
-% search can yield useful information. For example, a surface plot looks
-% like
-surf(peaks)
-
-
-%% Useful things to know about plotting and MATLAB graphics objects
-%
-% There are many more graphic properties that are worth knowing. Here we
-% go through a few of the more important properties for creating nice
-% graphics.
-close all; % First will close all previous graphic windows.
-
-fontName = 'Times'; % set the font name we want to use
-fontWeight = 'Normal'; % set the font weight we want to use
-
-h = figure('Color','White'); % create a new graphic and assign it "h", which is the _figure handle_
-set(h,'PaperUnits','Inches'); % set the paper size units
-set(h, 'Units', 'Inches','Position',[1 1 8 4]); % set the graphic size unit and dimension
-
-plot( x, y, 'Color', 'r', 'LineWidth', 4 ); % change the color and line size
-xlabel('X','FontName',fontName , 'FontWeight',fontWeight ); % set xlabel and font properties
-ylabel('Y','FontName',fontName , 'FontWeight',fontWeight ); 
-title('Our first plot','FontName',fontName , 'FontWeight',fontWeight );
-axis('tight');
 
 %%
-% Notes: 
-% You can use 'rgb' color codes, 'cmyk' or the built-in shortcuts like 'r'
-% You can change the line style
+%--------------------------------------------------------------------------
+% Let's look at arithmetic operations on vectors
 
-%%
-% Let's say we don't want to set individual properties to all have the same
-% font characteristics. We could use the _findall()_ function to set
-% everything in this plot the same font size 
-set( findall( h, '-property', 'FontSize' ), 'FontSize', 36 );
-%%
-% Let's say we had a more complex function that was y = sin(wt) and we
-% wanted the Y-axis label to reflect this. We could use the built in
-% 'TeX' interpreter or we could use the 'LaTeX' interpreter.
-set( findall( h, '-property', 'Interpreter' ), 'Interpreter', 'Tex' );
-ylabel('Y = sin(\omega X)','FontName',fontName , 'FontWeight',fontWeight ); % this can't handle \sin() though
-%%
-% Use 'LaTeX'
-set( findall( h, '-property', 'Interpreter' ), 'Interpreter', 'Latex' );
-ylabel('$Y = \sin(\omega X)$','FontName',fontName , 'FontWeight',fontWeight ); % NOTE the added $_$ around the label -- just like in LaTeX inline math command 
-%%
-% For more information about setting the text properties look at 
-% http://www.mathworks.com/help/matlab/ref/text-properties.html
-%%
-% Let's save our figure now. You can save a figure manually from the
-% Graphics -> File -> SaveAs to any of the available formats. Or you can
-% open Graphics -> File -> Export Setup to modifies figure properties
-% before exporting to one of the available formats. You can also save a
-% figure from the command line using the _print()_ command.
-print( h, './firstFigure.png', '-dpng' ); % save figure as png. Type "help print" to see all options.
-%%
-% You should notice that the dimensions of the figure in the saved file are
-% not the same as the dimension of the figure that we manually set, nor how
-% it looks on the screen when we plot. To resolve this we need to set one
-% more property.
-set(h, 'PaperPositionMode','Auto'); % this command makes saving the figur
-print( h, './firstFigure2.png', '-dpng' );
-%%
-% MATLAB's built-in ".fig" format is worth knowing about. Type "help
-% savefig". This allows you to save a graphic object and open it later with
-% the capability to edit the graphic properties as we have just done. This
-% is useful for saving publication figures. If you need to change something
-% later, this can be a quick way to modify the figure.
-help savefig
-%%
-%
-savefig(h,'./firstFigure.fig');
-close all
-openfig('./firstFigure.fig');
+x = [0.8: 0.15: 1.4]'
+
+%% addition
+y = x + 2
+
+%% subtraction
+y = x - 3
+
+%% multiplication
+y = x * 1.2
+
+%% division
+y = x / 2.5
+
+%% we can also just modify certain elements using 'indexing'
+y = x(1:2) + 5
 
 
+%% F)
 
+% When performing addition and subtraction on arrays (i.e. vectors) you
+% must either use an array and a scalar together or two arrays of the same
+% size. We just did a bunch of array-scalar operations. So let's look at
+% array-array arithmetic
 
-%% Functions
+x = [ 1, 1, 1; 2, 2, 2]
 
-% In order to improve the readability and reduce writing repetitive lines
-% of code we can write functions to do simple tasks. The built-in MATLAB
-% _plot()_ command is an example of a function. I have written a function
-% that we can then call to do a task. Open the file myMinimum.m
-x = -100:100;
+y = [ 1, 2, 3; 4, 5, 6]
 
-[minVal, minIdx ] = myMinimum( x )
-%%
-% Let's look at the help for this function. Everything in comments
-% immediately following the "function" declaration is part of the preamble
-% of this functiona and will show up in the "help myMinimum" command.
-help myMinimum
+%% element by element multiplication
+x.*y 
 
-%%
-% That is it for Lecture 1!
+%% element by element divsion
+x./y
 
-a = 1 + 1i;
+%% element by element exponentiation
+x.^y
 
+%% matrix multiplication
+x*y
 
-%% 
-% Written by _Dylan Mikesell_,
-% with excerpts from
-% http://web.gps.caltech.edu/classes/ge11d/doc/matlab_Resource_Seminar.pdf 
+%% What's the problem
+
+% x is a [2,3] matrix
+% y is a [2,3] matrix
+
+% [2,3] * [2,3] does not work. Why?
+
+%% we need to get the dimension right.
+
+transpose(x) * y % now we have [3,2]*[2,3] and the output should be [3,3] matrix
