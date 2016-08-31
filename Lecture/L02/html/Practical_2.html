@@ -1,0 +1,383 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Practical_2</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-08-24"><meta name="DC.source" content="Practical_2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MATLAB Introduction</a></li><li><a href="#2">Getting started</a></li><li><a href="#3">Using MATLAB</a></li><li><a href="#7">This is the start of a something called a 'Section' in MATLAB.</a></li><li><a href="#8">Useful commands for begginners</a></li><li><a href="#17">Syntax</a></li><li><a href="#24">Variable explorer</a></li><li><a href="#27">Data types in MATLAB</a></li><li><a href="#32">Saving your workspace.</a></li></ul></div><h2>MATLAB Introduction<a name="1"></a></h2><pre class="codeinput"><span class="comment">% What is MATLAB?</span>
+<span class="comment">% MATLAB ("MATrix LABoratory") is a tool for numerical computation and</span>
+<span class="comment">% visualization. The basic data element is a matrix, so if you need a</span>
+<span class="comment">% program that manipulates array-based data it is generally fast to write</span>
+<span class="comment">% and run in MATLAB (unless you have very large arrays or lots of</span>
+<span class="comment">% computations, in which case you're better off using C or Fortran).</span>
+</pre><pre class="codeoutput error">Error using dbstatus
+Error: File: /Users/dmikesell/GIT/GEOS397/Lecture/L02/Practical_2.m Line: 116 Column: 7
+Unexpected MATLAB expression.
+</pre><h2>Getting started<a name="2"></a></h2><pre class="codeinput"><span class="comment">% MATLAB is available on computer lab machines. You</span>
+<span class="comment">% can find more information about getting MATLAB through BSU at</span>
+<span class="comment">% http://oit.boisestate.edu/software/software-services/mathematical-and-statistical-software/</span>
+
+<span class="comment">% Click the MATLAB icon to start. This will open the MATLAB</span>
+<span class="comment">% desktop, which includes interactive menus and windows in addition to the</span>
+<span class="comment">% command window.</span>
+</pre><h2>Using MATLAB<a name="3"></a></h2><pre class="codeinput"><span class="comment">% The best way to learn to use MATLAB is to sit down and try to use it. In</span>
+<span class="comment">% this handout are a few examples of basic MATLAB operations, but after</span>
+<span class="comment">% you've gone through this tutorial you will probably want to learn more.</span>
+<span class="comment">% Check out the "Other Resources" listed at the end of this handout.</span>
+</pre><p><b>Launching MATLAB</b></p><pre class="codeinput"><span class="comment">% When you start MATLAB, the command prompt "&gt;&gt;" appears. You will tell</span>
+<span class="comment">% MATLAB what to do by typing commands at the prompt. Let's look at the</span>
+<span class="comment">% MATLAB GUI (Graphical User Interface) now and become familiar with the</span>
+<span class="comment">% features.</span>
+</pre><p><b>GUI Features</b></p><div><ul><li>Command Window</li><li>Command History</li><li>Current Folder</li><li>Workspace</li><li>Editor</li><li>Variable Editor</li><li>Details</li><li>Search Documentation (searchable help)</li></ul></div><p><b>GUI Tabs</b> (&gt;= MATLAB 2014) (i.e. the ribbon)</p><div><ul><li>Home</li><li>Plots</li><li>Apps</li><li>Editor</li><li>Publish</li><li>View</li></ul></div><h2>This is the start of a something called a 'Section' in MATLAB.<a name="7"></a></h2><pre class="codeinput"><span class="comment">% If you didn't notice already, some text in this script is green. This</span>
+<span class="comment">% indicates that the text is a 'comment'. Comments are ignored by MATLAB</span>
+<span class="comment">% when we actually run a script. Any line that begins with the '%' symbol</span>
+<span class="comment">% is a comment.</span>
+
+<span class="comment">% Anything that starts with '%%' is a section (assuming 'Sections' are</span>
+<span class="comment">% enabled in the MATLAB preferences).</span>
+
+<span class="comment">% Sections allow you to step through your code and run only sections of it.</span>
+<span class="comment">% It is a really useful tool when your code/scripts get to be hundreds or</span>
+<span class="comment">% thousands of lines.</span>
+
+<span class="comment">% On that note, look at the line numbers on the left. These will be useful</span>
+<span class="comment">% for debugging output later. When errors occur, the MATLAB command window</span>
+<span class="comment">% with tell you on which line the errored occurred so that you can quickly</span>
+<span class="comment">% find the line that's giving you trouble.</span>
+</pre><h2>Useful commands for begginners<a name="8"></a></h2><pre class="codeinput"><span class="comment">% Let's first type &gt;&gt;"help help" in the command window</span>
+
+help <span class="string">help</span>
+</pre><p>We can also use a few built-in commands to clean up the MATLAB workspace.</p><pre class="codeinput">help <span class="string">clc</span>
+</pre><pre class="codeinput">help <span class="string">home</span>
+</pre><pre class="codeinput">help <span class="string">clear</span>
+</pre><pre class="codeinput">clear <span class="string">all</span>
+</pre><pre class="codeinput">help <span class="string">close</span>
+</pre><pre class="codeinput">help <span class="string">diary</span>
+</pre><pre class="codeinput">help <span class="string">who</span>
+</pre><pre class="codeinput">help <span class="string">whos</span>
+
+<span class="comment">% Let's create a new diary for the remainder of this class.</span>
+diary(<span class="string">'MyFirst.diary'</span>);
+
+<span class="comment">% Question: What is the significance of the ";" at the end of the line?</span>
+</pre><h2>Syntax<a name="17"></a></h2><div><ul><li>White space does not matter. For example</li></ul></div><pre class="codeinput">a=1+1
+</pre><p>is the same as</p><pre class="codeinput">a  =  1 +      1
+</pre><div><ul><li>';' are important though</li></ul></div><pre class="codeinput">x = 1 y = 2
+</pre><pre class="codeinput">x = 1; y = 2
+</pre><p>To suppress the output you can type</p><pre class="codeinput">clear <span class="string">a</span>
+a = 1 + 1;
+</pre><p>Now look at the "workspace". Variable <i>a</i> is there, but because we used the ";" operator at the end, the output to the "command window" was suppressed.</p><h2>Variable explorer<a name="24"></a></h2><p>Let's look at <i>a</i> now. At the "command window" type <i>a</i>.</p><pre class="codeinput">a
+</pre><p>You see that the value is returned. Now type <i>whos a</i></p><pre class="codeinput">whos <span class="string">a</span>
+</pre><p>We can now look at the variable <i>a</i> to learn about it properties. You can also <b>double-click <i>a</i></b> in the workspace tab to pull up the "Variable Explorer" that gives you the ability to look at <i>a</i> in the form of a table.</p><h2>Data types in MATLAB<a name="27"></a></h2><div><ul><li>Numeric Types: Integer and floating-point data</li><li>Characters and Strings: Text in character arrays</li><li>Dates and Time: Arrays of date and time values that can be displayed in different formats</li><li>Categorical Arrays: Arrays of qualitative data with values from a finite set of discrete, nonnumeric data</li><li>Tables: Arrays in tabular form whose named columns can have different types</li><li>Structures: Arrays with named fields that can contain data of varying types and sizes</li><li>Cell Arrays: Arrays that can contain data of varying types and sizes</li><li>Function Handles: Variables that allow you to invoke a function indirectly</li><li>Map Containers: Objects with keys that index to values, where keys need not be integers</li><li>Time Series: Data vectors sampled over time</li></ul></div><p>You can find more info about all of these at <a href="http://www.mathworks.com/help/matlab/data-types_data-types.html">http://www.mathworks.com/help/matlab/data-types_data-types.html</a></p><p>To find out what something is you can type "help isa"</p><pre class="codeinput">help <span class="string">isa</span>
+</pre><p>Keep in mind that all of these "types" take of different amounts of memory. You can allocate a variable as a certain data type or you can convert a variable from one data type to another after you have declared that variable. For example type "b = single(a); whos"</p><pre class="codeinput">b = single( a ); whos
+</pre><p>This is one way to make a single from a double. Another way would be to allocate the variable to a certain data type before assigning a value to the variable. For example type "c = zeros(1,1,'int8'); whos</p><pre class="codeinput">c = zeros( 1, 1, <span class="string">'int8'</span> ); whos
+</pre><p>We will come back to variable allocation later to look at how allocating memory can save computing time in certain instances. To learn more about data type identification look at <a href="http://www.mathworks.com/help/matlab/data-type-identification.html">http://www.mathworks.com/help/matlab/data-type-identification.html</a> and to learn more about converting frome one data type to another look at <a href="http://www.mathworks.com/help/matlab/data-type-conversion.html">http://www.mathworks.com/help/matlab/data-type-conversion.html</a></p><p>For more on memory allocation see <a href="http://www.mathworks.com/help/matlab/matlab_prog/memory-allocation.html">http://www.mathworks.com/help/matlab/matlab_prog/memory-allocation.html</a></p><h2>Saving your workspace.<a name="32"></a></h2><p>MATLAB offers the user the ability to save all current variables (or just a subset) to disk in MATLAB's native ".mat" format. This is a binary file format and can be loaded back into MATLAB with a single command. Below we go through an example.</p><pre class="codeinput">clear <span class="string">all</span>; <span class="comment">% delete everything from memory</span>
+
+a = 1;
+b = 4;
+c = 3;
+
+d = a + b * c; <span class="comment">% Note the order of operations.</span>
+</pre><p>For more on MATLAB's "order of operations" look at <a href="http://www.mathworks.com/help/matlab/matlab_prog/operator-precedence.html">http://www.mathworks.com/help/matlab/matlab_prog/operator-precedence.html</a></p><p>Back to saving a workspace.</p><pre class="codeinput">whos
+</pre><pre class="codeinput">save(<span class="string">'./myFirstWorkspace.mat'</span>); <span class="comment">% This will save everything</span>
+</pre><p>We can load this information back into MATLAB using</p><pre class="codeinput">clear <span class="string">all</span>;
+whos
+</pre><pre class="codeinput">load(<span class="string">'./myFirstWorkspace'</span>); <span class="comment">% Note that we can neglect the '.mat' or we can add the file extension. MATLAB does not care. It will first look for a file with the same filename and .mat extension.</span>
+whos
+</pre><p>We can also save individual variables by modifying our <i>save()</i> command.</p><pre class="codeinput">save(<span class="string">'./myFirstLetter.mat'</span>,<span class="string">'a'</span>,<span class="string">'b'</span>); <span class="comment">% Here we save only _a_ and _b_.</span>
+clear <span class="string">all</span>;
+whos
+</pre><pre class="codeinput">load(<span class="string">'./myFirstLetter.mat'</span>);
+whos
+</pre><p>You can also load a '.mat' file by simply double-clicking the filename in your "Current Folder" panel of the MATLAB GUI. You can also investigate what is inside of a '.mat' file before ever actually loading it into the MATLAB workspace. To do this single-click a filename in your "Current Folder" panel; in the "Details" you will see information (or even a thumbnail of images) about what is inside of the highlighted '.mat' file.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% MATLAB Introduction
+
+% What is MATLAB?
+% MATLAB ("MATrix LABoratory") is a tool for numerical computation and
+% visualization. The basic data element is a matrix, so if you need a
+% program that manipulates array-based data it is generally fast to write
+% and run in MATLAB (unless you have very large arrays or lots of
+% computations, in which case you're better off using C or Fortran).  
+
+%% Getting started
+
+% MATLAB is available on computer lab machines. You
+% can find more information about getting MATLAB through BSU at
+% http://oit.boisestate.edu/software/software-services/mathematical-and-statistical-software/
+
+% Click the MATLAB icon to start. This will open the MATLAB
+% desktop, which includes interactive menus and windows in addition to the
+% command window.   
+
+%% Using MATLAB
+
+% The best way to learn to use MATLAB is to sit down and try to use it. In
+% this handout are a few examples of basic MATLAB operations, but after
+% you've gone through this tutorial you will probably want to learn more.
+% Check out the "Other Resources" listed at the end of this handout.   
+
+%%
+% *Launching MATLAB*
+
+% When you start MATLAB, the command prompt ">>" appears. You will tell
+% MATLAB what to do by typing commands at the prompt. Let's look at the
+% MATLAB GUI (Graphical User Interface) now and become familiar with the
+% features.
+
+%%
+% *GUI Features*
+%
+% * Command Window
+% * Command History
+% * Current Folder
+% * Workspace
+% * Editor
+% * Variable Editor
+% * Details
+% * Search Documentation (searchable help)
+
+%%
+% *GUI Tabs* (>= MATLAB 2014) (i.e. the ribbon)
+%
+% * Home
+% * Plots
+% * Apps
+% * Editor
+% * Publish
+% * View
+
+%% This is the start of a something called a 'Section' in MATLAB.
+
+% If you didn't notice already, some text in this script is green. This
+% indicates that the text is a 'comment'. Comments are ignored by MATLAB
+% when we actually run a script. Any line that begins with the '%' symbol
+% is a comment.
+
+% Anything that starts with '%%' is a section (assuming 'Sections' are
+% enabled in the MATLAB preferences).
+
+% Sections allow you to step through your code and run only sections of it.
+% It is a really useful tool when your code/scripts get to be hundreds or
+% thousands of lines.
+
+% On that note, look at the line numbers on the left. These will be useful
+% for debugging output later. When errors occur, the MATLAB command window
+% with tell you on which line the errored occurred so that you can quickly
+% find the line that's giving you trouble.
+
+
+%% Useful commands for begginners
+
+% Let's first type >>"help help" in the command window
+
+help help
+
+%%
+% We can also use a few built-in commands to clean up the MATLAB workspace.
+
+help clc
+%%
+help home
+%%
+help clear
+%%
+clear all
+%%
+help close
+%%
+help diary
+%% 
+help who
+%%
+help whos
+
+% Let's create a new diary for the remainder of this class.
+diary('MyFirst.diary');
+
+% Question: What is the significance of the ";" at the end of the line?
+
+%% Syntax
+%
+% * White space does not matter. For example
+a=1+1
+%%
+% is the same as 
+a  =  1 +      1
+%%
+% * ';' are important though
+x = 1 y = 2
+%%
+x = 1; y = 2
+%%
+% To suppress the output you can type
+clear a
+a = 1 + 1;
+%%
+% Now look at the "workspace". Variable _a_ is there, but because we used
+% the ";" operator at the end, the output to the "command window" was
+% suppressed.
+
+%% Variable explorer
+% Let's look at _a_ now. At the "command window" type _a_.
+a
+%%
+% You see that the value is returned. Now type _whos a_
+whos a
+%%
+% We can now look at the variable _a_ to learn about it properties. You can
+% also *double-click _a_* in the workspace tab to pull up the "Variable
+% Explorer" that gives you the ability to look at _a_ in the form of a
+% table.
+
+%% Data types in MATLAB
+%
+% * Numeric Types: Integer and floating-point data
+% * Characters and Strings: Text in character arrays
+% * Dates and Time: Arrays of date and time values that can be displayed in different formats
+% * Categorical Arrays: Arrays of qualitative data with values from a finite set of discrete, nonnumeric data
+% * Tables: Arrays in tabular form whose named columns can have different types
+% * Structures: Arrays with named fields that can contain data of varying types and sizes
+% * Cell Arrays: Arrays that can contain data of varying types and sizes
+% * Function Handles: Variables that allow you to invoke a function indirectly
+% * Map Containers: Objects with keys that index to values, where keys need not be integers
+% * Time Series: Data vectors sampled over time
+%
+% You can find more info about all of these at 
+% http://www.mathworks.com/help/matlab/data-types_data-types.html
+
+%%
+% To find out what something is you can type "help isa"
+help isa
+%%
+% Keep in mind that all of these "types" take of different amounts of
+% memory. You can allocate a variable as a certain data type or you can
+% convert a variable from one data type to another after you have declared
+% that variable. For example type "b = single(a); whos"
+b = single( a ); whos
+
+%% 
+% This is one way to make a single from a double. Another way would be to
+% allocate the variable to a certain data type before assigning a value to
+% the variable. For example type "c = zeros(1,1,'int8'); whos
+c = zeros( 1, 1, 'int8' ); whos
+%%
+% We will come back to variable allocation later to look at how allocating
+% memory can save computing time in certain instances. To learn more about
+% data type identification look at 
+% http://www.mathworks.com/help/matlab/data-type-identification.html
+% and to learn more about converting frome one data type to another look at
+% http://www.mathworks.com/help/matlab/data-type-conversion.html
+%
+% For more on memory allocation see
+% http://www.mathworks.com/help/matlab/matlab_prog/memory-allocation.html
+
+
+%% Saving your workspace.
+% MATLAB offers the user the ability to save all current variables (or just
+% a subset) to disk in MATLAB's native ".mat" format. This is a binary file
+% format and can be loaded back into MATLAB with a single command. Below we
+% go through an example.
+clear all; % delete everything from memory
+
+a = 1;
+b = 4;
+c = 3;
+
+d = a + b * c; % Note the order of operations.
+%%
+% For more on MATLAB's "order of operations" look at
+% http://www.mathworks.com/help/matlab/matlab_prog/operator-precedence.html
+%%
+% Back to saving a workspace.
+whos
+%%
+save('./myFirstWorkspace.mat'); % This will save everything
+%%
+% We can load this information back into MATLAB using
+clear all;
+whos
+%%
+load('./myFirstWorkspace'); % Note that we can neglect the '.mat' or we can add the file extension. MATLAB does not care. It will first look for a file with the same filename and .mat extension.
+whos
+%%
+%%
+% We can also save individual variables by modifying our _save()_ command.
+save('./myFirstLetter.mat','a','b'); % Here we save only _a_ and _b_.
+clear all;
+whos
+%%
+load('./myFirstLetter.mat');
+whos
+%%
+% You can also load a '.mat' file by simply double-clicking the filename in
+% your "Current Folder" panel of the MATLAB GUI. You can also investigate
+% what is inside of a '.mat' file before ever actually loading it into the
+% MATLAB workspace. To do this single-click a filename in your "Current
+% Folder" panel; in the "Details" you will see information (or even a
+% thumbnail of images) about what is inside of the highlighted '.mat' file.
+
+##### SOURCE END #####
+--></body></html>
