@@ -1,6 +1,6 @@
 # GEOS 397/597
 
-## Lecture #3: Gihub and Algebra
+## Lecture #3: Github and Algebra
 
 ### 1) Github Desktop Application demo 
 
