@@ -99,8 +99,14 @@ OUTPUT hw2.pdf
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
+INPUT /usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm
 INPUT /usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT hw2.aux
@@ -109,5 +115,9 @@ INPUT ./hw2.out
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
