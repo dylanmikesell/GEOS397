@@ -2,6 +2,7 @@ clear all
 close all
 clc
 
+
 %% A) Simple scalar arithmetic (Section 2.1.1)
 
 % You can use MATLAB just like a calculator!!
@@ -18,13 +19,13 @@ clc
 % Given that 2^6.5 = 90.5097 can you added parentheses to the following
 % MATLAB expression to obtain a value of 90.5097. 
 
-12 / 4 - 1 ^ 4 - 2 + 3 * 1.5
+(12 / 4 - 1) ^ (4 - 2 + 3 * 1.5);
 
 %%
 % Next, can you insert only two pairs of parentheses into the following
 % expression to again obtain a value of 90.5097. 
 
-4 ^ 0.5 ^ 10 - 2 ^ 1 + 1 + 0.5
+(4 ^ 0.5) ^ (10 - (2 ^ 1 + 1 + 0.5))
 
 %% C) Using named variables (Section 2.1.3)
 
@@ -34,7 +35,7 @@ magnifiers = 9
 
 %%
 
-hammers*45.32 + compasses*23.17 + magnifiers*4.99
+(hammers*45.32) + compasses*23.17 + magnifiers*4.99
 
 %%
 
@@ -112,25 +113,44 @@ a = 1;
 %
 % To make a row vector we could write
 a = [1, 1, 1]
+% comma = new column
+
 %%
 % this uses the comma "," to separate the different entries. To make a
 % column vector we could write
 b = [1; 2; 3]
+% semicolon = new row
+
 %%
 % using the semicolon ";" to separate the different entries. To _transpose_
 % _b_ to same shape as _a_ there are two options:
 btrans = transpose( b ) 
+
+%%
+% Tranpose takes the matrix [MxN] and makes it [NxM] by swapping rows for
+% columns
+a = [1 , 1; 2, 2; 3, 3]
+
+atrans = transpose(a)
+
 %%
 % or the shorthand version
-btrans = b'
+atrans = a'
 
 %% ways to make vectors
 
+% x = [start : delta : end]
 x = [0.8: 0.15: 1.4] % by hand
 
 % or 
 
-x = linspace(0.8, 1.4, 5) % by a MATLAB function
+x = linspace(0.8, 1.4, 6) % by a MATLAB function
+
+delta = (1.4-0.8)/5
+
+% or 
+
+delta = x(2)-x(1)
 
 %%
 % *Matrices*
@@ -152,7 +172,13 @@ whos
 %%
 % You can also assign a complete row or column in MATLAB using the colon
 % ":" operator. For example
-d( 2, : ) = 2
+d( 3 ) = 2
+
+% Two ways to index matrix elements
+% d(i,j)
+
+%d(index) --> index counts columnwise
+
 %%
 % or
 d( :, 1 ) = 0
@@ -166,7 +192,7 @@ e = zeros( 3, 3, 3)
 %--------------------------------------------------------------------------
 % Let's look at arithmetic operations on vectors
 
-x = [0.8: 0.15: 1.4]';
+x = [0.8: 0.15: 1.4]'
 
 %% addition
 y = x + 2
@@ -182,6 +208,7 @@ y = x / 2.5
 
 %% we can also just modify certain elements using 'indexing'
 y = x(1:2) + 5
+
 
 %% F)
 
@@ -216,142 +243,3 @@ x*y
 %% we need to get the dimension right.
 
 transpose(x) * y % now we have [3,2]*[2,3] and the output should be [3,3] matrix
-
-%%
-%--------------------------------------------------------------------------
-%--------------------------------------------------------------------------
-
-% Relational operators
-
-A = 5;
-B = 6;
-
-%% check if they are equal
-A == B
-
-%% check if they are not equal
-A ~= B
-
-%% check if A is greater than or equal to B
-A >= B
-
-%% check if A is less than B
-A < B
-
-
-%% What about with vectors
-%--------------------------------------------------------------------------
-
-A = [1:1:5];
-B = [5:-1:1];
-
-%% 
-A >= 4
-
-%%
-A == B
-
-%% 
-B < A
-
-%% What about dimensions? Think back to our array-array arithmetic
-
-A = [1:1:4];
-B = [1:1:3];
-
-A == B
-
-%% let's look at how to find the indices of vector elements that meet our relational test
-
-B = [5:-1:1];
-
-%%
-B >= 3
-
-%% What if we don't just want ones and zeros, but the actual element number of B
-
-idx = find( B >= 3 )
-
-% We see that this tells us elements 1, 2 and 3 meet this relational test
-
-%%
-%--------------------------------------------------------------------------
-%--------------------------------------------------------------------------
-% Logical operators
-
-A = [1:1:5];
-B = [5:-1:1];
-
-%% let's test multiple things now
-
-(A > B) & (A ~= 5) % & = and
-
-%%
-
-idx = find( B<=2 | B>4 ) % | = or
-
-%% check for <=2 or >=4
-
-B( idx )
-
-
-%%
-%--------------------------------------------------------------------------
-%--------------------------------------------------------------------------
-% Conditional branching to control flow of code
-
-C = 7.1;
-
-%% Let's introduce the 'if' statement
-
-if C > 6.5 % relational operator (should return 0 or 1)
-      C = C - 3.1; % when True (i.e. ==1) perform the calculation
-end % end of the code relating to the if-statement
-
-C % display
-
-%%
-
-C = 6.1; % set our value to be processed
-if C > 6.5 % relational operator
-      C = C - 3.1; % when True perform the calculation
-end % end of the code relating to the if-statement
-
-C % display --> we see C does not chance
-
-%% we can set more than one test!
-
-C = 6.1; % set our value to be processed
-if C > 6.5 % relational operator
-    C = C - 3.1; % when True perform the calculation
-else % enter the alternative for a False
-    C = C + 9.3;
-end
-C % display
-
-%% look at indetation really quick
-
-C = 6.1; % set our value to be processed
-if C > 6.5 % relational operator
-      C = C - 3.1; % when True perform the calculation
-   else % enter the alternative for a False
-C = C + 9.3;
-end
-
-%% we can get even more complex with elseif
-
-C = 6.1; % set our value to be processed
-if C > 6.5 % relational operator
-    C = C - 3.1; % when if is True perform the calculation
-elseif C < 2.4 % enter the alternative condition
-    C = C + 9.3; % when elseif is True perform the calculation
-end
-C %display the result
-
-
-
-
-
-
-
-
