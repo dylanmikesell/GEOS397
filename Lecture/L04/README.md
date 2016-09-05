@@ -1,6 +1,6 @@
 # GEOS 397/597
 
-## Lecture #3: Conditional branching and loops
+## Lecture #4: Conditional branching and loops
 
 ### 1) Announcement about Markdown and MATLAB publishing to PDF for first homework.
 
