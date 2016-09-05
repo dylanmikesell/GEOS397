@@ -1,3 +1,5 @@
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
 # GEOS 397/597
 
 ## Lecture #5: Hillslope evolution
