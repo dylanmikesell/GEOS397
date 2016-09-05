@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>README</title>
+
+
+<style type="text/css">
+*{margin:0;padding:0;}
+body {
+	font:13.34px helvetica,arial,freesans,clean,sans-serif;
+	color:black;
+	line-height:1.4em;
+	background-color: #F8F8F8;
+	padding: 0.7em;
+}
+p {
+	margin:1em 0;
+	line-height:1.5em;
+}
+table {
+	font-size:inherit;
+	font:100%;
+	margin:1em;
+}
+table th{border-bottom:1px solid #bbb;padding:.2em 1em;}
+table td{border-bottom:1px solid #ddd;padding:.2em 1em;}
+input[type=text],input[type=password],input[type=image],textarea{font:99% helvetica,arial,freesans,sans-serif;}
+select,option{padding:0 .25em;}
+optgroup{margin-top:.5em;}
+pre,code{font:12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;}
+pre {
+	margin:1em 0;
+	font-size:12px;
+	background-color:#eee;
+	border:1px solid #ddd;
+	padding:5px;
+	line-height:1.5em;
+	color:#444;
+	overflow:auto;
+	-webkit-box-shadow:rgba(0,0,0,0.07) 0 1px 2px inset;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;border-radius:3px;
+}
+pre code {
+	padding:0;
+	font-size:12px;
+	background-color:#eee;
+	border:none;
+}
+code {
+	font-size:12px;
+	background-color:#f8f8ff;
+	color:#444;
+	padding:0 .2em;
+	border:1px solid #dedede;
+}
+img{border:0;max-width:100%;}
+abbr{border-bottom:none;}
+a{color:#4183c4;text-decoration:none;}
+a:hover{text-decoration:underline;}
+a code,a:link code,a:visited code{color:#4183c4;}
+h2,h3{margin:1em 0;}
+h1,h2,h3,h4,h5,h6{border:0;}
+h1{font-size:170%;border-top:4px solid #aaa;padding-top:.5em;margin-top:1.5em;}
+h1:first-child{margin-top:0;padding-top:.25em;border-top:none;}
+h2{font-size:150%;margin-top:1.5em;border-top:4px solid #e0e0e0;padding-top:.5em;}
+h3{margin-top:1em;}
+hr{border:1px solid #ddd;}
+ul{margin:1em 0 1em 2em;}
+ol{margin:1em 0 1em 2em;}
+ul li,ol li{margin-top:.5em;margin-bottom:.5em;}
+ul ul,ul ol,ol ol,ol ul{margin-top:0;margin-bottom:0;}
+blockquote{margin:1em 0;border-left:5px solid #ddd;padding-left:.6em;color:#555;}
+dt{font-weight:bold;margin-left:1em;}
+dd{margin-left:2em;margin-bottom:1em;}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+<style type="text/css">
+/**
+ * prism.js Coy theme for JavaScript, CoffeeScript, CSS and HTML
+ * Based on https://github.com/tshedor/workshop-wp-theme (Example: http://workshop.kansan.com/category/sessions/basics or http://workshop.timshedor.com/category/sessions/basics);
+ * @author Tim  Shedor
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	position: relative;
+	margin: .5em 0;
+	-webkit-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+	-moz-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+	border-left: 10px solid #358ccb;
+	background-color: #fdfdfd;
+	background-image: -webkit-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-image: -moz-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-image: -ms-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-image: -o-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-size: 3em 3em;
+	background-origin: content-box;
+	overflow: visible;
+	padding: 0;
+}
+
+code[class*="language"] {
+	max-height: inherit;
+	height: 100%;
+	padding: 0 1em;
+	display: block;
+	overflow: auto;
+}
+
+/* Margin bottom to accomodate shadow */
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background-color: #fdfdfd;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-bottom: 1em;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	position: relative;
+	padding: .2em;
+	-webkit-border-radius: 0.3em;
+	-moz-border-radius: 0.3em;
+	-ms-border-radius: 0.3em;
+	-o-border-radius: 0.3em;
+	border-radius: 0.3em;
+	color: #c92c2c;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	display: inline;
+	white-space: normal;
+}
+
+pre[class*="language-"]:before,
+pre[class*="language-"]:after {
+	content: '';
+	z-index: -2;
+	display: block;
+	position: absolute;
+	bottom: 0.75em;
+	left: 0.18em;
+	width: 40%;
+	height: 20%;
+	max-height: 13em;
+	-webkit-box-shadow: 0px 13px 8px #979797;
+	-moz-box-shadow: 0px 13px 8px #979797;
+	box-shadow: 0px 13px 8px #979797;
+	-webkit-transform: rotate(-2deg);
+	-moz-transform: rotate(-2deg);
+	-ms-transform: rotate(-2deg);
+	-o-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+}
+
+:not(pre) > code[class*="language-"]:after,
+pre[class*="language-"]:after {
+	right: 0.75em;
+	left: auto;
+	-webkit-transform: rotate(2deg);
+	-moz-transform: rotate(2deg);
+	-ms-transform: rotate(2deg);
+	-o-transform: rotate(2deg);
+	transform: rotate(2deg);
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #7D8B99;
+}
+
+.token.punctuation {
+	color: #5F6364;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.function-name,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #c92c2c;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.function,
+.token.builtin,
+.token.inserted {
+	color: #2f9c0a;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.token.variable {
+	color: #a67f59;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.class-name {
+	color: #1990b8;
+}
+
+.token.regex,
+.token.important {
+	color: #e90;
+}
+
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.token.important {
+	font-weight: normal;
+}
+
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+@media screen and (max-width: 767px) {
+	pre[class*="language-"]:before,
+	pre[class*="language-"]:after {
+		bottom: 14px;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+
+}
+
+/* Plugin styles */
+.token.tab:not(:empty):before,
+.token.cr:before,
+.token.lf:before {
+	color: #e0d7d1;
+}
+
+/* Plugin styles: Line Numbers */
+pre[class*="language-"].line-numbers {
+	padding-left: 0;
+}
+
+pre[class*="language-"].line-numbers code {
+	padding-left: 3.8em;
+}
+
+pre[class*="language-"].line-numbers .line-numbers-rows {
+	left: 0;
+}
+
+/* Plugin styles: Line Highlight */
+pre[class*="language-"][data-line] {
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+}
+pre[data-line] code {
+	position: relative;
+	padding-left: 4em;
+}
+pre .line-highlight {
+	margin-top: 0;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">GEOS 397/597</h1>
+
+<h2 id="toc_1">Lecture #5: Hillslope evolution</h2>
+
+<p>(Guest lecture by Mike Poulos)</p>
+
+<h3 id="toc_2">1) Update the <a href="https://github.com/dylanmikesell/GEOS397">master</a> branch on github.com. We are working Lecture/L05/<a href="https://github.com/dylanmikesell/GEOS397/tree/master/Lecture/L05">README.md</a>.</h3>
+
+<h3 id="toc_3">1) Discussion of &quot;Surface Dating of Dynamic Landforms: Young Boulders on Aging Moraines&quot;, Bernard Hallet and Jaakko Putkonen, Science (1994)</h3>
+
+<p>Key points:</p>
+
+<ul>
+<li>The dating of landforms is crucial to understanding the evolution, history, and stability of
+landscapes.</li>
+<li>Scientists must take into account the dynamic nature of landforms and of the ever-present processes of erosion, deposition, and weathering.</li>
+<li>Taking these processes into account leads to better resolved and more realistic interpretations of exposure age estimates from cosmogenic isotope analysis of landform surfaces.</li>
+<li>Information about the rates of surficial processes can be gained from ages of landform surfaces.</li>
+<li>The paper by Hallet and Putkonen focuses on the dating of moraines because moraines constitute the most prominent <em>terrestrial</em> records of glacial history. Moreover, &quot;recent&quot; (c. 1994) dating experiments have been carried out on these landforms.</li>
+<li>Accurate dating of moraines is critical to reconstruct spatial and temporal variability of past climate.</li>
+</ul>
+
+<h4 id="toc_4">Interpreting exposure ages</h4>
+
+<p>Interpretation requires an understanding of 2 processes:</p>
+
+<div><pre class="line-numbers"><code class="language-none">1) Processes that alter the cosmogenic isotope concentrations in rocks
+2) Processes that alter the duration of exposure</code></pre></div>
+
+<p>Lots of studies in the past have assessed isotope concentrations. This paper focuses on duration of exposure to a landform surface. A key remark in this paper about moraines is the following:</p>
+
+<div><pre class="line-numbers"><code class="language-none">&quot;...in general there is no simple relation between moraine age and either
+ the exposure age of boulders or their degree of weathering. Boulders
+ initially situated on the moraine surface as ice retreats tend to remain
+ there, but finegrained sediment removal by wind, water, and slow
+ downslope movement causes additional boulders to emerge at the moraine
+ surface as this surface is lowered. These newly exposed boulders were
+ previously sheltered from cosmic rays and will thus attain exposure ages
+ that are younger than the moraine formation age.&quot;</code></pre></div>
+
+<p>and</p>
+
+<div><pre class="line-numbers"><code class="language-none">&quot;Boulders at or near the ground surface break down and eventually
+disappear because of weathering. Thus, the age distribution of surface
+boulders is a function not only of moraine age but also of the competing
+effects of moraine erosion and boulder weathering, which respectively
+add and subtract surface boulders.&quot;</code></pre></div>
+
+<p>The relative ages of moraines are relatively simple to determine. We can simply study &quot;the degree of soil development; the abundance and weathering characteristics of boulders on moraine surfaces; moraine shape that tends to smooth out with time because of erosion; and, in places, the superposition of moraines that reveals their ordering in time.&quot;</p>
+
+<p>Regarding the use of hillslope modeling: &quot;The influence of local erosion exposing subsurface boulders on exposure-age distributions has recently been explored (14) without consideration of weathering. In addition, the progressive topographic degradation of moraines has been well documented in the field (15, 16) and has been the subject of theoretical analysis (17). These studies provide the foundation for our modeling.&quot;</p>
+
+<h4 id="toc_5">The model</h4>
+
+<p>&quot;...a moraine flattens and widens with time as fine-grained sediment is transferred downslope from the moraine crest, exposing previously buried boulders there. Topographic evolution is dictated by the spatially nonuniform downslope motion of soil, defined here as including the loose, glacially derived rock debris that makes up the bulk of moraines&quot;</p>
+
+<ul>
+<li>A simple way to think about this is if more soil exits from one particular domain than enters, the average elevation of that domain must decrease. This is soil conservation and &quot;...the conservation of soil leads to an expression relating the rate of change of the local surface elevation, \(dz/dt\), to the divergence of soil flux, \(q\)
+\[\frac{\partial z}{\partial t} = - \frac{\partial q}{\partial x},\]
+where \(x\) is the horizontal distance in a plane perpendicular to the moraine axis.&quot;</li>
+</ul>
+
+<h3 id="toc_6">Question for students: What does this partial differential equation represent physically?</h3>
+
+<h4 id="toc_7">What is soil flux?</h4>
+
+<p>The downslope motion of soil is known as soil creep and arises from a diversity of processes that recurrently move soil particles including wind, rain splash, freeze and thaw cycles, and plant and animal activity.</p>
+
+<p>Studies have shown that the topographic evolution of landforms &quot;can be modeled quantitatively as a simple diffusional process, much like heat conduction. The analog of thermal diffusivity is the topographic diffusivity, \(\kappa\), which is the volume of soil moving downslope per unit time and per unit length transverse to the slope divided by the slope inclination, \(\partial z/\partial x\).&quot;</p>
+
+<p>&quot;The simplest relation expressing the general increase in soil flux with slope steepness is \[q = -\kappa \frac{\partial z}{\partial x}.\]</p>
+
+<h3 id="toc_8">Question for students: What does this partial differential equation represent physically?</h3>
+
+<h4 id="toc_9">Topographic diffusivity</h4>
+
+<p>1) &quot;For slopes a few meters long, \(\kappa\) typically ranges between 10-2 to 10-4 m\(^2\)/year over a wide spectrum of areas, climates, and alluvial substrates.&quot;</p>
+
+<p>2) &quot;For longer slopes, as high as 20 m on erosional scarps in alluvium, the value for \(\kappa\) increases linearly with distance downslope.&quot;&quot;</p>
+
+<p>&quot;To treat the evolution of lateral moraines, which in Bloody Canyon range in heights from about 50 to 200 m, we assume that topographic diffusivity takes the form \[\kappa = \alpha + \beta x,\] where \(\alpha\) and \(\beta\) are site-specific constants.&quot;</p>
+
+<h4 id="toc_10">The diffusion equation</h4>
+
+<p>Combining the conservation and transport equations (by inserting \(q\)), we arrive at the diffusion equation for topographic evolution \[ \frac{\partial z}{\partial t} = \frac{\partial }{\partial x} \left( \kappa \frac{\partial z}{\partial x} \right) = \kappa \frac{\partial^2 z}{\partial x^2} + \beta \frac{\partial z}{\partial x}.\]</p>
+
+<h4 id="toc_11">Solving this equation numerically for \(\partial z/ \partial t\)</h4>
+
+<p>This equation can be solved <em>numerically</em> using the <strong>finite-difference approximation</strong>. This is a numerical technique to approximate the value of a derivative. Note in the equation above that we have first and second order derivatives of \(z\) with respect to \(x\), each multiplied by a different constant. We can break this down into simple physical notions if we consider what the derivatives represent.</p>
+
+<p><em>For more on the finite difference method see section 3 below.</em></p>
+
+<p>1) The first order derivative relates the slope of the topographic feature to the change in elevation with time. A larger slope leads to a larger change in elevation with time, assuming \(\beta\) is positive and greater than or equal to 1.</p>
+
+<p>2) The second derivative relates the slope curvature of the topographic to the change in elevation with time.</p>
+
+<h3 id="toc_12">Question for students: What is the relationship between topographic change, the second derivative and \(\kappa\)?</h3>
+
+<p>In HW3 we will implement the finite difference approximation to solve the diffusion equation for topographic evolution. In this case, \(h\) will be the distance between samples in a horizontal topography model. We will model the change in topography with time.</p>
+
+<p>In the paper, the authors assume the starting model is a triangular slope, slightly gentler than the angle of repose.</p>
+
+<h3 id="toc_13">Question for students: What is the angle of repose?</h3>
+
+<h4 id="toc_14">Modeling results</h4>
+
+<p>This diffusion model produces moraine transverse topographic profiles in excellent agreement with observed forms (Fig. 1), which supports the notion that lateral moraine profiles can be useful indicators of moraine age.</p>
+
+<p><strong>Look at Figure 1 and analyze the different curves.</strong> Compare squares and solid line to see how well the model matches the observed data.</p>
+
+<p>The authors were also able to estimate the best-fit \(\alpha\) and \(\beta\) using least squares fitting. We will discuss this method in a future class.</p>
+
+<p>\(\alpha\)=1.2x10\(^{-2}\) m\(^2\)/year</p>
+
+<p>\(\beta\)=1.6x10\(^{-4}\) m/year</p>
+
+<p>The topographic model presented above yields the surface-lowering rate at a moraine crest, which permits determination of </p>
+
+<p>1) the rate at which new boulders emerge at the surface of the moraine crest as they are unearthed, and </p>
+
+<p>2) the length of time any particular boulder is subjected to subsurface and subaerial weathering.</p>
+
+<h4 id="toc_15">Model discussion</h4>
+
+<p>&quot;In spite of extreme idealizations, model results reproduce the essence of several known properties of boulder abundance and exposure ages (Fig. 2).&quot;</p>
+
+<p><strong>Study figure 2.</strong></p>
+
+<p>Figure 2B shows the modeling of <strong>boulder exposure age</strong> compared to <strong>percentage of boulders older than their exposure age</strong>. Remember that boulders under the surface are old, but not exposed to cosmogenic radiation until un-earthed at the surface of the moraine. Take away -- &quot;Mean exposure age does not necessarily increase with time because of the complicated interplay between rates at which boulders 1) are unearthed and 2) are reduced in size, both of which generally vary with time.&quot;</p>
+
+<p>At small exposure age, few boulders match the exposure age. Contrastingly, as exposure age increases, more boulders match their exposure age estimates. Figure 2A shows real observations from different moraines.</p>
+
+<h4 id="toc_16">Conclusions</h4>
+
+<p>1) The mean exposure age of boulders on a moraine crest is always only a fraction of the moraine age, although the two ages become identical for very young moraines.</p>
+
+<p>2) On moraines sufficiently old that most boulders originally on the surface have been destroyed by weathering, exposure ages would be substantially younger than the moraine and, hence, would be useful in establishing only minimum moraine ages.</p>
+
+<p>3) Factors absent from the model, such as the attritional loss of cosmogenically enriched outer parts of boulders and prior exposure, introduce additional uncertainty into the interpretation of cosmogenic surface exposure ages.</p>
+
+<p>4) Our theoretical considerations highlight the need to complement advances in the use of cosmogenic isotopes to date geomorphic surfaces with detailed examination of the dynamic nature of landforms and of the universally present processes of weathering, erosion, and deposition.</p>
+
+<h3 id="toc_17">2) Mike Poulos: Hillslope evolution in the Boise foothills and Dry Creel Experimental Watershed</h3>
+
+<h3 id="toc_18">3) Finite-difference approximation</h3>
+
+<p>(if time)</p>
+
+<p>A) We use the Taylor Series expansion of the function \(f(x+h)\)
+\[ f(x+h) = f(x) + h \frac{\partial f(x)}{\partial x} + \frac{h^2}{2} \frac{\partial^2 f(x)}{\partial x^2} + \frac{h^3}{6} \frac{\partial^3 f(x)}{\partial x^3} + \ldots\]
+to derive the forward finite difference operator
+\[ \frac{\partial f(x)}{\partial x} = \frac{f(x+h) - f(x)}{h} + \frac{h}{2} \frac{\partial^2 f(x)}{\partial x^2} + \frac{h^2}{6} \frac{\partial^3 f(x)}{\partial x^3} + \ldots = \frac{f(x+h) - f(x)}{h} + O(h),\]
+where \(O(h)\) stands for terms of order \(h\) and higher. If we truncate this expression at \(O(h)\), we arrive at the <strong>forward</strong> finite difference approximation for the first derivative
+\[ \frac{\partial f(x)}{\partial x} \approx \frac{f(x+h) - f(x)}{h}.\]</p>
+
+<p>B) We can also use the Taylor Series expansion of the function \(f(x-h)\)
+\[ f(x-h) = f(x) - h \frac{\partial f(x)}{\partial x} + \frac{h^2}{2} \frac{\partial^2 f(x)}{\partial x^2} - \frac{h^3}{6} \frac{\partial^3 f(x)}{\partial x^3} + \ldots\]
+to derive the backward finite difference operator
+\[ \frac{\partial f(x)}{\partial x} = \frac{f(x) - f(x-h)}{h} + \frac{h}{2} \frac{\partial^2 f(x)}{\partial x^2} - \frac{h^2}{6} \frac{\partial^3 f(x)}{\partial x^3} + \ldots = \frac{f(x+h) - f(x)}{h} + O(h),\]
+where \(O(h)\) stands for terms of order \(h\) and higher. If we truncate this expression at \(O(h)\), we arrive at  the <strong>backward</strong> finite difference approximation
+\[ \frac{\partial f(x)}{\partial x} \approx \frac{f(x) - f(x-h)}{h}.  \]</p>
+
+<p>C) Finally we can subtract the two (forward and backward) expansions to get
+\[ f(x+h) - f(x-h) = 2h \frac{\partial f(x)}{\partial x} + 2\frac{h^2}{6} \frac{\partial^3 f(x)}{\partial x^3} + \ldots\]
+and then solve for the first derivative to get the centered finite difference operator
+\[ \frac{\partial f(x)}{\partial x} = \frac{f(x+h) - f(x-h)}{2h} - \frac{h^2}{3} \frac{\partial^3 f(x)}{\partial x^3} + \ldots = \frac{f(x+h) - f(x-h)}{2h} + O(h^2),\]
+where \(O(h^2)\) stands for terms of order \(h^2\) and higher. Neglecting terms of \(O(h^2)\) gives us the <strong>centered</strong> finite difference approximation
+\[ \frac{\partial f(x)}{\partial x} \approx \frac{f(x+h) - f(x-h)}{2h}. \]</p>
+
+<p>D) To get the second order centered finite difference operator we add the expansions rather than subtract them (note that odd terms in \(h\) cancel)
+\[ f(x+h) + f(x-h) = 2f(x) + 2\frac{h^2}{2} \frac{\partial^2 f(x)}{\partial x^2} + 2\frac{h^4}{4!} \frac{\partial^4 f(x)}{\partial x^4} + \ldots\]
+and then solve for the second order derivative
+\[ h^2 \frac{\partial^2 f(x)}{\partial x^2} = f(x+h) -2f(x) + f(x-h) - 2\frac{h^4}{4!} \frac{\partial^4 f(x)}{\partial x^4} + \ldots\]
+further reduction gives
+\[ \frac{\partial^2 f(x)}{\partial x^2} = \frac{f(x+h) -2f(x) + f(x-h)}{h^2 } - 2\frac{h^2}{4!}\frac{\partial^4 f(x)}{\partial x^4} + \ldots = \frac{f(x+h) -2f(x) + f(x-h)}{h^2 } + O(h^2)\]
+and neglecting \(O(h^2)\) terms and higher, the <strong>centered</strong> finite difference approximation is 
+\[ \frac{\partial^2 f(x)}{\partial x^2} \approx \frac{f(x+h) -2f(x) + f(x-h)}{h^2 } \]</p>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/x-mathjax-config">
+if (typeof MathJaxListener !== 'undefined') {
+  MathJax.Hub.Register.StartupHook('End', function () {
+    MathJaxListener.invokeCallbackForKey_('End');
+  });
+}
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</body>
+
+</html>
