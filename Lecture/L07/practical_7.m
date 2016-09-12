@@ -1,4 +1,26 @@
+clear all
+close all
+clc
 
+
+
+
+%% User I/O
+
+% It is also very useful to be able to get user input while a program is
+% running. We call this user I/O, and we can use the command line or a GUI.
+
+
+%% Let's start with command line input
+
+aNumber = input('Input a number between 0 and 10: '); 
+fprintf('You entered %0.2f\n',aNumber);
+
+%%
+
+
+
+% http://www.mathworks.com/help/matlab/predefined-dialog-boxes.html
 
 %% Plotting
 %
