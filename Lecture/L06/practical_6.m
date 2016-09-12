@@ -1,148 +1,287 @@
 clear all
 close all
+clc
 
+% Lecture 06 - Practical
 
+% Subject: File I/O, user I/O (command line and GUI), TRY-CATCH
 
+%% the GUI version of data importing
 
+% have to click "Import Data" button the HOME ribbon. 
 
+%% if we know the file name we can use that
 
+data = importdata('studentList.xlsx'); %  will separate text and numbers under a structure
 
-%% Plotting
-%
-% Now that we can make a vector, let's plot a sine function. First we need
-% to build the independent variable _x_. Let's make _x_ go from 0 to pi,
-% with a sample interval of pi/180. 
-dx = pi / 180;
-x = 0 : dx : 2*pi - dx;
+%% Let's breifly discuss a structure
+
+%% a structure is a variable with many variables inside of it
+
+data
+
+%% you can access those other data (called 'Fields') using the .
+
+data.textdata
+
+%% you can also just gets part of that field
+
+data.textdata(1:4) % (rows 1 to 4, first column)
+
+%% don't forget it might have multiple columns
+
+data.textdata(1:4,:) % (rows 1 to 4, all columns)
+
+%% If we know what we want to load we just use xlsread()
+
+numbers = xlsread('studentList.xlsx'); % this just reads numbers, not text
+
 %%
-% Let's compute the dependent variable _y_ = sin(x).
-y = sin(x); % keep in mind that this function need input in radians. If _x_ were in degrees we would use _sind()_
-%%
-% To plot we use MATLAB's built in plot command
-plot( x, y );
-%%
-% We can see straight away that this is a very bare plot. In order to make
-% a better plot we want to add axes labels, remove extra white space, and
-% maybe even add a legend or title. We have a few options to accomplish
-% this. I will talk about 2 of them.
-%%
+
+[numbers,text,raw] = xlsread('studentList.xlsx');
+
+%% what if we have multiple worksheets
+
+[numbers,text,raw] = xlsread('studentList.xlsx','GEOS397'); 
+% we can tell MATLAB which worksheet
+
+%% what if we do not want to load all students
+
+xlRange = 'B2:C3';
+[numbers,text,raw] = xlsread('studentList.xlsx','GEOS397',xlRange); 
+
+%% Even more examples at the Mathworks.com site
+
+% http://www.mathworks.com/help/matlab/ref/xlsread.html
+
+%% we can also read the common "csv" file (comma separated variable)
+
+% we can read almost any ASCII text file; CSV is just a nice format to
+% save data.
+
+% http://www.mathworks.com/help/matlab/text-files.html
+
+data = csvread('studentList.csv'); 
+% this should give an error because csvread only works with number, not strings 
+
+% check the csvread webpage for more information
+% http://www.mathworks.com/help/matlab/ref/csvread.html
+
+%% what if you have space or tab separated (a.k.a. delimited) text files
+
+% you can use dlmread()
+
+% be aware it also only works for numbers, not strings
+% http://www.mathworks.com/help/matlab/ref/dlmread.html
+
+%% So what if we have strings and numbers?
+
+% This is where we use textscan() and we tell MATLAB the format
+
+fid = fopen( 'studentList.txt', 'r' ); % 'r' means read-mode, not write-mode (you can leave blank)
+C   = textscan( fid, '%d%s%s' ); % this tells MATLAB 1 integer, and 2 strings column by column
+fclose( fid );
+
+% What is fopen for?
+% http://www.mathworks.com/help/matlab/ref/fopen.html
+
+C % look at the data type returned
+
+%% Let's look at what happened with textscan
+
+% C is a cell variable. This means we access elements with {}, instead of
+% ()
+
+C(1) % should give an error
+
+%% So we need to use C{1} instead to access the cell elements
+
+C{1}
+
+%% What if we change the format we give MATLAB
+
+fid = fopen( 'studentList.txt', 'r' ); % 'r' means read-mode, not write-mode (you can leave blank)
+C   = textscan( fid, '%f%s%s' ); % this tells MATLAB 1 float, and 2 strings column by column
+fclose( fid );
+
+C
+
+% now C{1} should be doubles instead of int32
+
+%% So why would we want to use textscan or something else besides importdata??
+
+% When you have a standard data file format, it is quicker to write you own
+% "read" function rather than use importdata each time. Remember we want to
+% automate things to remove the user time required to process data.
+
+% Let's try a more complicated file
+
+fid = fopen('ALL_data_combined_FINAL.csv');
+C = textscan(fid,'%s%s%s%s%f%f%f%f%f%f','HeaderLines',1,'Delimiter', ',', 'TreatAsEmpty', '?', 'EmptyValue', NaN);
+fclose(fid);
+
+% Now we just extract the data we want from the textscan structure C
+latData  = C{5};
+lonData  = C{6};
+depData  = C{7};
+mudData  = C{8};
+sandData = C{9};
+gravData = C{10};
+
+%% What if I don't have ASCII text data, but binary data
+
+% Then you need what is term low-level I/O tools.
+% http://www.mathworks.com/help/matlab/low-level-file-i-o.html
+
+% You again have to tell MATLAB how to read the bytes from the file.
 % 
-% # Using the graphic's GUI
-% # Directly at the command line
+% "An ASCII file is a binary file that stores ASCII codes. Recall that an
+% ASCII code is a 7-bit code stored in a byte. To be more specific, there
+% are 128 different ASCII codes, which means that only 7 bits are needed to
+% represent an ASCII character.   
+% However, since the minimum workable size is 1 byte, those 7 bits are the
+% low 7 bits of any byte. The most significant bit is 0. That means, in any
+% ASCII file, you're wasting 1/8 of the bits. In particular, the most
+% significant bit of each byte is not being used.   
 % 
-%%
-% 1.
-plot( x, y);
-%%
-% 2.
-plot( x, y); xlabel('X'); ylabel('Y'); title('Our first plot');
-axis('tight'); % type "help axis" to see other built-in options
-%%
-% For much more on MATLAB plotting look at 
-% http://www.mathworks.com/help/matlab/plotting-basics.html
-% You can plot surfaces, 3D shapes, etc. In reality you can almost plot
-% anything you want. It can some effort to figure out how, but MATLAB
-% usually has examples at the bottom of every "help" or a quick online
-% search can yield useful information. For example, a surface plot looks
-% like
-surf(peaks)
+% Although ASCII files are binary files, some people treat them as
+% different kinds of files. I like to think of ASCII files as special kinds
+% of binary files. They're binary files where each byte is written in ASCII
+% code.   
+% 
+% A full, general binary file has no such restrictions. Any of the 256 bit
+% patterns can be used in any byte of a binary file. 
+% 
+% We work with binary files all the time. Executables, object files, image
+% files, sound files, and many file formats are binary files. What makes
+% them binary is merely the fact that each byte of a binary file can be one
+% of 256 bit patterns. They're not restricted to the ASCII codes."   
+% 
+% Read more here: https://www.cs.umd.edu/class/sum2003/cmsc311/Notes/BitOp/asciiBin.html
+% or search the web.
+
+% People often use binary because it takes less space than an ASCII format
+% to store the same data. The problem is that that humans read binary if
+% you open the file in a text editor.
+
+%% Let's look at MATLAB's built in data format
+
+clear all
+
+% MATLAB uses the *.mat file extension to store data. It's a binary file
+% format so it is small.
+
+% save('studentList.mat','data') % I already save this data structure
+
+% remember we had 
+% 1) data.data (the number of students save as numbers)
+% 2) data.textdata (the name of students saved a strings)
+
+load('studentList.mat')
+
+% We can save multiple variables just by using 
+% save(filename,'variable1','variable2','variable3',etc)
+% Note the '' around variable names. That is a requirement!
+
+% More here: http://www.mathworks.com/help/matlab/ref/save.html?searchHighlight=save
+
+% If you want to save the entire workspace (i.e. all current variables) you
+% just use save(filename) and MATLAB saves everything. You can then use
+% load(filename) to load everything back in the workspace.
 
 
-%% Useful things to know about plotting and MATLAB graphics objects
+
+%% For large data sets, there is the NetCDF format.
+
+% MATLAB has a netcdf reader if you need. This is beyond the scope of this
+% course, but be aware that this capability exists.
 %
-% There are many more graphic properties that are worth knowing. Here we
-% go through a few of the more important properties for creating nice
-% graphics.
-close all; % First will close all previous graphic windows.
+% http://www.mathworks.com/help/matlab/ref/netcdf.html
 
-fontName = 'Times'; % set the font name we want to use
-fontWeight = 'Normal'; % set the font weight we want to use
+%% Let' look at try-catch statements and then incorporate into file I/O
+clc
 
-h = figure('Color','White'); % create a new graphic and assign it "h", which is the _figure handle_
-set(h,'PaperUnits','Inches'); % set the paper size units
-set(h, 'Units', 'Inches','Position',[1 1 8 4]); % set the graphic size unit and dimension
+a = notaFunction( 5, 6); % should give error
 
-plot( x, y, 'Color', 'r', 'LineWidth', 4 ); % change the color and line size
-xlabel('X','FontName',fontName , 'FontWeight',fontWeight ); % set xlabel and font properties
-ylabel('Y','FontName',fontName , 'FontWeight',fontWeight ); 
-title('Our first plot','FontName',fontName , 'FontWeight',fontWeight );
-axis('tight');
+%% let's try to circumvent the error
 
-%%
-% Notes: 
-% You can use 'rgb' color codes, 'cmyk' or the built-in shortcuts like 'r'
-% You can change the line style
+try
+    a = notaFunction( 5, 6); % will not work
+catch % so we catch the error and instead do something else (e.g. set a=0)
+    warning('Problem using function.  Assigning a value of 0.');
+    a = 0;
+end
 
-%%
-% Let's say we don't want to set individual properties to all have the same
-% font characteristics. We could use the _findall()_ function to set
-% everything in this plot the same font size 
-set( findall( h, '-property', 'FontSize' ), 'FontSize', 36 );
-%%
-% Let's say we had a more complex function that was y = sin(wt) and we
-% wanted the Y-axis label to reflect this. We could use the built in
-% 'TeX' interpreter or we could use the 'LaTeX' interpreter.
-set( findall( h, '-property', 'Interpreter' ), 'Interpreter', 'Tex' );
-ylabel('Y = sin(\omega X)','FontName',fontName , 'FontWeight',fontWeight ); % this can't handle \sin() though
-%%
-% Use 'LaTeX'
-set( findall( h, '-property', 'Interpreter' ), 'Interpreter', 'Latex' );
-ylabel('$Y = \sin(\omega X)$','FontName',fontName , 'FontWeight',fontWeight ); % NOTE the added $_$ around the label -- just like in LaTeX inline math command 
-%%
-% For more information about setting the text properties look at 
-% http://www.mathworks.com/help/matlab/ref/text-properties.html
-%%
-% Let's save our figure now. You can save a figure manually from the
-% Graphics -> File -> SaveAs to any of the available formats. Or you can
-% open Graphics -> File -> Export Setup to modifies figure properties
-% before exporting to one of the available formats. You can also save a
-% figure from the command line using the _print()_ command.
-print( h, './firstFigure.png', '-dpng' ); % save figure as png. Type "help print" to see all options.
-%%
-% You should notice that the dimensions of the figure in the saved file are
-% not the same as the dimension of the figure that we manually set, nor how
-% it looks on the screen when we plot. To resolve this we need to set one
-% more property.
-set(h, 'PaperPositionMode','Auto'); % this command makes saving the figur
-print( h, './firstFigure2.png', '-dpng' );
-%%
-% MATLAB's built-in ".fig" format is worth knowing about. Type "help
-% savefig". This allows you to save a graphic object and open it later with
-% the capability to edit the graphic properties as we have just done. This
-% is useful for saving publication figures. If you need to change something
-% later, this can be a quick way to modify the figure.
-help savefig
-%%
-%
-savefig(h,'./firstFigure.fig');
-close all
-openfig('./firstFigure.fig');
+a
 
 
+%% Let's try our own now
+clc
+clear all
+
+filename = 'StudentsList.mat';
+
+try
+    load( filename );
+catch
+    warning('File not found or does not exist. Check path or filename.')
+    disp('Trying studentList.mat instead');
+    filename = 'studentList.mat';
+    load( filename );
+end
+
+%% You can use the try-catch statement to handle errors and make them more explicit
+
+% For example, let's catenate two vectors
+
+A = rand(3); % is a 3 element array with random numbers between 0-1
+B = ones(5); % is a 5 element array of ones
+
+C = [A; B]; % this should give an error
+
+%% Let's try to run "C = [A; B];" and write a 'catch' that is more specific
+clc
+
+try
+    
+   C = [A; B]; % we are trying it again 
+
+catch ME % ME is the structure that contains the error message
+    
+    if ( strcmp(ME.identifier,'MATLAB:catenate:dimensionMismatch') )
+      
+        msg = ['Dimension mismatch occurred: First argument has ', ...
+            num2str(size(A,2)),' columns while second has ', ...
+            num2str(size(B,2)),' columns.']; % make a message
+        
+        causeException = MException( 'MATLAB:myCode:dimensions', msg );
+        
+        ME = addCause( ME, causeException );
+   end
+   rethrow( ME ) % print the new error
+end 
+
+% ME is an MException variable type (or class), more here:
+% http://www.mathworks.com/help/matlab/ref/mexception-class.html?searchHighlight=MException
+% This is a specific data type that is a 'structure' with certains 'fields' 
+ME % let's print this variable to see what it is
 
 
-%% Functions
+%% User I/O
 
-% In order to improve the readability and reduce writing repetitive lines
-% of code we can write functions to do simple tasks. The built-in MATLAB
-% _plot()_ command is an example of a function. I have written a function
-% that we can then call to do a task. Open the file myMinimum.m
-x = -100:100;
+% It is also very useful to be able to get user input while a program is
+% running. We call this user I/O, and we can use the command line or a GUI.
 
-[minVal, minIdx ] = myMinimum( x )
-%%
-% Let's look at the help for this function. Everything in comments
-% immediately following the "function" declaration is part of the preamble
-% of this functiona and will show up in the "help myMinimum" command.
-help myMinimum
+
+%% Let's start with command line input
+
+aNumber = input('Input a number between 0 and 10: '); 
+fprintf('You entered %0.2f\n',aNumber);
 
 %%
-% That is it for Lecture 1!
-
-a = 1 + 1i;
 
 
-%% 
-% Written by _Dylan Mikesell_,
-% with excerpts from
-% http://web.gps.caltech.edu/classes/ge11d/doc/matlab_Resource_Seminar.pdf 
+
+% http://www.mathworks.com/help/matlab/predefined-dialog-boxes.html
+
+
