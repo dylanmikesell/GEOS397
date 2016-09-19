@@ -19,4 +19,6 @@ Figure properties are contained in _Structures_ called __handles__.
 
 [Getting started](http://www.mathworks.com/help/map/getting-started-with-mapping-toolbox.html) with the [mapping toolbox](http://www.mathworks.com/help/map/index.html)
 
+Plotting topography
+
 
