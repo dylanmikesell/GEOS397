@@ -23,9 +23,9 @@ methods(c)
 %%
 c = {10,'1'};
 %%
-b = c(1); % you access a cell with ()
+b = c(1) % you access a cell with ()
 %%
-a = c{1}; % you access the contents of a cell directly with {}
+a = c{1} % you access the contents of a cell directly with {}
 %%
 
 % TODO uncomment this line to show students the cell2mat() function
@@ -63,7 +63,7 @@ methods(S)
 
 %% declare 'fields' during allocation
 
-S = struct( 'Field1', [], 'Field2', [] ) % generate a structure with fields 1 and 2 and empty cells
+S = struct( 'Field1', [], 'Field2', [] ); % generate a structure with fields 1 and 2 and empty cells
 
 fields(S)
 
@@ -234,8 +234,8 @@ fontWeight = 'Normal'; % set the font weight we want to use
 
 h = figure('Color','White'); % create a new graphic and assign it "h", which is the _figure handle_
 
-ax = plot( x, y, 'Color', 'r', 'LineWidth', 4 ); % change the color and line size
-
+l = plot( x, y, 'Color', 'r', 'LineWidth', 4 ); % change the color and line size
+ax = gca;
 xlabel('X','FontName',fontName , 'FontWeight',fontWeight ); % set xlabel and font properties
 ylabel('Y','FontName',fontName , 'FontWeight',fontWeight ); 
 
@@ -249,6 +249,7 @@ set(h, 'Units', 'Inches','Position',[1 1 8 4]); % set the graphic size unit and 
 % Investigate figure properties
 % Question 1: How do you change from inches to pixels?
 % Question 2: How do you change from portrait to landscape?
+
 
 
 % Question 3: How do you make the x-axis appear on top of the plot instead
