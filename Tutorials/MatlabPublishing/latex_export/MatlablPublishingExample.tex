@@ -1,0 +1,71 @@
+
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    
+\subsection*{Contents}
+
+\begin{itemize}
+\setlength{\itemsep}{-1ex}
+   \item clear workspace variables
+   \item Make a vector and plot
+   \item Create math in MATLAB publishing
+\end{itemize}
+\begin{verbatim}
+% Author: Dylan Mikesell
+% Created: 20 September 2016
+% Last modified: 21 September 2016
+\end{verbatim}
+
+
+\subsection*{clear workspace variables}
+
+\begin{verbatim}
+clear all;
+close all;
+\end{verbatim}
+
+
+\subsection*{Make a vector and plot}
+
+\begin{verbatim}
+x = linspace(0,2*pi,180/pi);
+y = sin(x);
+
+h = figure;
+plot(x,y,'k');
+\end{verbatim}
+
+\includegraphics [width=4in]{MatlablPublishingExample_01.eps}
+
+
+\subsection*{Create math in MATLAB publishing}
+
+\begin{par}
+This is called inline math with a single dollar sign (\$) around the math.
+\end{par} \vspace{1em}
+\begin{par}
+$y = \sin(x)$
+\end{par} \vspace{1em}
+\begin{par}
+This is called display math with two dollar signs (\$\$) around the math.
+\end{par} \vspace{1em}
+\begin{par}
+$$y = \sin(x)$$
+\end{par} \vspace{1em}
+
+
+
+\end{document}
+    
