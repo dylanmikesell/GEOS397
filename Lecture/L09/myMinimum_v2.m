@@ -1,6 +1,6 @@
-function [minVal, minIdx ] = myMinimum( xArray )
+function [minVal, minIdx ] = myMinimum_v2( xArray )
 %
-% USAGE:  [minVal, minIdx] = myMinimum( xArray )
+% USAGE:  [minVal, minIdx] = myMinimum_v2( xArray )
 %
 % INPUT:
 %   xArray = vector of numbers that you wish to find the minimum
@@ -24,10 +24,18 @@ minVal = realmax; % make the starting number the largest matlab can have
 % http://www.mathworks.com/help/matlab/ref/realmax.html
 
 for ii = 1 : npts % loop through all elements and compare the value
+    
     if xArray( ii ) < minVal
         minVal = xArray( ii ); % set current value to new minimum
-        minIdx = ii; % keep the array index of the new minimum
+        
+        % if the user asks for the second output, then compute it;
+        % otherwise do not bother wasting the memory
+        if nargout > 1
+            minIdx = ii; % keep the array index of the new minimum
+        end
+        
     end
+    
 end
 
 return
