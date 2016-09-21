@@ -26,4 +26,34 @@ plot(x,y,'k');
 % $$y = \sin(x)$$
 % 
 
+%% Make bullets
+% 
+% * This is the first bullet
+% * This is the second bullet
+% 
+
+% The trick is the '% *' symbols. Also, make sure there are no empty lines
+% betweeen the bullets and the '%% section title' line. Otherwise, the
+% bullets are not interpreted as bullets. If you have blank lines, make
+% sure to comment those lines. Same goes for the math examples above.
+
+%% How about a numbered list? Just use # instead of *
+% 
+% # ITEM1
+% # ITEM2
+% 
+
+%% You can do hyperlinks as well
+%
+% <https://github.com/dylanmikesell/GEOS397 GEOS397>
+
+% Note the space in between the URL and the text that will be linked.
+
+%% Types of text
+%
+% *You can write in bold.*
+%
+% _You can write in italic._ 
+
+% Note the *a* notation for bold and _a_ for italic.
 
