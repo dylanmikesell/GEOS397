@@ -1,3 +1,10 @@
+clear all
+close all
+clc
+
+% Scripts contain sequences of commands that are applied to variables in
+% the workspace. MATLAB functions, however, allow inputs and outputs to be
+% defined. They do not automatically import variables from the workspace.    
 
 
 %% Functions
@@ -15,13 +22,10 @@ x = -100:100;
 % of this functiona and will show up in the "help myMinimum" command.
 help myMinimum
 
-%%
-% That is it for Lecture 1!
+%% Class exercise
 
-a = 1 + 1i;
+% Take the topography vector from HW3
+z = [0 0 0 0 0 1 2 3 4 5 6 7 8 9 10 9 8 7 6 5 4 3 2 1 0 0 0 0 0]; % [m]
 
-
-%% 
-% Written by _Dylan Mikesell_,
-% with excerpts from
-% http://web.gps.caltech.edu/classes/ge11d/doc/matlab_Resource_Seminar.pdf 
+% write a function that computes the average of this vector.
+% Call it average.m and use it from this script.
