@@ -1,0 +1,148 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MatlablPublishingExample</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-09-21"><meta name="DC.source" content="MatlablPublishingExample.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">clear workspace variables</a></li><li><a href="#3">Make a vector and plot</a></li><li><a href="#4">Create math in MATLAB publishing</a></li><li><a href="#5">Make bullets</a></li><li><a href="#6">How about a numbered list? Just use # instead of *</a></li><li><a href="#7">You can do hyperlinks as well</a></li><li><a href="#8">Types of text</a></li></ul></div><pre class="codeinput"><span class="comment">% Author: Dylan Mikesell</span>
+<span class="comment">% Created: 20 September 2016</span>
+<span class="comment">% Last modified: 21 September 2016</span>
+</pre><h2>clear workspace variables<a name="2"></a></h2><pre class="codeinput">clear <span class="string">all</span>;
+close <span class="string">all</span>;
+</pre><h2>Make a vector and plot<a name="3"></a></h2><pre class="codeinput">x = linspace(0,2*pi,180/pi);
+y = sin(x);
+
+h = figure;
+plot(x,y,<span class="string">'k'</span>);
+</pre><img vspace="5" hspace="5" src="MatlablPublishingExample_01.png" alt=""> <h2>Create math in MATLAB publishing<a name="4"></a></h2><p>This is called inline math with a single dollar sign ($) around the math.</p><p><img src="MatlablPublishingExample_eq11646072554338062790.png" alt="$y = \sin(x)$"></p><p>This is called display math with two dollar signs ($$) around the math.</p><p><img src="MatlablPublishingExample_eq05489111518808181493.png" alt="$$y = \sin(x)$$"></p><h2>Make bullets<a name="5"></a></h2><div><ul><li>This is the first bullet</li><li>This is the second bullet</li></ul></div><pre class="codeinput"><span class="comment">% The trick is the '% *' symbols. Also, make sure there are no empty lines</span>
+<span class="comment">% betweeen the bullets and the '%% section title' line. Otherwise, the</span>
+<span class="comment">% bullets are not interpreted as bullets. If you have blank lines, make</span>
+<span class="comment">% sure to comment those lines. Same goes for the math examples above.</span>
+</pre><h2>How about a numbered list? Just use # instead of *<a name="6"></a></h2><div><ol><li>ITEM1</li><li>ITEM2</li></ol></div><h2>You can do hyperlinks as well<a name="7"></a></h2><p><a href="https://github.com/dylanmikesell/GEOS397">GEOS397</a></p><pre class="codeinput"><span class="comment">% Note the space in between the URL and the text that will be linked.</span>
+</pre><h2>Types of text<a name="8"></a></h2><p><b>You can write in bold.</b></p><p><i>You can write in italic.</i></p><pre class="codeinput"><span class="comment">% Note the *a* notation for bold and _a_ for italic.</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Author: Dylan Mikesell
+% Created: 20 September 2016
+% Last modified: 21 September 2016
+
+%% clear workspace variables
+
+clear all;
+close all;
+
+%% Make a vector and plot
+
+x = linspace(0,2*pi,180/pi);
+y = sin(x);
+
+h = figure;
+plot(x,y,'k');
+
+%% Create math in MATLAB publishing
+%
+% This is called inline math with a single dollar sign ($) around the math.
+%
+% $y = \sin(x)$
+% 
+% This is called display math with two dollar signs ($$) around the math.
+%
+% $$y = \sin(x)$$
+% 
+
+%% Make bullets
+% 
+% * This is the first bullet
+% * This is the second bullet
+% 
+
+% The trick is the '% *' symbols. Also, make sure there are no empty lines
+% betweeen the bullets and the '%% section title' line. Otherwise, the
+% bullets are not interpreted as bullets. If you have blank lines, make
+% sure to comment those lines. Same goes for the math examples above.
+
+%% How about a numbered list? Just use # instead of *
+% 
+% # ITEM1
+% # ITEM2
+% 
+
+%% You can do hyperlinks as well
+%
+% <https://github.com/dylanmikesell/GEOS397 GEOS397>
+
+% Note the space in between the URL and the text that will be linked.
+
+%% Types of text
+%
+% *You can write in bold.*
+%
+% _You can write in italic._ 
+
+% Note the *a* notation for bold and _a_ for italic.
+
+
+##### SOURCE END #####
+--></body></html>

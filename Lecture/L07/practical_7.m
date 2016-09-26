@@ -2,6 +2,98 @@ clear all
 close all
 clc
 
+%% Continue Lecture 6 materials
+
+% Structures vs. Cells
+
+%% Difference between cell arrays and structures here
+
+% http://www.mathworks.com/help/matlab/matlab_prog/cell-vs-struct-arrays.html
+
+%% Cell arrays
+
+% A cell array is a data type with indexed data containers called cells.
+% Each cell can contain any type of data. Cell arrays commonly contain
+% lists of text strings, combinations of text and numbers from spreadsheets
+% or text files, or numeric arrays of different sizes.
+
+c = {'a'};
+
+methods(c)
+%%
+c = {10,'1'};
+%%
+b = c(1) % you access a cell with ()
+%%
+a = c{1} % you access the contents of a cell directly with {}
+%%
+
+% TODO uncomment this line to show students the cell2mat() function
+
+% d = cell2mat(b)
+
+%% allocate a cell
+
+myCell = cell(2,2);
+myCell{1,1} = 10;
+myCell{2,1} = 1;
+
+%% retrieve info from cell block
+
+a = myCell{:,1}
+
+b = [myCell{:,1}] % use array concatenation operator []
+
+% b = cell2mat(myCell(:,1))
+
+%% more on cell arrays
+
+% http://www.mathworks.com/help/matlab/matlab_prog/access-data-in-a-cell-array.html
+% and
+% http://www.mathworks.com/help/matlab/matlab_prog/multilevel-indexing-to-access-parts-of-cells.html
+
+%% Structures
+
+clear all
+clc
+
+S = struct % allocate a blank structure;
+
+methods(S)
+
+%% declare 'fields' during allocation
+
+S = struct( 'Field1', [], 'Field2', [] ); % generate a structure with fields 1 and 2 and empty cells
+
+fields(S)
+
+%% add another field on the fly
+
+S(1).Field3 = {}; % add another field
+S(1).Field4 = 1:10;
+
+fieldnames(S)
+
+%%
+S(1).Field4(5:7)
+
+%% remove a field
+
+S = rmfield(S,'Field3');
+
+fieldnames(S)
+
+%% access data within a structure
+
+h=figure;
+plot(S(1).Field4,'*'); hold on;
+plot(getfield(S(1),'Field4'),'o');
+
+%% rearrange the order of fields
+
+S = struct('b', 2, 'c', 3, 'a', 1)
+
+Snew = orderfields(S)
 
 
 
@@ -13,16 +105,79 @@ clc
 
 %% Let's start with command line input
 
+% get some information from the user
 aNumber = input('Input a number between 0 and 10: '); 
 fprintf('You entered %0.2f\n',aNumber);
 
-%%
-
-
+%% Matlab has many built-in GUIs
 
 % http://www.mathworks.com/help/matlab/predefined-dialog-boxes.html
 
+%% You can a get a file name
+
+filename = uigetfile; % displays a modal dialog box that lists files in the current folder and enables you to select or enter the name of a file.
+
+%% You can get a folder
+
+folder_name = uigetdir; % displays a modal dialog box showing the folders that are inside the current working directory.
+
+%% You can choose a file to save as
+
+FileName = uiputfile; %  displays a modal dialog box for selecting or specifying a file you want to create or save. 
+
+%% You can directly load some file into the workspace.
+
+uiopen; % displays the dialog box with the file filter set to all MATLAB® files (with file extensions *.m, *.mlx, *.mat, *.fig, *.mdl, and *.slx).
+
+%% You can directly save the workspace or specific variables
+
+uisave; % or uisave(variables)
+
+%% There are other types of dialog boxes
+
+%% The 'waitbar' is a useful one if you're running loops
+
+h = waitbar(0,'Please wait...');
+steps = 1000;
+for step = 1:steps
+    % computations take place here
+    waitbar(step / steps)
+end
+close(h) 
+
+% check here to see how to add a cancel button
+% http://www.mathworks.com/help/matlab/ref/waitbar.html
+
+%% You can ask the user to choose from a list
+
+d = dir;
+str = {d.name};
+[s,v] = listdlg('PromptString','Select a file:',...
+                'SelectionMode','single',... % single here only allows one selection
+                'ListString',str); % creates a modal dialog that allows the user to select one or more items from a list. 
+
+%% You can ask the user questions:
+
+% Construct a questdlg with three options
+choice = questdlg('Would you like a dessert?', ...
+	'Dessert Menu', ...
+	'Ice cream','Cake','No thank you','No thank you');
+% Handle response
+switch choice
+    case 'Ice cream'
+        disp([choice ' coming right up.'])
+        dessert = 1;
+    case 'Cake'
+        disp([choice ' coming right up.'])
+        dessert = 2;
+    case 'No thank you'
+        disp('I''ll bring you your check.')
+        dessert = 0;
+end
+
 %% Plotting
+clear all
+
 %
 % Now that we can make a vector, let's plot a sine function. First we need
 % to build the independent variable _x_. Let's make _x_ go from 0 to pi,
@@ -63,6 +218,10 @@ axis('tight'); % type "help axis" to see other built-in options
 surf(peaks)
 
 
+%% turn off the grid lines
+
+surf(peaks,'EdgeColor','none');
+
 %% Useful things to know about plotting and MATLAB graphics objects
 %
 % There are many more graphic properties that are worth knowing. Here we
@@ -74,14 +233,27 @@ fontName = 'Times'; % set the font name we want to use
 fontWeight = 'Normal'; % set the font weight we want to use
 
 h = figure('Color','White'); % create a new graphic and assign it "h", which is the _figure handle_
+
+l = plot( x, y, 'Color', 'r', 'LineWidth', 4 ); % change the color and line size
+ax = gca;
+xlabel('X','FontName',fontName , 'FontWeight',fontWeight ); % set xlabel and font properties
+ylabel('Y','FontName',fontName , 'FontWeight',fontWeight ); 
+
+title('Our first plot','FontName',fontName , 'FontWeight',fontWeight );
+
+axis('tight');
+
 set(h,'PaperUnits','Inches'); % set the paper size units
 set(h, 'Units', 'Inches','Position',[1 1 8 4]); % set the graphic size unit and dimension
 
-plot( x, y, 'Color', 'r', 'LineWidth', 4 ); % change the color and line size
-xlabel('X','FontName',fontName , 'FontWeight',fontWeight ); % set xlabel and font properties
-ylabel('Y','FontName',fontName , 'FontWeight',fontWeight ); 
-title('Our first plot','FontName',fontName , 'FontWeight',fontWeight );
-axis('tight');
+% Investigate figure properties
+% Question 1: How do you change from inches to pixels?
+% Question 2: How do you change from portrait to landscape?
+
+
+
+% Question 3: How do you make the x-axis appear on top of the plot instead
+% of the bottom.
 
 %%
 % Notes: 
@@ -132,32 +304,3 @@ help savefig
 savefig(h,'./firstFigure.fig');
 close all
 openfig('./firstFigure.fig');
-
-
-
-
-%% Functions
-
-% In order to improve the readability and reduce writing repetitive lines
-% of code we can write functions to do simple tasks. The built-in MATLAB
-% _plot()_ command is an example of a function. I have written a function
-% that we can then call to do a task. Open the file myMinimum.m
-x = -100:100;
-
-[minVal, minIdx ] = myMinimum( x )
-%%
-% Let's look at the help for this function. Everything in comments
-% immediately following the "function" declaration is part of the preamble
-% of this functiona and will show up in the "help myMinimum" command.
-help myMinimum
-
-%%
-% That is it for Lecture 1!
-
-a = 1 + 1i;
-
-
-%% 
-% Written by _Dylan Mikesell_,
-% with excerpts from
-% http://web.gps.caltech.edu/classes/ge11d/doc/matlab_Resource_Seminar.pdf 

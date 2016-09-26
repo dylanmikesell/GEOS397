@@ -14,6 +14,7 @@ clc
 
 data = importdata('studentList.xlsx'); %  will separate text and numbers under a structure
 
+
 %% Let's breifly discuss a structure
 
 %% a structure is a variable with many variables inside of it
@@ -69,7 +70,7 @@ data = csvread('studentList.csv');
 
 %% what if you have space or tab separated (a.k.a. delimited) text files
 
-% you can use dlmread()
+% you can use dlmread('studentList.csv','delimiter',';')
 
 % be aware it also only works for numbers, not strings
 % http://www.mathworks.com/help/matlab/ref/dlmread.html
@@ -189,7 +190,7 @@ load('studentList.mat')
 % just use save(filename) and MATLAB saves everything. You can then use
 % load(filename) to load everything back in the workspace.
 
-
+save('path/filename.mat')
 
 %% For large data sets, there is the NetCDF format.
 
@@ -201,7 +202,7 @@ load('studentList.mat')
 %% Let' look at try-catch statements and then incorporate into file I/O
 clc
 
-a = notaFunction( 5, 6); % should give error
+a = notaFunction( 5, 6) % should give error
 
 %% let's try to circumvent the error
 
