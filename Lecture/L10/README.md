@@ -24,3 +24,4 @@ Function [basics](http://www.mathworks.com/help/matlab/function-basics.html) at 
 
 ### 5) Global variables
 
+### 6) Class exercise: modify your function to use variable input

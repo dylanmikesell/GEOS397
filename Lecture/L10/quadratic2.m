@@ -12,6 +12,7 @@ function [x1,x2] = quadratic2(a,b,c)
     end % end of nested function disc
 
 disc; % notice we do not have to give disc any inputs and the variables are a different color
+% the variable d is also automatically return
 
 x1 = (-b + d) / (2*a);
 x2 = (-b - d) / (2*a);

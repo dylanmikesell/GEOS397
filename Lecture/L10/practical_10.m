@@ -178,6 +178,12 @@ n = [34, 45, 25, 45, 33, 19, 40, 34, 38, 42];
 
 av = myAverage( n )
 
+%% Class exercise
+
+% Modify your function from last class to accept variable input with
+% varargin.
+% Use strings to denote each input followed by its numeric value.
+
 %% Notes
 %
 % Many examples in this lecture come from

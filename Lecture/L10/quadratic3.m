@@ -7,6 +7,7 @@ function [x1,x2] = quadratic3(a,b,c)
 % constant term. It returns the roots.
 
 d = disc( a, b, c );
+
 x1 = (-b + d) / (2*a);
 x2 = (-b - d) / (2*a);
 
