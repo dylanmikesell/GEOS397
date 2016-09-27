@@ -117,7 +117,7 @@ The expression (A > B) is a logical expression; it describes a condition we want
 
 The flowchart for this particular decision process would look like the following.
 
-![flowchartIf](/Users/dmikesell/GIT/GEOS397/Lecture/L11/flowchartIfStatement.png)
+![flowchartIf](./flowchartIfStatement.png)
 
 ---
 	
@@ -138,7 +138,7 @@ Detailed algorithm:
 
 Flowchart:
 
-![flowchartExample1](/Users/dmikesell/GIT/GEOS397/Lecture/L11/flowchartExample1.png)
+![flowchartExample1](./flowchartExample1.png)
 
 ---
 
@@ -174,7 +174,7 @@ Detailed algorithm:
 
 Flowchart:
 
-![flowchartExample2](/Users/dmikesell/GIT/GEOS397/Lecture/L11/flowchartExample2.gif)
+![flowchartExample2](./flowchartExample2.gif)
 
 ---
 
