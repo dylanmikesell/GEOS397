@@ -105,7 +105,7 @@ __A flowchart should do the following:__
 
 Different symbols are used to draw each process type in a flowchart. Common symbols include:
 
-![Symbols](/Users/dmikesell/GIT/GEOS397/Lecture/L11/flowchart.png)
+![Symbols](./flowchart.png)
 
 ---
 
