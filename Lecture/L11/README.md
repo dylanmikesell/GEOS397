@@ -31,10 +31,6 @@ Informally, an __algorithm__ is any well-defined computational procedure that ta
 	
 We can also view an algorithm as a tool for solving a __well-specified computational__ problem. The statement of the problem specifies in general terms the desired input/output relationship. The algorithm describes a specific computational procedure for achieving that input/output relationship.
 
-## Section 1.2 Algorithms as technology
-
-
-
 ## 3) Steps in the problem solving phase (i.e. designing algorithms)
 
 1) Outline the algorithm (one can use _pseudo code_ and/or _flowcharts_).
