@@ -8,13 +8,16 @@ clc
 
 load( 'topo.mat' ); % matlab knows where this file is
 
+%%
+
 % show simple world map (no specific projection), add coastline
-figure; 
-pcolor( topo ); shading flat; 
+h1 = figure; 
+pcolor( topo ); 
+shading flat; 
 axis image; colorbar;
 hold on;
 contour( topo, [0, 0], 'k' ); % build my own coastlines by loopking at 0 elevation contour
-
+demcmap(topo); 
 % How might we plot this data on a map instead of using pcolor()
 
 %% What about plotting on sphere
@@ -25,10 +28,10 @@ s = surface(x,y,z);            % plot spherical surface
 s.CData = topo;                % set color data to topographic data
 s.FaceColor = 'texturemap';    % use texture mapping
 % s.EdgeColor = 'none';          % remove edges
-% s.FaceLighting = 'gouraud';    % preferred lighting for curved surfaces
-% s.SpecularStrength = 0.4;      % change the strength of the reflected light
+s.FaceLighting = 'gouraud';    % preferred lighting for curved surfaces
+s.SpecularStrength = 0.4;      % change the strength of the reflected light
 
-% light('Position',[-1 0 1])     % add a light
+light('Position',[-1 0 1])     % add a light
 
 axis square off                % set axis to square and remove axis
 view([-30,30])                 % set the viewing angle
@@ -46,10 +49,11 @@ demcmap(topo); % give it a better colormap
 
 h = worldmap('world');
 getm(h,'MapProjection')
+setm(h,'MapProjection','Miller');
 load('coastlines'); % load built-in MATLAB data called coastlines
 plotm(coastlat, coastlon);
 % framem on; gridm on;
-
+%%
 % NOTE: plotm(), not plot(). This is a special version of plot for the
 % Mapping toolbox.
 
@@ -59,8 +63,8 @@ plotm(coastlat, coastlon);
 LAT = topolatlim(1):topolatlim(2);
 LON =  topolonlim(1):topolonlim(2);
 
-idx180 = find(LON > 180, 1); % find first index of longitude array that is larger than 180 deg 
-LON(idx180:end) = LON(idx180:end) - 360; % subtract 360 degrees to make lon interval [-180 180] instead of [0 360] 
+% idx180 = find(LON > 180, 1); % find first index of longitude array that is larger than 180 deg 
+% LON(idx180:end) = LON(idx180:end) - 360; % subtract 360 degrees to make lon interval [-180 180] instead of [0 360] 
 
 [lon, lat] = meshgrid(LON,LAT); % compute the lat/lon of every grid point in topo
 pcolorm(lat,lon,topo); % plot the matrix of elevations on the map
@@ -85,7 +89,7 @@ getm(h,'MapProjection')
 % Here are all of the projections that matlab knows
 % http://www.mathworks.com/help/map/summary-and-guide-to-projections.html
 
-%% Let's add some data (shape files in this case)
+% Let's add some data (shape files in this case)
 
 geoshow( 'landareas.shp', 'FaceColor', [0.15 0.5 0.15] )
 geoshow( 'worldlakes.shp', 'FaceColor', 'cyan' )

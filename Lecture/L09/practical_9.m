@@ -14,7 +14,9 @@ clc
 
 % function [out1,out2, ..., outN] = myfun(in1,in2,in3, ..., inN)
 
-minVal = mySimpleMinimum(1, 0, -2, 6, 1.5)
+x1 = 1; x2 = 0; x3 = -2; x4 = 6; x5 = 1.5;
+
+minVal = mySimpleMinimum(x1, x2, x3, x4, x5)
 
 %% What's in a function
 %
@@ -47,8 +49,8 @@ help myMinimum
 % Take the topography vector from HW3
 z = [0 0 0 0 0 1 2 3 4 5 6 7 8 9 10 9 8 7 6 5 4 3 2 1 0 0 0 0 0]; % [m]
 
-% write a function that computes the average of this vector.
-% Call it average.m and use it from this script.
+% write a function that computes the change in elevation given a maximum
+% time
 
 % 15 minutes
 

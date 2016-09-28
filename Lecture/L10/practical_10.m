@@ -35,7 +35,7 @@ nargin( fx ) % get the number of input to mySimpleMinimum_v2.m
 % nargout returns the number of output arguments specified in the call to
 % the currently executing function 
 
-minVal = myMinimum_v2( x )
+[minVal,minIdx] = myMinimum_v2( x )
 
 %% What if you want a variable number of inputs or outputs?
 
@@ -68,8 +68,8 @@ matrixInput = rand( 4, 5, 2 );
 
 % let's put a break point somewhere in one of our functions and see what
 % happens
-
-[minVal, minIdx ] = myMinimum( x )
+x = -100:100;
+[minVal, minIdx ] = myMinimum( x );
 
 
 %% Those were basic functions; there are other kinds of functions though

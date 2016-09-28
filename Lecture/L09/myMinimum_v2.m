@@ -31,6 +31,7 @@ for ii = 1 : npts % loop through all elements and compare the value
         % if the user asks for the second output, then compute it;
         % otherwise do not bother wasting the memory
         if nargout > 1
+            disp('Saving index');
             minIdx = ii; % keep the array index of the new minimum
         end
         
