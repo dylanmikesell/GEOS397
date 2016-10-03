@@ -9,7 +9,7 @@ clc
 % Our function is f(x) = e^x
 % Let's look at f'(0)=1
 
-h = 0.001; % our space step
+h = 0.0001; % our space step
 forwardFD  = ( exp(h) - exp(0) ) / h % forward finite difference
 
 backwardFD = ( exp(0) - exp(-h) ) / h % backward finite difference
@@ -54,10 +54,21 @@ realmin
 % increment k until (1+eps)-1=0. When your while loop stops, this gives the
 % k value where this equality is zero. So go back one k can you have eps.
 
-%  start a k=1
+%  start at k=1
 
 % Question: What is k and the epsilon you compute?
 
+k = 1;
+eps1 = 2^(-k);
+while ( (1+eps1) - 1 ~= 0 )
+    k = k + 1;
+    eps1 = 2^(-k);
+end
+
+disp(k-1)
+eps1 = 2^(-(k-1));
+disp(eps1)
+disp(eps)
 
 %% Let's go back to the finite difference plot
 
