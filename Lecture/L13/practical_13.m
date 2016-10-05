@@ -34,7 +34,7 @@ axis([-1 1 -1 1]); grid on; title('Unit vectors'); legend('Ahat','Bhat');
 
 r = [1,1]; % think (x,y) components in (i,j) directions
 r0 = [2,3]; % think (x,y) components in (i,j) directions
-r2 = r + r0; 
+r2 = r + r0;
 
 figure;
 quiver( origin(1), origin(2), r(1), r(2), S); hold on;
@@ -51,8 +51,10 @@ legend('r','r0','r2','r+r0','location','southeast');
 
 % C = A(1)*B(1) + A(2)*B(2)
 % C = 8 + 2 = 10
+A = [4, -1]; % think (x,y) components
+B = [2, -2]; % think (x,y) components
 
-C = dot(A,B)
+C = dot( A, B )
 
 %%
 
@@ -137,6 +139,7 @@ C = cross(A,B) % compute the C vector from cross product of A and B
 
 dot(A,C) == 0 & dot(B,C) == 0
 
+
 %% 
 % -------------------------------------------------------------------------
 % The gradient
@@ -170,6 +173,12 @@ xlabel( 'x-axis' ); ylabel( 'y-axis' ); axis('tight');
 title('$\nabla T = \left(e^{(- x^2 - y^2)} - 2x^{2}e^{(- x^2 - y^2)}\right){\hat \imath} + \left( -2xye^{(- x^2 - y^2)}\right){\hat \jmath}$', 'Interpreter', 'Latex');
 
 %% Use the numeric gradient operator implementation instead
+
+% The range of x and y variables
+xArray = -2 : 0.2 : 2;
+yArray = -2 : 0.2 : 2;
+
+[X, Y] = meshgrid( xArray, yArray ); % make X-Y grid
 
 % First we need to compute the actual scalar field
 T = X.*exp( -X.^2 - Y.^2 );
