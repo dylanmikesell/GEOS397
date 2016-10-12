@@ -21,6 +21,7 @@ y1 = y( :, 1 ); % get the unique y-values
 
 figure;
 imagesc( x1, y1, F ); % imagesc(x-vector,y-vector, function(x,y))
+axis xy;
 xlabel('x'); ylabel('y'); 
 c = colorbar; % make a colorbar and save a handle
 c.Label.String = 'F(x,y)';
@@ -50,7 +51,7 @@ colorbar;
 
 figure;
 imagesc( x1, y1, F );
-colormap( jet( 30 ) ) % Each row defines a three-element RGB triplet.
+colormap( jet( 10 ) ) % Each row defines a three-element RGB triplet.
 colorbar;
 
 % try changing the number inside of jet and look at the output
@@ -61,7 +62,7 @@ figure;
 imagesc( x1, y1, F );
 colormap( jet ); % Each row defines a three-element RGB triplet.
 colorbar;
-caxis( [-10 30] ); % caxis( [cmin cmax] )
+caxis( [0 8] ); % caxis( [cmin cmax] )
 
 
 

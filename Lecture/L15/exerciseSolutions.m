@@ -16,6 +16,7 @@ figure;
 surf(x,y,F); % surf(x-grid,y-grid, function(x,y))
 hold on;
 imagesc( x1, y1, F ); % imagesc(x-vector,y-vector, function(x,y))
+colormap(jet)
 xlabel('x'); ylabel('y'); zlabel('F(x,y)');
 
 %% add 10 to F
@@ -28,7 +29,7 @@ surf(x,y,F); % surf(x-grid,y-grid, function(x,y))
 hold on;
 imagesc( x1, y1, F ); % imagesc(x-vector,y-vector, function(x,y))
 xlabel('x'); ylabel('y'); zlabel('F(x,y)');
-
+colormap(jet)
 
 %% Integration
 
