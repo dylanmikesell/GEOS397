@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1476291157 "classExercise.tex" "classExercise.pdf" "classExercise" 1476291157
+["pdflatex"] 1476291284 "classExercise.tex" "classExercise.pdf" "classExercise" 1476291284
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -89,11 +89,11 @@
   "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1470065946 3873676 6aaf9abfd1e9f1cd99656408c392b210 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
   "/usr/local/texlive/texmf-local/tex/latex/mcode.sty" 1446745268 11368 4546ba17176d168c1de899f60ab7bd71 ""
-  "classExercise.aux" 1476291157 662 b2b94621371df8d9296b8bf5bec1b851 ""
-  "classExercise.out" 1476291157 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "classExercise.tex" 1476291156 2652 7787df20c5a8505077d1625fe53f1174 ""
+  "classExercise.aux" 1476291284 662 b2b94621371df8d9296b8bf5bec1b851 ""
+  "classExercise.out" 1476291284 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "classExercise.tex" 1476291284 2655 152d0a58ab312196b7588c4b9df7c9bc ""
   (generated)
-  "classExercise.out"
-  "classExercise.aux"
   "classExercise.pdf"
   "classExercise.log"
+  "classExercise.aux"
+  "classExercise.out"
