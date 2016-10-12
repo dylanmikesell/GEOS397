@@ -1,0 +1,95 @@
+\documentclass[10pt,fleqn]{article}
+
+\usepackage{graphicx}
+\usepackage[tableposition=top]{caption}
+\usepackage{natbib}
+\usepackage{floatrow}
+\floatsetup[table]{capposition=top}
+
+\usepackage[]{mcode}
+
+\usepackage{fancyhdr}
+% \usepackage[margin=1in,showframe]{geometry}
+\usepackage[margin=1in]{geometry}
+\usepackage{tabularx} % for \textwidth table
+\usepackage{multicol}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  urlcolor=blue,
+  citecolor=gray,
+  pdftitle={DM Curriculum Vitae},
+  pdfauthor={Dylan Mikesell},
+  pdfsubject={Curriculum Vitae},
+}
+
+\pagestyle{fancy}
+
+\lhead{Boise State University}
+\chead{GEOS 397}
+\rhead{Fall 2016}
+\fancyfoot[C]{\thepage}
+% \renewcommand{\headrulewidth}{0pt} % remove horizontal line
+\setlength{\headsep}{12pt} % set separation between course name and header
+% \setlength{\hoffset}{-0.5in} % set separation between course name and header
+% \setlength{\textwidth}{7in}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\title{Computation in the geosciences}
+
+\date{\empty}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+
+
+\usepackage{siunitx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+
+% \renewcommand{\chaptertitle}[1]{\chaptitlefont\MakeUppercase{#1}}
+
+\begin{document}
+
+% make the title
+\begin{multicols}{2}
+% \begin{flushleft}
+\textbf{L15: class exercise}
+% \end{flushleft}
+% \columnbreak 
+% \begin{flushright}
+% \textbf{Due: 5:00 PM 10/17/16}
+% \end{flushright}
+\end{multicols}
+
+Try to implement/solve the following problems in MATLAB.
+
+
+\section*{Plotting}
+
+1) Use the MATLAB \textbf{peaks()} function to generate X,Y and F meshes that have dimensions 40x40.
+
+2) Plot the data as a surface (i.e. use \textbf{surf()}) with the colormap 'jet'. Add a colorbar with a color label. Use the \textbf{hold on} command and use \textbf{imagesc()} to plot the matrix image.
+
+\textit{Question: What kind of plot does this make. Desribe the plot.}
+
+3) Add 10 to the function F and redo the steps in part 2). 
+
+\textit{Question: What does the image now look like?}
+
+\textit{Question: What is adding 10 to the function F actually doing to the plot?}
+
+
+\section*{Numerical Integration}
+
+Numerically integrate the following:
+
+\begin{eqnarray} \nonumber
+&& \int\limits_0^{3} \sqrt{y+1} dy \\ \nonumber
+&& \int\limits_{-1}^{1} \frac{5r}{(4+r^2)^2} dr  \\ \nonumber
+&& \int\limits_0^{\pi/6} \cos^{-3}(2\theta) \sin(2\theta) d\theta \\ \nonumber
+&& \int\limits_0^{\pi/2} e^{\sin(x)}\cos(x) dx \\ \nonumber
+&& \int\limits_0^{\sqrt{ln\pi}} 2xe^{x^2}\cos(e^{x^2}) dx  \\ \nonumber
+&& \int\limits_1^{4} \frac{dy}{2\sqrt{y}(1+\sqrt{y})^2}  \\ \nonumber
+\end{eqnarray}
+
+\end{document}

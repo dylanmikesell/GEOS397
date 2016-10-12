@@ -1,0 +1,1 @@
+This activity comes from [this](http://serc.carleton.edu/NAGTWorkshops/structure/SGT2012/activities/62787.html) SERC site. The title of the activity is __Estimating the spreading rate of Atlantic and Pacific ridges__. I believe the original bathymetry data .mat file comes from Audrey Huerta, Central Washington University
