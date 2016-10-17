@@ -19,9 +19,3 @@ _Numerical integration_ concerns several different tasks, including numerical ev
 ### 3) Examples and _quadgui_
 
 In these examples we integrate a _function_ over a user specified interval.
-
-### 4) Integration of discrete data (i.e. a vector)
-
-What happens if our function is only known at a finite number of points?
-
-1) Composite trapezoid rule 

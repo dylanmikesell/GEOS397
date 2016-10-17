@@ -53,7 +53,7 @@
 % make the title
 % \begin{multicols}{2}
 % \begin{flushleft}
-\textbf{L16: class exercise} -- Try to implement/solve the following problems in MATLAB.
+\textbf{L17: class exercises} -- Try to implement/solve the following problems in MATLAB.
 % \end{flushleft}
 % \columnbreak 
 % \begin{flushright}
@@ -85,7 +85,37 @@ Numerically integrate the following using \textit{quad} or \textit{integral}:
 	\item Use matlab's built in \textit{trapz} function to compute the approximate integral of your discrete function in step 1.
 	\item Repeat the \textit{trapz} integration when the number of points is 11 and 1001. 
 	\item Compare the differences between the exact solution to the integral and the approximate solutions when you use 11, 101 and 1001 points to compute the integral of $y(x)$ from 0 to 5.
-	\item Repeat steps 5, 6 and 7 using \textit{quad} or \textit{integral} instead of \textit{trapz}.
+	\item Compute the integral solution using \textit{quad} or \textit{integral} instead of \textit{trapz}. Compare with the exact and the discrete versions of the integral.
 \end{enumerate}
+
+\section*{Average (mean) value}
+
+In Lecture~14 we discussed the \textit{area under the curve} and the \textit{average (or mean) value} that can be computed using integration. The formula for the average value of a function is $$av(f) = \frac{1}{b-a} \int \limits_a^b f(x) dx.$$
+
+Using the function $I(a) = \int\limits_0^a y(x) dx$, where $y(x)=xe^{-x}$, to compute the average value of this function analytically.
+
+After you have an equation for the average value, compute the average value when $a=5$.
+
+\section*{Monte Carlo integration}
+
+Sometimes a Monte Carlo based approach is useful. Monte Carlo techniques are quite powerful and involve taking random samples of a function to approximate the average (mean) value of the function. (In a sense, this random sampling can be used an approximate approach to computing the integral.) In this approach the average value of the function can be computed as $$ av(f) \approx \frac{1}{N} \sum\limits_{i=1}^N y(x_i).$$
+But what are $N$ and $x_i$ in this case? Well, $ \{ x_i \}$ is the set of N random samples taken in the integration interval.
+
+In the example above, $x_i$ would be a number within the range of 0 to $a$.
+
+Write a \textbf{function} to compute the Monte Carlo estimate of the average value of $y(x)=xe^{-x}$. To generate the random samples, use the \textbf{rand()} function. Write your function such that you can input the number of random samples $N$.
+
+Compare your Monte Carlo average value estimate to the exact estimate computed in the previous section. How does the error change with $N$?
+
+From this average value, you can compute the actual value of the integral $I(a)$. Write how you would compute this integral in terms of the Monte Carlo average value.
+
+$$I(a) = \int\limits_0^a y(x) dx = ??$$
+
+In what situations might this approach be useful?
+
+\vfill
+
+\textit{Examples in this exercise come from 1) Thomas' Calculus: Early Transactions by Finney, Weir and Giodano and 2) Nik Cunniffe's Matlab Practical: Numerical Integration.}
+
 
 \end{document}
