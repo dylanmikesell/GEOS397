@@ -51,21 +51,20 @@
 \begin{document}
 
 % make the title
-\begin{multicols}{2}
+% \begin{multicols}{2}
 % \begin{flushleft}
-\textbf{L16: class exercise}
+\textbf{L16: class exercise} -- Try to implement/solve the following problems in MATLAB.
 % \end{flushleft}
 % \columnbreak 
 % \begin{flushright}
 % \textbf{Due: 5:00 PM 10/17/16}
 % \end{flushright}
-\end{multicols}
+% \end{multicols}
 
-Try to implement/solve the following problems in MATLAB.
 
 \section*{Numerical Integration}
 
-Numerically integrate the following:
+Numerically integrate the following using \textit{quad} or \textit{integral}:
 
 \begin{eqnarray} \nonumber
 && \int\limits_0^{3} \sqrt{y+1} dy \\ \nonumber
@@ -75,5 +74,18 @@ Numerically integrate the following:
 && \int\limits_0^{\sqrt{ln\pi}} 2xe^{x^2}\cos(e^{x^2}) dx  \\ \nonumber
 && \int\limits_1^{4} \frac{dy}{2\sqrt{y}(1+\sqrt{y})^2}  \\ \nonumber
 \end{eqnarray}
+
+\section*{Compare a simple function and discrete data}
+
+\begin{enumerate}
+	\item Plot the function $y(x)=xe^{-x}$ between $x=0$ and $x=5$ using 101 points.
+	\item Using integration by parts, show that the exact value of $I(a) = \int\limits_0^a y(x) dx = \int \limits_0^a xe^{-x} dx = 1-e^{-a} - ae^{-a}$.
+	\item Write a \textbf{function} that computes the exact area of $A$ using the solution in the previous step. Call this function \textit{exactArea.m}.
+	\item Use your function to compute the value of $I(a=5)$.
+	\item Use matlab's built in \textit{trapz} function to compute the approximate integral of your discrete function in step 1.
+	\item Repeat the \textit{trapz} integration when the number of points is 11 and 1001. 
+	\item Compare the differences between the exact solution to the integral and the approximate solutions when you use 11, 101 and 1001 points to compute the integral of $y(x)$ from 0 to 5.
+	\item Repeat steps 5, 6 and 7 using \textit{quad} or \textit{integral} instead of \textit{trapz}.
+\end{enumerate}
 
 \end{document}
