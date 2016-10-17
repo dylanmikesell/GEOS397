@@ -14,13 +14,18 @@ addpath('./ncm'); % tell MATLAB to look in this folder for functions
 %% Let's start with a default example from MATLAB
 
 ezplot(@humps,[0,1]);
+
+%%
+
 quadgui(@humps,0,1,1e-4);
 
 %% Setup the integrand
 
 f = @(x) sin(x); % use an anonymous function
 
-quadgui( f, 0, pi, 1.e-8 );
+quadgui( f, 0, pi, 1.e-1 );
+
+%%
 
 tic
 Q = quad( f, 0, pi, 1.e-8 ); % old method (note orange line under function name)
