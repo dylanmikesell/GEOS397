@@ -86,22 +86,6 @@ tol = 1.0e-5;
 
 quadgui( f, 0, 1, tol, z, w); % all values passed after tol will be given to the function f
 
-%% Up to now, we integrated continuous functions.
-
-% How do we do integration when we have discretely sampled data?
-
-x = linspace( 0, pi, 11 );
-y = sin(x);
-
-plot(x,y,'k*'); xlabel('x [rad]'); ylabel('sin(x)'); axis('tight');
-
-% trapz  Trapezoidal numerical integration.
-Q = trapz( x, y ); % trapz(x-vector, y-vector)
-
-f = @(x) sin(x);
-Qi = integral( f, 0, pi, 'AbsTol', 1.e-8 ); % new method
-
-
 
 
 %%

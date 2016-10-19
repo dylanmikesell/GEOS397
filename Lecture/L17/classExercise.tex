@@ -113,9 +113,44 @@ $$I(a) = \int\limits_0^a y(x) dx = ??$$
 
 In what situations might this approach be useful?
 
+\section*{Example: Averaging air temperature using the trapezoid rule}
+
+An observer measures the outside temperature every hour from noon until midnight, recording the temperatures in the following table:
+
+\begin{table}[bh]
+	\centering
+	\begin{tabular}{l|ccccccccccccc} \hline
+	Time & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline
+	Temp (F) & 63 & 65 & 66 & 68 & 70 & 69 & 68 & 68 & 65 & 64 & 62 & 58 & 55 \\ \hline
+	\end{tabular}
+	\caption{Air temperature measurements.}
+	\label{tab:airtemp}
+\end{table}
+
+Using integration, we need to find $$av(f) = \frac{1}{b-a} \int \limits_a^b f(x) dx,$$ but do not know $f(x)$. The integral, however, can be approximated by the \textit{Trapezoid Rule}, using the temperatures in the table as function values at the points of a 12-subinterval partition of the 12-hour interval (i.e. $h=1$).
+
+To approximate the integral use $$\int \limits_a^b f(x) dx \approx \frac{h}{2}\left(y_0 + 2y_1 + 2y_2 + \cdots + 2y_{N-1} + 2y_N \right).$$ The $y's$ are the values of $f(x)$ at the partition points
+\begin{eqnarray} \nonumber
+x_0 &=& a, \\ \nonumber
+x_1 &=& a+h, \\ \nonumber
+x_2 &=& a+2h, \\ \nonumber
+x_{N-1} &=& a+(N-1)h, \\ \nonumber
+x_{N} &=& b,
+\label{eqn:partition}
+\end{eqnarray}
+where $h=(b-a)/N$ and $y_0=f(a)$, $y_1=f(x_1)$, $\ldots$
+
+\textbf{What was the average temperature for the 12-hour period?}
+\begin{enumerate}
+	\item Use algebra to get the answer.
+	\item Implement your own Trapezoid rule to approximate the integral and find the average value.
+	\item Use MATLAB's \textbf{trapz()} function to compute the average value.
+	\item Does your approximations match the algebraic average?
+\end{enumerate}
+
+
 \vfill
 
 \textit{Examples in this exercise come from 1) Thomas' Calculus: Early Transactions by Finney, Weir and Giodano and 2) Nik Cunniffe's Matlab Practical: Numerical Integration.}
-
 
 \end{document}

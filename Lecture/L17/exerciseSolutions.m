@@ -36,3 +36,21 @@ colormap(jet)
 f = @(theta) ( cos(2*theta).^(-3) ) .* sin(2*theta);
 
 Qi = integral( f, 0, pi/6, 'AbsTol', 1.e-2 );
+
+
+%% Air temp
+
+x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+T = [63, 65, 66, 68, 70, 69, 68, 68, 65, 64, 62, 58, 55];
+
+Tav = mean(T)
+
+% Trapezoid rule
+h = 1;
+Ttrap = h/2 * (T(1) + T(end) + sum( 2*T(2:end-1) ) );
+Tav2 = 1/(x(end)-x(1)) * Ttrap
+
+Ttrapz = trapz(x,T);
+Tav3 = 1/(x(end)-x(1)) * Ttrapz
+
+
