@@ -35,51 +35,10 @@ Qi = integral( f, 0, sqrt(log(pi)), 'AbsTol', 1.e-4 )
 
 %% 6
 
-f = @(y) 1 ./ ( 2 .* sqrt(y) .* (1 + sqrt(y)).^2 );
-Qi = integral( f, 1, 4, 'AbsTol', 1.e-4 )
+f = @(y) 1 ./ ( 2*sqrt(y) .* (1 + sqrt(y)).^2 );
+Qi = integral( f, 0, 4, 'AbsTol', 1.e-4 )
 
 % Qi = 2/3
-
-%% Discrete case to solve integral
-
-format long
-
-% 1
-x = linspace(0,5,101);
-y = x .* exp(-x);
-
-plot(x,y,'k');
-xlabel('x'); ylabel('y=xe^{-x}');
-
-% 2 -- do by hand
-% 3 -- function is made and used in 4
-
-% 4
-a = 5;
-A = exactArea( a ); % 3
-
-% 5
-A1 = trapz(x,y);
-
-% 6 
-x = linspace(0,5,11);
-y = x .* exp(-x);
-A2 = trapz(x,y);
-
-x = linspace(0,5,1001);
-y = x .* exp(-x);
-A3 = trapz(x,y);
-
-% 7
-clc
-fprintf('11   pts. -- diff = %e\n',A-A2)
-fprintf('101  pts. -- diff = %e\n',A-A1)
-fprintf('1001 pts. -- diff = %e\n',A-A3)
-
-% 8
-f = @(x) x.*exp(-x);
-Qi = integral( f, 0, 5, 'AbsTol', 1.e-4 );
-fprintf('using integral -- diff = %e\n',A-Qi)
 
 
 
