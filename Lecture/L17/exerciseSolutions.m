@@ -76,6 +76,8 @@ fprintf('11   pts. -- diff = %e\n',A-A2)
 fprintf('101  pts. -- diff = %e\n',A-A1)
 fprintf('1001 pts. -- diff = %e\n',A-A3)
 
+%%
+
 % 8
 f = @(x) x.*exp(-x);
 Qi = integral( f, 0, 5, 'AbsTol', 1.e-4 );
