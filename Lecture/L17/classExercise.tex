@@ -1,0 +1,157 @@
+\documentclass[10pt,fleqn]{article}
+
+\usepackage{graphicx}
+\usepackage[tableposition=top]{caption}
+\usepackage{natbib}
+\usepackage{floatrow}
+\floatsetup[table]{capposition=top}
+
+\usepackage[]{mcode}
+
+\usepackage{fancyhdr}
+% \usepackage[margin=1in,showframe]{geometry}
+\usepackage[margin=1in]{geometry}
+\usepackage{tabularx} % for \textwidth table
+\usepackage{multicol}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  urlcolor=blue,
+  citecolor=gray,
+  pdftitle={DM Curriculum Vitae},
+  pdfauthor={Dylan Mikesell},
+  pdfsubject={Curriculum Vitae},
+}
+
+\pagestyle{fancy}
+
+\lhead{Boise State University}
+\chead{GEOS 397}
+\rhead{Fall 2016}
+\fancyfoot[C]{\thepage}
+% \renewcommand{\headrulewidth}{0pt} % remove horizontal line
+\setlength{\headsep}{12pt} % set separation between course name and header
+% \setlength{\hoffset}{-0.5in} % set separation between course name and header
+% \setlength{\textwidth}{7in}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\title{Computation in the geosciences}
+
+\date{\empty}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+
+
+\usepackage{siunitx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+
+% \renewcommand{\chaptertitle}[1]{\chaptitlefont\MakeUppercase{#1}}
+
+\begin{document}
+
+% make the title
+% \begin{multicols}{2}
+% \begin{flushleft}
+\textbf{L17: class exercises} -- Try to implement/solve the following problems in MATLAB.
+% \end{flushleft}
+% \columnbreak 
+% \begin{flushright}
+% \textbf{Due: 5:00 PM 10/17/16}
+% \end{flushright}
+% \end{multicols}
+
+
+\section*{Numerical Integration}
+
+Numerically integrate the following using \textit{quad} or \textit{integral}:
+
+\begin{eqnarray} \nonumber
+&& \int\limits_0^{3} \sqrt{y+1} dy \\ \nonumber
+&& \int\limits_{-1}^{1} \frac{5r}{(4+r^2)^2} dr  \\ \nonumber
+&& \int\limits_0^{\pi/6} \cos^{-3}(2\theta) \sin(2\theta) d\theta \\ \nonumber
+&& \int\limits_0^{\pi/2} e^{\sin(x)}\cos(x) dx \\ \nonumber
+&& \int\limits_0^{\sqrt{ln\pi}} 2xe^{x^2}\cos(e^{x^2}) dx  \\ \nonumber
+&& \int\limits_1^{4} \frac{dy}{2\sqrt{y}(1+\sqrt{y})^2}  \\ \nonumber
+\end{eqnarray}
+
+\section*{Compare a simple function and discrete data}
+
+\begin{enumerate}
+	\item Plot the function $y(x)=xe^{-x}$ between $x=0$ and $x=5$ using 101 points.
+	\item Using integration by parts, show that the exact value of $I(a) = \int\limits_0^a y(x) dx = \int \limits_0^a xe^{-x} dx = 1-e^{-a} - ae^{-a}$.
+	\item Write a \textbf{function} that computes the exact area of $A$ using the solution in the previous step. Call this function \textit{exactArea.m}.
+	\item Use your function to compute the value of $I(a=5)$.
+	\item Use matlab's built in \textit{trapz} function to compute the approximate integral of your discrete function in step 1.
+	\item Repeat the \textit{trapz} integration when the number of points is 11 and 1001. 
+	\item Compare the differences between the exact solution to the integral and the approximate solutions when you use 11, 101 and 1001 points to compute the integral of $y(x)$ from 0 to 5.
+	\item Compute the integral solution using \textit{quad} or \textit{integral} instead of \textit{trapz}. Compare with the exact and the discrete versions of the integral.
+\end{enumerate}
+
+\section*{Average (mean) value}
+
+In Lecture~14 we discussed the \textit{area under the curve} and the \textit{average (or mean) value} that can be computed using integration. The formula for the average value of a function is $$av(f) = \frac{1}{b-a} \int \limits_a^b f(x) dx.$$
+
+Using the function $I(a) = \int\limits_0^a y(x) dx$, where $y(x)=xe^{-x}$, to compute the average value of this function analytically.
+
+After you have an equation for the average value, compute the average value when $a=5$.
+
+\section*{Monte Carlo integration}
+
+Sometimes a Monte Carlo based approach is useful. Monte Carlo techniques are quite powerful and involve taking random samples of a function to approximate the average (mean) value of the function. (In a sense, this random sampling can be used as an approximate approach to computing the integral.) In this approach the average value of the function can be computed as $$ av(f) \approx \frac{1}{N} \sum\limits_{i=1}^N y(x_i).$$
+But what are $N$ and $x_i$ in this case? Well, $ \{ x_i \}$ is the set of N random samples taken in the integration interval.
+
+In the example above, $x_i$ would be a number within the range of 0 to $a$. You might want to look at this MATLAB \href{https://www.mathworks.com/help/matlab/ref/rand.html}{page} to learn how you would generate the random numbers. Make sure to check the section \textit{Random Numbers Within Specified Interval}.
+
+Write a \textbf{function} to compute the Monte Carlo estimate of the average value of $y(x)=xe^{-x}$. To generate the random samples, use the \textbf{rand()} function. Write your function such that you can input the number of random samples $N$.
+
+Compare your Monte Carlo average value estimate to the exact estimate computed in the previous section. How does the error change with $N$?
+
+From this average value, you can compute the actual value of the integral $I(a)$. Write how you would compute this integral in terms of the Monte Carlo average value.
+
+$$I(a) = \int\limits_0^a y(x) dx = ??$$
+
+In what situations might this approach be useful?
+
+\textit{NOTE: In the discrete data case, you might want to look at this MATLAB \href{https://www.mathworks.com/help/matlab/math/random-integers.html}{page} to learn how you would generate the random sample number instead of random numbers on the x-interval.}
+
+\section*{Example: Averaging air temperature using the trapezoid rule}
+
+An observer measures the outside temperature every hour from noon until midnight, recording the temperatures in the following table:
+
+\begin{table}[bh]
+	\centering
+	\begin{tabular}{l|ccccccccccccc} \hline
+	Time & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline
+	Temp (F) & 63 & 65 & 66 & 68 & 70 & 69 & 68 & 68 & 65 & 64 & 62 & 58 & 55 \\ \hline
+	\end{tabular}
+	\caption{Air temperature measurements.}
+	\label{tab:airtemp}
+\end{table}
+
+Using integration, we need to find $$av(f) = \frac{1}{b-a} \int \limits_a^b f(x) dx,$$ but do not know $f(x)$. The integral, however, can be approximated by the \textit{Trapezoid Rule}, using the temperatures in the table as function values at the points of a 12-subinterval partition of the 12-hour interval (i.e. $h=1$).
+
+To approximate the integral use $$\int \limits_a^b f(x) dx \approx \frac{h}{2}\left(y_0 + 2y_1 + 2y_2 + \cdots + 2y_{N-1} + 2y_N \right).$$ The $y's$ are the values of $f(x)$ at the partition points
+\begin{eqnarray} \nonumber
+x_0 &=& a, \\ \nonumber
+x_1 &=& a+h, \\ \nonumber
+x_2 &=& a+2h, \\ \nonumber
+x_{N-1} &=& a+(N-1)h, \\ \nonumber
+x_{N} &=& b,
+\label{eqn:partition}
+\end{eqnarray}
+where $h=(b-a)/N$ and $y_0=f(a)$, $y_1=f(x_1)$, $\ldots$
+
+\textbf{What was the average temperature for the 12-hour period?}
+\begin{enumerate}
+	\item Use algebra to get the answer.
+	\item Implement your own Trapezoid rule to approximate the integral and find the average value.
+	\item Use MATLAB's \textbf{trapz()} function to compute the average value.
+	\item Does your approximations match the algebraic average?
+\end{enumerate}
+
+\vfill
+
+\textit{Examples in this exercise come from 1) Thomas' Calculus: Early Transactions by Finney, Weir and Giodano and 2) Nik Cunniffe's Matlab Practical: Numerical Integration.}
+
+\end{document}
