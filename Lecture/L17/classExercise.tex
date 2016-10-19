@@ -98,10 +98,10 @@ After you have an equation for the average value, compute the average value when
 
 \section*{Monte Carlo integration}
 
-Sometimes a Monte Carlo based approach is useful. Monte Carlo techniques are quite powerful and involve taking random samples of a function to approximate the average (mean) value of the function. (In a sense, this random sampling can be used an approximate approach to computing the integral.) In this approach the average value of the function can be computed as $$ av(f) \approx \frac{1}{N} \sum\limits_{i=1}^N y(x_i).$$
+Sometimes a Monte Carlo based approach is useful. Monte Carlo techniques are quite powerful and involve taking random samples of a function to approximate the average (mean) value of the function. (In a sense, this random sampling can be used as an approximate approach to computing the integral.) In this approach the average value of the function can be computed as $$ av(f) \approx \frac{1}{N} \sum\limits_{i=1}^N y(x_i).$$
 But what are $N$ and $x_i$ in this case? Well, $ \{ x_i \}$ is the set of N random samples taken in the integration interval.
 
-In the example above, $x_i$ would be a number within the range of 0 to $a$.
+In the example above, $x_i$ would be a number within the range of 0 to $a$. You might want to look at this MATLAB \href{https://www.mathworks.com/help/matlab/ref/rand.html}{page} to learn how you would generate the random numbers. Make sure to check the section \textit{Random Numbers Within Specified Interval}.
 
 Write a \textbf{function} to compute the Monte Carlo estimate of the average value of $y(x)=xe^{-x}$. To generate the random samples, use the \textbf{rand()} function. Write your function such that you can input the number of random samples $N$.
 
@@ -112,6 +112,8 @@ From this average value, you can compute the actual value of the integral $I(a)$
 $$I(a) = \int\limits_0^a y(x) dx = ??$$
 
 In what situations might this approach be useful?
+
+\textit{NOTE: In the discrete data case, you might want to look at this MATLAB \href{https://www.mathworks.com/help/matlab/math/random-integers.html}{page} to learn how you would generate the random sample number instead of random numbers on the x-interval.}
 
 \section*{Example: Averaging air temperature using the trapezoid rule}
 
@@ -147,7 +149,6 @@ where $h=(b-a)/N$ and $y_0=f(a)$, $y_1=f(x_1)$, $\ldots$
 	\item Use MATLAB's \textbf{trapz()} function to compute the average value.
 	\item Does your approximations match the algebraic average?
 \end{enumerate}
-
 
 \vfill
 
