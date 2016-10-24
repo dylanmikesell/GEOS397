@@ -11,3 +11,7 @@ What is [GIT](https://www.atlassian.com/git/tutorials/what-is-version-control) a
 What is [Markdown](http://whatismarkdown.com)?
 
 Here is a handy Markdown [cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links).
+
+---
+
+Resources for [MATLAB Geoscientists](http://serc.carleton.edu/NAGTWorkshops/data_models/toolsheets/MATLAB.html#refs).
