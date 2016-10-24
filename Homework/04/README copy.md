@@ -1,0 +1,1 @@
+This homework is derived from a SERC teaching activity found [here](http://serc.carleton.edu/NAGTWorkshops/data_models/matlab15/activities/114906.html). The original author is Charly Bank, University of Toronto
