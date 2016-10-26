@@ -93,7 +93,7 @@ plot(x,yClean,'ro-'); hold on;
 legend('Original')
 
 % add noise to the curve
-noise = 5*randn( 1, numel(yClean) );
+noise = 10*randn( 1, numel(yClean) );
 yDirty = yClean + noise;
 
 plot(x,yDirty,'b*');
@@ -108,3 +108,23 @@ legend('Original','Contaminated','Estimated','Location','NorthWest'); legend box
 
 tStr = sprintf( 'Equation of the best fit line: y(x) = %0.2fx + %0.2f\n', p(1), p(2) );
 title(tStr);
+
+
+%% Practical stuff
+
+tEqn = sprintf( 'y(x) = %0.2fx + %0.2f; 1st-order linear\n', p(1), p(2) );
+
+%%
+
+x = 0 : 0.15 : 5;
+y = (5 .* sqrt(x)) - (1.5 .* x);
+
+figure;
+plot( x, y, 'ko' ); hold on;
+xlabel('x'); ylabel('y(x)');
+
+order = 10;
+p = polyfit(x,y,order);
+yFit = polyval(p,x);
+
+plot(x,yFit,'r+');
