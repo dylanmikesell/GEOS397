@@ -52,19 +52,11 @@
 
 \textbf{L20: class exercises} -- Try to implement/solve the following problems in MATLAB.
 
-\section*{Root finding}
+\section*{Correlation}
 
-Use \textbf{roots()} or \textbf{fzerogui} to find a zero of each of the following functions in the given interval. 
+Write your own correlation coefficient computation using the equation
 
-\begin{eqnarray} \nonumber
-& x^3 - 2x - 5 & [0,3] \\ \nonumber
-& \sin(x) & [1,4]  \\ \nonumber
-& x^3 - 0.001 & [-1,1] \\ \nonumber
-& log(x+2/3) & [0,1] \\ \nonumber
-& sign(x-2)\sqrt{|x-2|} & [1,4] \\ \nonumber
-& \arctan(x) - \pi/3 & [0,5] \\ \nonumber
-& 1/(x-\pi) & [0,5] \\ \nonumber
-\end{eqnarray}
+$$r = \frac{n \sum xy - (\sum x)(\sum y)}{\sqrt{n(\sum x^2)-(\sum x)^2}\sqrt{n(\sum y^2)-(\sum y)^2}}$$
 
 
 

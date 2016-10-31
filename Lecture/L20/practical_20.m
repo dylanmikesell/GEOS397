@@ -2,167 +2,91 @@ clear all
 close all
 clc
 
-% L19 practical: polynomial curve fitting, roots, statistics and
-% interpolation
-
-addpath('./ncm'); % add the GUItools for root finding!
+% L20 practical: linear curve fitting and statistics
 
 %% Part 3 - review polynomials
 
-order = 2;
-x = 0 : 0.15 : 5;
-y = 5 .* sqrt(x) - 1.5 .* x; % we have x^(1/2) now
-
-p = polyfit( x, y, order );
-yFit = polyval( p, x );
+x = 0 : 4;
+y = (2.7 * x.^4) + (4 * x.^3) - (x.^2) + (1.8 * x) - 12.2;
+coef = [2.7, 4, -1, 1.8, -12.2]; % or just keep the coefficients to use polyval()
 
 figure;
-plot( x, y, 'ko' ); hold on;
-plot( x, yFit, 'r+' );
-
+plot(x,y,'r+'); % plot the (x,y) points with red plus sign
 xlabel('x'); ylabel('y(x)');
 
-% Increasing the order of the polynomial allows for more complex curves to
-% be fit 
+%% fit with different polynomial orders
 
-% Be careful to not over-fit your data!
+order = 0;
+P0 = polyfit(x,y,order)
 
-% MATLAB will give a warning if the result is poorly conditioned (try
-% order=20) 
+order = 1;
+P1 = polyfit(x,y,order)
 
-%% Part 4: roots of polynomials (disc. > 0)
+order = 2;
+P2 = polyfit(x,y,order)
 
-clc; % clear the command window
+order = 3;
+P3 = polyfit(x,y,order)
 
-x = 0 : 0.1 : 5; % make an x-vector
-y = x.^2 - 6*x + 8; % our function f(x) or y(x)
+order = 4;
+P4 = polyfit(x,y,order)
 
-figure;
+coef
 
-plot( x, y, 'k' ); xlabel('x'); ylabel('y(x)'); grid on;
+%% Let's look at polyfit now as a least-squares fit
 
-P = [1, -6, 8 ];
-roots( P )
+% We can use polyfit to perform a least square fit of a 1st oder polynomial
+% i.e. a linear fit
 
-%% (disc. < 0) --> two complex roots 
-
-x = -5 : 0.1 : 5;
-y = 4*x.^2 - 2*x + 6;
-
-figure;
-
-plot( x, y, 'k' ); xlabel('x'); ylabel('y(x)'); grid on;
-
-P = [4, -2, 6 ];
-roots( P )
-
-%% higher order polynomial
-
-x = -5 : 0.1 : 6;
-y = x.^4 - 23*x.^2 - 18*x + 40;
+x = -10 : 10; % independent variable
+m0 = 4; % true slope
+y0 = -1; % true y-intercept
+yClean = m0*x + y0;
 
 figure;
+plot(x,yClean,'ro-'); hold on;
+legend('Original')
 
-plot( x, y, 'k' ); xlabel('x'); ylabel('y(x)'); grid on;
+% add noise to the curve
+noise = 10*randn( 1, numel(yClean) );
+yDirty = yClean + noise;
 
-P = [1, 0, -23, -18, 40 ];
-roots( P )
+plot(x,yDirty,'b*');
 
-%% Bisection method to find a value
+% least-squares linear fit of noisy curve
+order = 1; % linear!
+p = polyfit( x, yDirty, order );
 
-% our function is f(x) = x^2 = 2
-% our interval is x=[1,2] and we looking for x=2^(1/2)
-format long
+yEst = polyval( p, x );
+plot(x,yEst,'k+');
+legend('Original','Contaminated','Estimated','Location','NorthWest'); legend boxoff;
+tStr = sprintf( 'Equation of the best fit line: y(x) = %0.2fx + %0.2f\n', p(1), p(2) );
+title(tStr);
 
-a = 1; % start of interval
-b = 2; % end of interval
-k = 0; % a counter to tell us how many iterations we have made
-while b-a > eps
-    
-    k = k + 1; % update the counter
+%% Look at linear correlation coefficients
 
-    x = (a + b) / 2; % compute the midpoint
-    fprintf('x = %0.15f\n',x);
+R = corrcoef( x, yClean)
 
-    % compare current x value to actual function
-    if x^2 > 2
-        b = x; % reset the upper bound
-    else
-        a = x; % reset the lower bound
-    end
-end
+R = corrcoef( x, yDirty)
 
-sqrt(2)
+R = corrcoef( x, yEst)
 
-%% Now use bisection to find roots of a function
+% R = [autocor(X), xcor(X,Y);
+%     xcor(Y,X), autocor(Y)];
 
-% We might not be able to actually find a point where f(x) is exactly zero.
-% Our goal is as follows: 
-%   Find a very small interval, perhaps two successive floating-point
-%   numbers, on which the function changes sign. 
-%
-% The Matlab code for bisection is 
+%% Look at the coefficient of determination
 
-f = @(x) x.^2 - 6*x + 8; % our function f(x)
+R = corrcoef( x, yDirty);
 
-% Let's find the root x=2
-a = 1;
-b = 3;
+Rsquared = R(1,2)^2
 
-k = 0;
-while abs(b-a) > eps*abs(b)
-    
-    x = (a + b)/2; % compute the midpoint
-    fprintf('x = %0.15f\n',x);
+% What happens to Rsquared if we change the amplitude of the noise?
 
-    if sign(f(x)) == sign(f(b)) % test if both are positive or ne
-        b = x;
-    else
-        a = x;
-    end
-    k = k + 1;
-end
+%% Finally look at the rescaling of data in polyfit to improve performance.
 
-% Bisection is slow. With the termination condition in the above code, it
-% always takes 52 steps for any function. But it is completely reliable. If
-% we can find a starting interval with a change of sign, then bisection
-% cannot fail to reduce that interval to two successive floating-point
-% numbers that bracket the desired result.    
+[p, S, mu] = polyfit( x, yDirty, order );
 
-%% Let's use MATLAB's function fzerotx()
 
-% This is a textbook example of fzero(). We give it a function and we give
-% it the interval [a,b].
 
-J0 = @(x) besselj( 0, x ); % Make a function. We are making a zero order bessel function
 
-for n = 1 : 10 % find the first ten roots (we know they are spaced roughly pi apart, hence we change a,b for each root)
-    a = (n-1) * pi;
-    b = n * pi;
-    z(n) = fzerotx( J0, [a,b] );
-end
 
-% compute the actual bessel function
-x = 0 : pi/50 : 10*pi;
-y = J0(x);
-
-% plot the zero
-plot( z, zeros(1,10), 'o'); hold on; % plot the roots
-plot( x, y, '-' ); grid on;% plot the continuous function
-axis('tight');
-
-%% try the fzeroGUI() to see how fzero uses the different methods
-
-% find the first root between zero and pi
-a = 0;
-b = 3.83;
-
-fzerogui( J0, [a,b] );
-
-%% now just try fzero()
-
-myZero = fzero( J0, pi );
-% This will find the zero closest to pi, which should be the first zero
-
-%% for optimization problems, you can use fmin()
-% to find the minimum value of a function instead of the root.
