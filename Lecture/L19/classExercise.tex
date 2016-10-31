@@ -1,0 +1,77 @@
+\documentclass[10pt,fleqn]{article}
+
+\usepackage{graphicx}
+\usepackage[tableposition=top]{caption}
+\usepackage{natbib}
+\usepackage{floatrow}
+\floatsetup[table]{capposition=top}
+
+\usepackage[]{mcode}
+
+\usepackage{fancyhdr}
+% \usepackage[margin=1in,showframe]{geometry}
+\usepackage[margin=1in]{geometry}
+\usepackage{tabularx} % for \textwidth table
+\usepackage{multicol}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  urlcolor=blue,
+  citecolor=gray,
+  pdftitle={DM Curriculum Vitae},
+  pdfauthor={Dylan Mikesell},
+  pdfsubject={Curriculum Vitae},
+}
+
+\pagestyle{fancy}
+
+\lhead{Boise State University}
+\chead{GEOS 397}
+\rhead{Fall 2016}
+\fancyfoot[C]{\thepage}
+% \renewcommand{\headrulewidth}{0pt} % remove horizontal line
+\setlength{\headsep}{12pt} % set separation between course name and header
+% \setlength{\hoffset}{-0.5in} % set separation between course name and header
+% \setlength{\textwidth}{7in}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\title{Computation in the geosciences}
+
+\date{\empty}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+
+
+\usepackage{siunitx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+
+% \renewcommand{\chaptertitle}[1]{\chaptitlefont\MakeUppercase{#1}}
+
+\begin{document}
+
+\textbf{L19: class exercises} -- Try to implement/solve the following problems in MATLAB.
+
+\section*{Root finding}
+
+Use \textbf{roots()} or \textbf{fzerogui} to find a zero of each of the following functions in the given interval. 
+
+\begin{eqnarray} \nonumber
+& x^3 - 2x - 5 & [0,3] \\ \nonumber
+& \sin(x) & [1,4]  \\ \nonumber
+& x^3 - 0.001 & [-1,1] \\ \nonumber
+& log(x+2/3) & [0,1] \\ \nonumber
+& sign(x-2)\sqrt{|x-2|} & [1,4] \\ \nonumber
+& \arctan(x) - \pi/3 & [0,5] \\ \nonumber
+& 1/(x-\pi) & [0,5] \\ \nonumber
+\end{eqnarray}
+
+
+
+\end{document}
+
+
+
+
+
+

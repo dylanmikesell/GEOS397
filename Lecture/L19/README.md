@@ -1,6 +1,6 @@
 # GEOS 397/597
 
-## Lecture #19: Curve fitting
+## Lecture #19: Polynomial roots
 use __practical_19.m__
 
 ### 1) Update from github
@@ -15,91 +15,83 @@ MATLAB provides several built-in functions to fit curves* Many require the “
 
 2) polyval
 
-3) corrcoef
+3) roots
 
-4) roots---### 3) Review polynomials
+4) fzero -- to find roots when function is not a polynomial
 
-Polynomials come in different **orders** or **degrees**.
+5) corrcoef
+---### 3) Review of polynomials with polyval, polyfit---### 4) Review roots of polynomials
+
+Roots of a function are where the function equals 0 (i.e. f(x)=0)
+
+Some polynomials have no real roots, but do have roots with imaginary numbers -- the discriminant tells us the roots.
+
+$b^2 - 4ac$ 
+
+The discriminant is the name given to the expression that appears under the square root (radical) sign in the quadratic formula.
+
+$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
+The discriminant tells you about the _nature_ of the roots of a quadratic equation given that a, b and c are rational numbers.  It quickly tells you the number of real roots associated with a quadratic equation.__Three cases__
+
+1) $b^2 - 4ac > 0$, there are two real roots
+
+2) $b^2 - 4ac = 0$, there is one real root
+
+3) $b^2 - 4ac < 0$, there are two complex roots
+
+---
+
+Let's look at an example:
+
+$x^2 - 6x + 8$, we can factor this to find $x^2 - 6x + 8 = (x-2)(x-4)$
+
+Discriminant = $6^2 - 4*(1)*(8) = 4$
+
+Discriminant is greater than zero so the function has _real_ roots: $x=2$ and $x=4$. Let's plot this polynomial in MATLAB.
 
 ---
 
-* $0^{th}$ order: a single constant value
+* $1^{st}$ order: 1 root
 
-Examples: 
+* $2^{nd}$ order: 0, 1, or 2 roots
 
-$y=4$		
-$y=2.75$		
-$y=-12.1$
+* $3^{rd}$ order: up to 3 roots
 
+* $n^{th}$ order: up to n roots
 ---
 
-* $1^{st}$ order: a linear equation (i.e. independent variable is to $1^{st}$ power)
-
-Examples: 
-
-$y=4x$		
-$y=2.75x+7$		
-$y=-12.1x-21.3$
-
----
-
-* $2^{nd}$ order: a quadratic equation
-
-Examples: 
-
-$y=4x^2$		
-$y=2.75x^2 + 7$		
-$y=-12.1x^2-21.3x+1.4$
-
----
-
-* $3^{rd}$ order: a cubic equation
-
-Examples: 
-
-$y=4x^3$		
-$y=2.75x^3 + 7$		
-$y=-12.1x^3-21.3x+1.4$		
-$y=12x^3+3x^2-11x+2$
-
----
-
-* $n^{th}$ order: a polynomial where $n$ is the largest exponent on the independent variable
-
-* Can be represented in MATLAB as a row vector of the coefficients in front of the independent variable of decreasing order
-
-[3, 2.7, 1, -5.7] $\rightarrow 3x^3 + 2.7x^2 + x - 5.7$
-	
-The polynomial **order** is always 
-
-	n = numel(vector) - 1 
-
-_Remember the $0^{th}$ order term! Also remember that the equation order doesn't matter, but the vector order does! (It is a good habit to organize the terms based on reducing order though.)_
-
-x - 5.7 + $3x^3 + 2.7x^2 \rightarrow $ [3, 2.7, 1, -5.7] 
-
----
-
-#### polyval() -- evaluate polynomial
-
-These vectors can be interpreted by __polyval()__ as coefficients of a polynomial and used to make a curve.
+#### roots() -- find a polynomial's roots given the polynomial coefficients 
 
 _Try first practical exercise._
 
 ---
 
-#### polyfit() -- fit polynomial to data
+#### bisection method to find roots of a function on the interval [a,b]
 
-This function can be used to estimate the coefficients from an existing curve.
+What about when we have a function (e.g. a data time series) and we do not know the polynomial coefficients, but we want to find the roots in a given interval?
 
-_Try second practical exercise._
+As an example let's find the roots of $x^2=2$. We know analytically that the roots are $x=\pm\sqrt{2}$. Let's use a computer program to find the root $x=\sqrt{2}$.
 
-#### Linear least-squares fitting
+_See the two practical exercises._
+
+First exercise demonstrates bisection to find $x$ when $x^2=2$.
+
+Second exercise demonstrates how to modify the bisection method to find two points (one negative, one positive) that bound a zero.
 
 ---
 
-#### Goodness of fit
+#### Other methods used to find roots (i.e. zeros) of a function
 
----
+1) Newton's Method
 
-### 4) Student exercises in class
+2) Secant Method
+
+3) Inverse Quadratic Interpolation
+
+### 5) How to find roots of general functions
+
+In MATLAB __fzero()__ is the function we want to use; it combines the above methods for high accuracy and speed.
+
+
+### 6) Student exercises in class
