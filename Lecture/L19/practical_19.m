@@ -40,6 +40,8 @@ y = x.^2 - 6*x + 8; % our function f(x) or y(x)
 figure;
 
 plot( x, y, 'k' ); xlabel('x'); ylabel('y(x)'); grid on;
+hold on;
+plot([x(1) x(end)],[0 0],'k');
 
 P = [1, -6, 8 ];
 roots( P )
@@ -52,6 +54,8 @@ y = 4*x.^2 - 2*x + 6;
 figure;
 
 plot( x, y, 'k' ); xlabel('x'); ylabel('y(x)'); grid on;
+hold on;
+plot([x(1) x(end)],[0 0],'k');
 
 P = [4, -2, 6 ];
 roots( P )
@@ -64,6 +68,8 @@ y = x.^4 - 23*x.^2 - 18*x + 40;
 figure;
 
 plot( x, y, 'k' ); xlabel('x'); ylabel('y(x)'); grid on;
+hold on;
+plot([x(1) x(end)],[0 0],'k');
 
 P = [1, 0, -23, -18, 40 ];
 roots( P )
@@ -161,8 +167,22 @@ fzerogui( J0, [a,b] );
 
 %% now just try fzero()
 
-myZero = fzero( J0, pi );
+myZero = fzero( J0, pi )
 % This will find the zero closest to pi, which should be the first zero
 
 %% for optimization problems, you can use fmin()
 % to find the minimum value of a function instead of the root.
+
+%%
+
+f = @(x) x.^3 - 2*x - 5;
+
+% f(x)= x.^3 - 2*x - 5;
+
+%%
+
+f = @(x) 1/(x-pi);
+z = fzerotx( f, [0,5] )
+
+
+
