@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1477934629 "classExercise.tex" "classExercise.pdf" "classExercise" 1477934629
+["pdflatex"] 1477934629 "classExercise.tex" "classExercise.pdf" "classExercise" 1477936156
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -88,7 +88,7 @@
   "classExercise.out" 1477934629 0 d41d8cd98f00b204e9800998ecf8427e ""
   "classExercise.tex" 1477934627 1578 db3b3dc0ad317b6292ee7836075fd391 ""
   (generated)
-  "classExercise.pdf"
-  "classExercise.aux"
-  "classExercise.out"
   "classExercise.log"
+  "classExercise.pdf"
+  "classExercise.out"
+  "classExercise.aux"
