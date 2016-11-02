@@ -5,7 +5,7 @@ use __practical_20.m__
 
 ### 1) Update from github
 ---
-### 2) polyfit, polyval, corrcoef, roots
+### 2) polyfit, polyval, corrcoef
 
 MATLAB provides several built-in functions to fit curves* Many require the “Curve Fitting Toolbox”, or other toolboxes.
 * We will only use the basic curve fitting functions that are part of standard MATLAB
@@ -18,7 +18,7 @@ MATLAB provides several built-in functions to fit curves* Many require the “
 5) corrcoef
 ---### 3) Review of polynomials with polyval, polyfit
 
-_See practical exercises on noise-free and noisy data.---
+_See practical exercises on noise-free and noisy data._---
 
 ### 4) Goodness of fit when linearly fitting data
 

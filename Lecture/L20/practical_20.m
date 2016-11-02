@@ -11,7 +11,7 @@ y = (2.7 * x.^4) + (4 * x.^3) - (x.^2) + (1.8 * x) - 12.2;
 coef = [2.7, 4, -1, 1.8, -12.2]; % or just keep the coefficients to use polyval()
 
 figure;
-plot(x,y,'r+'); % plot the (x,y) points with red plus sign
+plot(x,y,'r+-'); % plot the (x,y) points with red plus sign
 xlabel('x'); ylabel('y(x)');
 
 %% fit with different polynomial orders
@@ -38,7 +38,7 @@ coef
 % We can use polyfit to perform a least square fit of a 1st oder polynomial
 % i.e. a linear fit
 
-x = -10 : 10; % independent variable
+x = -10 : 1 : 10; % independent variable
 m0 = 4; % true slope
 y0 = -1; % true y-intercept
 yClean = m0*x + y0;
@@ -82,9 +82,18 @@ Rsquared = R(1,2)^2
 
 % What happens to Rsquared if we change the amplitude of the noise?
 
+%%
+
+yDiff = yDirty - yClean;
+
+figure;
+plot(x,yDiff,'k+');
+xlabel('x'); ylabel('y(x)');
+
+
 %% Finally look at the rescaling of data in polyfit to improve performance.
 
-[p, S, mu] = polyfit( x, yDirty, order );
+% [p, S, mu] = polyfit( x, yDirty, order );
 
 
 

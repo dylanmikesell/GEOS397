@@ -56,8 +56,30 @@
 
 Write your own correlation coefficient computation using the equation
 
-$$r = \frac{n \sum xy - (\sum x)(\sum y)}{\sqrt{n(\sum x^2)-(\sum x)^2}\sqrt{n(\sum y^2)-(\sum y)^2}}$$
+$$r = \frac{n \sum xy - (\sum x)(\sum y)}{\sqrt{n(\sum x^2)-(\sum x)^2}\sqrt{n(\sum y^2)-(\sum y)^2}}.$$
 
+Write a function to compute this correlation coefficient given two inputs $x$ and $y$.
+
+Test this function with the following:
+
+\begin{itemize}
+	\item Make an x-vector from -10:10
+	\item Compute the function $y(x) = 20x - 5$
+	\item Add random Gaussian noise to this y-vector with an amplitude of 10
+	\item Use \textbf{polyfit()} to to estimate the coefficients of the first order polynomial 
+	\item Compute the correlation coefficient between $x$ and your noisy $y$
+	\item Compute the correlation coefficient between $x$ and your predicted $y$ after you estimate the polynomial coefficients
+\end{itemize}
+
+Now that you have an estimate of the polynomial coefficients and have predicted a new y-vector based on these coefficients, we can look at the properties of the noise we added.
+
+\begin{itemize}
+	\item Subtract the estimated y-vector from the noisy y-vector. Call this new vector \textit{yDiff}.
+	\item Plot this new vector.
+	\item Compute the mean of this vector. What is it?
+	\item Compute the standard deviation. What is it?
+	\item Try increasing the number of points in the x-vector and recomputing the above values. What do you notice about the standard deviation and the mean?
+\end{itemize}
 
 
 \end{document}
