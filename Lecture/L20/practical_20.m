@@ -47,11 +47,13 @@ figure;
 plot(x,yClean,'ro-'); hold on;
 legend('Original')
 
+
 % add noise to the curve
 noise = 10*randn( 1, numel(yClean) );
 yDirty = yClean + noise;
 
 plot(x,yDirty,'b*');
+
 
 % least-squares linear fit of noisy curve
 order = 1; % linear!
