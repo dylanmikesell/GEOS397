@@ -24,7 +24,7 @@ _See practical exercises on noise-free and noisy data._---
 
 When we use polyfit to fit data with a __linear__ (1st order) polynomial, we would like to know how well we actually fit the data. When we fit data in this way, we call it _linear regression_ and we are interested in a 'goodness of fit' measure. We would like to know how well does the regression equation truly represent the data?
 
-There are a variety of ways to compare data and model fits; takes Dr. HP Marshall's geostatistics course if you would like more knowledge in this area. In this class you will move beyond __univariate__ statistics and into __multivariate__ statistics (e.g. covariance).
+There are a variety of ways to compare data and model fits; takes Dr. HP Marshall's geostatistics course if you would like more knowledge in this area. In this class you will move beyond __univariate__ statistics and into __multivariate__ statistics.
 
 The measure we will consider in this class if the _linear correlation coefficient_ $r$. You will often see people cite the _coefficient of determination_ $r^2$ value, and it is important to build an intuitive sense for what this value means. 
 
