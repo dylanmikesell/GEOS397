@@ -2,100 +2,75 @@ clear all
 close all
 clc
 
-% L20 practical: linear curve fitting and statistics
+% L21 practical: Polynomial interpolation
 
-%% Part 3 - review polynomials
+%% Part 2 -- power form of interpolation polynomial and coefficients
 
-x = 0 : 4;
-y = (2.7 * x.^4) + (4 * x.^3) - (x.^2) + (1.8 * x) - 12.2;
-coef = [2.7, 4, -1, 1.8, -12.2]; % or just keep the coefficients to use polyval()
+x = 0 : 3; % x_k
+y = [-5, -6, -1, 16]; % y_k
 
-figure;
-plot(x,y,'r+-'); % plot the (x,y) points with red plus sign
-xlabel('x'); ylabel('y(x)');
+disp( [ x; y ] ); % list the (x_k, y_k) pairs
 
-%% fit with different polynomial orders
+%% build Vandermonde matrix and solve for coefficients
 
-order = 0;
-P0 = polyfit(x,y,order)
+V = vander(x); % make the Vandermonde matrix
+disp( V );
 
-order = 1;
-P1 = polyfit(x,y,order)
+% Solve the linear system V*c=y for the coefficient vector c
 
-order = 2;
-P2 = polyfit(x,y,order)
+c = V \ y'; % need to transpose y so the shape is correct
 
-order = 3;
-P3 = polyfit(x,y,order)
+% The backslash means matrix division:
+% https://www.mathworks.com/help/matlab/ref/mldivide.html
+% Only valid for Ax=B type problems.
 
-order = 4;
-P4 = polyfit(x,y,order)
+% If you have xA=B then use '/' operator
+% https://www.mathworks.com/help/matlab/ref/mrdivide.html
 
-coef
+disp(c);
 
-%% Let's look at polyfit now as a least-squares fit
+%% interpolate to new x-grid using these coefficients
 
-% We can use polyfit to perform a least square fit of a 1st oder polynomial
-% i.e. a linear fit
+u = -0.25 : 0.2 : 3.25; % new x-grid
 
-x = -10 : 1 : 10; % independent variable
-m0 = 4; % true slope
-y0 = -1; % true y-intercept
-yClean = m0*x + y0;
+v = polyval( c, u);
 
-figure;
-plot(x,yClean,'ro-'); hold on;
-legend('Original')
+figure;   
+plot( x, y, 'o', u, v, '*-');
+xlabel('x'); ylabel('P(x)');
 
+%% Part 3 -- Lagrange interpolation
 
-% add noise to the curve
-noise = 10*randn( 1, numel(yClean) );
-yDirty = yClean + noise;
+v = polyinterp( x, y, u);
 
-plot(x,yDirty,'b*');
+figure;   
+plot( x, y, 'o', u, v, '*-');
 
+%% We can also do this with symbolic math
 
-% least-squares linear fit of noisy curve
-order = 1; % linear!
-p = polyfit( x, yDirty, order );
+symx = sym( 'x' ); % make x a symbolic variable
 
-yEst = polyval( p, x );
-plot(x,yEst,'k+');
-legend('Original','Contaminated','Estimated','Location','NorthWest'); legend boxoff;
-tStr = sprintf( 'Equation of the best fit line: y(x) = %0.2fx + %0.2f\n', p(1), p(2) );
-title(tStr);
+P = polyinterp( x, y, symx );
+   
+pretty( P ); % print P(x)
+   
+P = simplify( P ); % make "power" form version of the polynomial
+disp( P ); % display
 
-%% Look at linear correlation coefficients
+%% Another example -- interpolation for plotting
 
-R = corrcoef( x, yClean)
+x = 1 : 6;
+y = [16 18 21 17 15 12];
 
-R = corrcoef( x, yDirty)
+figure; subplot(1,2,1)
+plot( x, y, 'ok', x, y, '-r' ); axis([0 7 6 22]);
+% The red line is plotted using piecewise linear interpolation by deafult
 
-R = corrcoef( x, yEst)
+u = 0.75 : 0.05 : 6.25;
+v = polyinterp( x, y, u ); % Lagrange interpolation with full-degree polynomial
 
-% R = [autocor(X), xcor(X,Y);
-%     xcor(Y,X), autocor(Y)];
-
-%% Look at the coefficient of determination
-
-R = corrcoef( x, yDirty);
-
-Rsquared = R(1,2)^2
-
-% What happens to Rsquared if we change the amplitude of the noise?
-
-%%
-
-yDiff = yDirty - yClean;
-
-figure;
-plot(x,yDiff,'k+');
-xlabel('x'); ylabel('y(x)');
-
-
-%% Finally look at the rescaling of data in polyfit to improve performance.
-
-% [p, S, mu] = polyfit( x, yDirty, order );
+subplot(1,2,2);
+plot(x,y,'o',u,v,'r-'); axis([0 7 6 22])
 
 
 

@@ -5,18 +5,16 @@ use __practical_21.m__
 
 ### 1) Update from github
 ---
-### 2) polyfit, polyval
-MATLAB provides several built-in functions to fit curves* Many require the “Curve Fitting Toolbox”, or other toolboxes.
-* We will only use the basic curve fitting functions that are part of standard MATLAB
-* We will focus on:
-	
-1) polyfit
+### 2) Interpolating polynomial
 
-2) polyval
----### 3) Review of polynomials with polyval, polyfit
+* Lagrange form
+* Power form (Vandermonde matrix)
+* Examples
+---### 3) 1D interpolation with interp1()
 
-_See practical exercises on noise-free and noisy data.---
- 
-### 4) 
+* Piecewise Linear Interpolation (linear)
+* Piecewise Cubic Hermite Interpolation (cubic)
+* Shape-Preserving Piecewise Cubic Interpolation (pchip)
+* Piecewise Cubic Spline Interpolation (spline)
 
-### 6) Student exercises in class
+### 4) Student exercises in class
