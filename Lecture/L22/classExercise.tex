@@ -50,30 +50,47 @@
 
 \begin{document}
 
-\textbf{L21: class exercises} -- Try to implement/solve the following problems in MATLAB.
+\textbf{L22: class exercises} -- Try to implement/solve the following problems in MATLAB.
 
-\section*{Linear interpolation}
+\section*{Time series}
 
-Load the two data sets \textit{series1.txt} and \textit{series2.txt} using the \textbf{load()} function. Both synthetic data sets contain a two-column matrix with 339 rows. These data come from the book \textit{MATLAB Recipes for Earth Sciences}.
+In this step you will create your own time series that contains multiple periodic components, a linear trend and noise. Create a time vector from 0:1000 with a time step of dt=1.
 
-The first column contains ages in kiloyears, which are unevenly spaced. The second column contains oxygen-isotope values measured on calcareous micro-fossils (foraminifera). The data sets contain 100, 40 and 20 kyr cyclicities and they are overlain by Gaussian noise. In the 100~kyr frequency band, the second data series (series 2) is shifted by 5 kyrs with respect to the first data series (series 1).
+Now create a periodic signal ($x_p$) composed of three sine functions with 1) A1=2, f1=1/50; 2) A2=1, f2=1/15, and 3) A3=0.5, f3=1/5 summed together. For example, sine wave one would be A1*sin(2*pi*f1*t). Plot this wave and label the axes.
 
+Next, create a linear trend ($x_tr$) that has a slope of 0.005 and y-intercept at 0. Add this to the $x_p$ curve and plot on top of the individual $x_p$ curve. Do you notice a linear trend?
+
+Finally, generate zero-mean random Gaussian noise with \textbf{randn()}. The noise should have a standard deviation of one. \textit{Note: Prior to calling \textbf{randn()}, make sure to set \textbf{rng(0)} so that everyone in class has the same random noise.} Add this noise to the periodic and trend data so that you have a time series with all three components. Plot this data on top of the periodic only signal.
+
+You should now have three signals.
 \begin{enumerate}
-	\item Make a new time vector from 0 to 996~kyr, with a sample interval of 3~kyr.
-	\item Use \textbf{interp1()} to linearly interpolate both series1 and series2. \textit{(You may need to look at the MATLAB help/doc for interp1.)}
-	\item In one figure, use subplot 1 to plot the raw data and interpolated data. Window the x-axis from 350 to 450~kyr. \textit{(It may help to the plot the raw data as points and the interpolated data as a line.)}
-	\item In the same figure on subplot 2, plot the same thing but for series 2.
+  \item $x_p(t)$ = periodic signal composed of three sine curves
+  \item $x_1(t) = x_p(t) + x_{tr}(t)$ = periodic plus linear trend
+  \item $x_2(t) = x_p(t) + x_{tr}(t) + x_n(t)$ = periodic plus linear trend plus noise
 \end{enumerate}
 
-If time, try redoing this exercise, using one of the other interpolation methods instead of 'linear' interpolation. Do you notice any differences?
+\section{Periodogram}
 
-\begin{itemize}
-  \item Piecewise Linear Interpolation (linear)
-  \item Piecewise Cubic Hermite Interpolation (cubic)
-  \item Shape-Preserving Piecewise Cubic Interpolation (pchip)
-  \item Piecewise Cubic Spline Interpolation (spline)
-\end{itemize}
+Use \textbf{nextpow()} to find the next power of two of the number of data points. 
+Set \textbf{nfft=$2^{nextpow(N)}$}, where N is the number of data. Then call \textbf{[Pxx,f]=periodogram(x\_p,[],nfft,fs)}, where \textit{nfft} is the number of points in the fft (an \textit{even} number of points makes the fft symmetric and using powers of two enables this to be done easily). $x_p$ is the periodic only signal; \textit{fs} is the sampling frequency 1/dt. Then plot the output with the y-limits set from 0:1000;
 
+\begin{lstlisting}
+nfft = 2^nextpow2(N);
+[Pxx,f] = periodogram(x_p,[],nfft,fs);
+
+figure;
+plot(f,Pxx); grid on;
+xlabel('Frequency [Hz]' ylim([0 1000]););
+ylabel('Power');
+title('Auto-Spectrum');
+ylim([0 1000]);
+\end{lstlisting}
+
+Describe the output. What do you notice about the upper frequency limit?
+
+Repeat the periodogram computation and plotting using 1) the periodic + trend signal and 2) the periodic, trend and noise signal. Describe the differences in the plots.
+
+Now vary the noise from a standard deviation of 1 to 2 to 3 to 4. What happens to you plots?
 
 \end{document}
 
