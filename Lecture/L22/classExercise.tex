@@ -1,0 +1,84 @@
+\documentclass[10pt,fleqn]{article}
+
+\usepackage{graphicx}
+\usepackage[tableposition=top]{caption}
+\usepackage{natbib}
+\usepackage{floatrow}
+\floatsetup[table]{capposition=top}
+
+\usepackage[]{mcode}
+
+\usepackage{fancyhdr}
+% \usepackage[margin=1in,showframe]{geometry}
+\usepackage[margin=1in]{geometry}
+\usepackage{tabularx} % for \textwidth table
+\usepackage{multicol}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  urlcolor=blue,
+  citecolor=gray,
+  pdftitle={DM Curriculum Vitae},
+  pdfauthor={Dylan Mikesell},
+  pdfsubject={Curriculum Vitae},
+}
+
+\pagestyle{fancy}
+
+\lhead{Boise State University}
+\chead{GEOS 397}
+\rhead{Fall 2016}
+\fancyfoot[C]{\thepage}
+% \renewcommand{\headrulewidth}{0pt} % remove horizontal line
+\setlength{\headsep}{12pt} % set separation between course name and header
+% \setlength{\hoffset}{-0.5in} % set separation between course name and header
+% \setlength{\textwidth}{7in}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\title{Computation in the geosciences}
+
+\date{\empty}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+
+
+\usepackage{siunitx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+
+% \renewcommand{\chaptertitle}[1]{\chaptitlefont\MakeUppercase{#1}}
+
+\begin{document}
+
+\textbf{L21: class exercises} -- Try to implement/solve the following problems in MATLAB.
+
+\section*{Linear interpolation}
+
+Load the two data sets \textit{series1.txt} and \textit{series2.txt} using the \textbf{load()} function. Both synthetic data sets contain a two-column matrix with 339 rows. These data come from the book \textit{MATLAB Recipes for Earth Sciences}.
+
+The first column contains ages in kiloyears, which are unevenly spaced. The second column contains oxygen-isotope values measured on calcareous micro-fossils (foraminifera). The data sets contain 100, 40 and 20 kyr cyclicities and they are overlain by Gaussian noise. In the 100~kyr frequency band, the second data series (series 2) is shifted by 5 kyrs with respect to the first data series (series 1).
+
+\begin{enumerate}
+	\item Make a new time vector from 0 to 996~kyr, with a sample interval of 3~kyr.
+	\item Use \textbf{interp1()} to linearly interpolate both series1 and series2. \textit{(You may need to look at the MATLAB help/doc for interp1.)}
+	\item In one figure, use subplot 1 to plot the raw data and interpolated data. Window the x-axis from 350 to 450~kyr. \textit{(It may help to the plot the raw data as points and the interpolated data as a line.)}
+	\item In the same figure on subplot 2, plot the same thing but for series 2.
+\end{enumerate}
+
+If time, try redoing this exercise, using one of the other interpolation methods instead of 'linear' interpolation. Do you notice any differences?
+
+\begin{itemize}
+  \item Piecewise Linear Interpolation (linear)
+  \item Piecewise Cubic Hermite Interpolation (cubic)
+  \item Shape-Preserving Piecewise Cubic Interpolation (pchip)
+  \item Piecewise Cubic Spline Interpolation (spline)
+\end{itemize}
+
+
+\end{document}
+
+
+
+
+
+
