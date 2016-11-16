@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.8)  14 NOV 2016 10:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.8)  16 NOV 2016 10:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -900,34 +900,34 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 51.
 \c__siunitx_mathtt_int=\count181
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 77.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 76.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 83.
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 82.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 95.
- [1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+) [1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ] [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 169.
+ [3]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 169.
 
 (./classExercise.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 169.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 169.
 Package rerunfilecheck Info: File `classExercise.out' has not changed.
-(rerunfilecheck)             Checksum: 56F6EAEC0E67930D5EAD4B50FD84A16E;46.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
+(rerunfilecheck)             Checksum: 586B7DB8B351919AD0DCF7D7BB3EB50C;195.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 169.
  ) 
 Here is how much of TeX's memory you used:
- 19395 strings out of 493013
- 364486 string characters out of 6133343
- 411557 words of memory out of 5000000
- 22779 multiletter control sequences out of 15000+600000
- 7691 words of font info for 29 fonts, out of 8000000 for 9000
+ 19465 strings out of 493013
+ 365325 string characters out of 6133343
+ 426557 words of memory out of 5000000
+ 22807 multiletter control sequences out of 15000+600000
+ 8296 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,11n,43p,10416b,1238s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -940,10 +940,10 @@ ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 /2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/201
 6/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on classExercise.pdf (2 pages, 109233 bytes).
+Output written on classExercise.pdf (3 pages, 122459 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
- 9 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 137 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 

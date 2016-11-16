@@ -69,10 +69,9 @@ You should now have three signals.
   \item $x_2(t) = x_p(t) + x_{tr}(t) + x_n(t)$ = periodic plus linear trend plus noise
 \end{enumerate}
 
-\section{Periodogram}
+\section{Periodogram -- Power Spectral Density}
 
-Use \textbf{nextpow()} to find the next power of two of the number of data points. 
-Set \textbf{nfft=$2^{nextpow(N)}$}, where N is the number of data. Then call \textbf{[Pxx,f]=periodogram(x\_p,[],nfft,fs)}, where \textit{nfft} is the number of points in the fft (an \textit{even} number of points makes the fft symmetric and using powers of two enables this to be done easily). $x_p$ is the periodic only signal; \textit{fs} is the sampling frequency 1/dt. Then plot the output with the y-limits set from 0:1000;
+Use \textbf{nextpow()} to find the next power of two of the number of data points. Set \textbf{nfft=$2^{nextpow(N)}$}, where N is the number of data. Then call \textbf{[Pxx,f]=periodogram(x\_p,[],nfft,fs)}, where \textit{nfft} is the number of points in the fft (an \textit{even} number of points makes the fft symmetric and using powers of two enables this to be done easily). $x_p$ is the periodic only signal; \textit{fs} is the sampling frequency 1/dt. Then plot the output with the y-limits set from 0:1000;
 
 \begin{lstlisting}
 nfft = 2^nextpow2(N);
@@ -91,6 +90,81 @@ Describe the output. What do you notice about the upper frequency limit?
 Repeat the periodogram computation and plotting using 1) the periodic + trend signal and 2) the periodic, trend and noise signal. Describe the differences in the plots.
 
 Now vary the noise from a standard deviation of 1 to 2 to 3 to 4. What happens to you plots?
+
+\section{Data detrending}
+
+We previously used the \textbf{polyfit()} and \textbf{polyval()} functions to remove the trend in the GPS data in HW8. MATLAB has another built in function called \textbf{detrend()} that we will now use. \textbf{detrend()} has two options: 'constant' (polynomial order 0) and 'linear' (polynomial order 1). Apply the \textbf{detrend()} function to each of your three signals two times in order to remove any constant (i.e. DC) and linear trends in the data. Replot the periodogram and compare with the previous non-detrended periodogram. What happened?
+
+\section{Cross Spectral Density and Coherence}
+
+Use two sine waves with identical periodicities $\tau$=5 (equivalent to f3=0.2=1/5 in previous example) and amplitudes equal to two. Add a phase shift to the second time series so that one signal has a phase lead of $2\pi/5$.
+\begin{lstlisting}
+psi = 2*pi*f3; % a phase shift term
+
+x = 2 * sin( 2*pi*f3*t      ); % signal without phase shift
+y = 2 * sin( 2*pi*f3*t + psi); % signal with phase shift (actually a phase lead)
+\end{lstlisting}
+
+To determine the coherency between these two signals use \textbf{mscohere()}.
+
+\begin{lstlisting}
+[Cxy,f] = mscohere(x,y,[],0,nfft,fs);
+
+figure;
+plot(f,Cxy); grid on; ylim([0 1.1]); xlim([0 0.5]);
+xlabel('Frequency');
+ylabel('Coherence');
+title('Coherence');
+\end{lstlisting}
+What does this result tell us about each frequency in the two time series?
+
+
+Now compute the cross-spectrum of the two time series with \textbf{cpsd()}. 
+\begin{lstlisting}
+[Pxy,f] = cpsd( x, y, [], 0, nfft, fs );
+
+amp   = abs(Pxy);
+phase = angle(Pxy);
+
+figure;
+subplot(1,3,1)
+plot(t,x,'b-',t,y,'r-'); grid on;
+axis([0 50 -2 2])
+
+subplot(1,3,2)
+plot( f, amp ); grid on; xlim([0 0.5]);
+xlabel('Frequency')
+ylabel('Power [a.u.]')
+title('Cross-Spectrum')
+
+subplot(1,3,3)
+plot( f, phase ); grid on; xlim([0 0.5]);
+xlabel('Frequency')
+ylabel('Phase Difference [rad]');
+title('Cross-Spectrum')
+\end{lstlisting}
+
+What do these plots tell you?
+
+\subsection*{The phase difference}
+
+The phase difference plot must be interpreted with the \textit{Power} in mind. The \textit{Power} plot shows the amplitude at each frequency that these two time series have in common. Based on the time series, what frequency should the power be max? Which frequency(ies) should the power be small.
+
+Use \textbf{interp1} to interpolate the phase function at exactly 0.2~Hz.
+\begin{lstlisting}
+psi2 = interp1( f, phase, 0.2 ); % find the value at 0.2
+\end{lstlisting}
+Compare this to the original phase shift you added to the signal, \textit{psi}. Do they match?
+
+It is even more interesting to convert this phase shift to a time shift and compare the original time series data. To convert the phase difference to a time shift just divide by $2\pi$. Does this time shift estimate match with the time shift you observe between the two signals? Check the peaks for instance.
+
+\section*{More complicated data}
+
+Load the \textit{series1.txt} and \textit{series2.txt} from the L21. Remember that the first column contains ages in kiloyears, which are unevenly spaced. The second column contains oxygen-isotope values measured on calcareous micro-fossils (foraminifera). The data sets contain 100, 40 and 20 kyr cyclicities and they are overlain by Gaussian noise. In the 100~kyr frequency band, the second data series (series 2) is shifted by 5~kyrs with respect to the first data series (series 1).
+
+You will need to first make sure to interpolate these data to a regular sampling in time. Then compute the auto-spectra (i.e. periodogram) of each time series and plot. What are the periods that you see?
+
+Compute the cross spectra and analyze the phase differences at each of the dominant periods. Do you recover a 5~kyr time shift in the 100~kyr frequency band?
 
 \end{document}
 
