@@ -13,7 +13,7 @@ The azimuthal frequencies put into bins defined by the used. The radial distance
 
 For example, if we use “20 degree” azimuthal bins for wind direction data (i.e. from 0‐20, 20‐40, 40‐60... etc... 320‐240, 340‐0), then the radial distance from the center of the graph is the frequency or number of stations that recorded a given wind direction, in a given 20‐degree bin.
 
-_MATLAB has __rose()__, but the most recent version of MATLAB suggest to use [__polarhistogram()__](https://www.mathworks.com/help/matlab/ref/polarhistogram.html)._ This makes sense as we are just making a histogram in azimuth.
+MATLAB has __rose()__, but the most recent version of MATLAB suggest to use [__polarhistogram()__](https://www.mathworks.com/help/matlab/ref/polarhistogram.html). This makes sense as we are just making a histogram in azimuth.
 
 NOTE: This is a special type of [polar plot](https://www.mathworks.com/help/matlab/polar-plots.html) that you can easily make with MATLAB. See the link for more on polar plots; here are the functions.
 

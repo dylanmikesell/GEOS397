@@ -6,31 +6,37 @@ clc
 fid = fopen('dipData.txt');
 header = fgetl(fid);
 % strike, dip, dip_direction
-
 cnt = 0;
 while ~feof(fid)
     cnt = cnt + 1;
-    strike(cnt) = str2double(fgetl(fid));
-    dip(cnt) = str2double(fgetl(fid));
+    strike(cnt)    = str2double(fgetl(fid));
+    dip(cnt)       = str2double(fgetl(fid));
     direction{cnt} = strtrim( fgetl(fid) );
 end
+fclose(fid);
 
 %% now plot
+close all
 
 % Create your own rose diagram showing the frequency distribution of strike
 % azimuths of fractures. 
 
-nBins = 360/10;
+nBins = 360/20;
 
 h = figure;
 % plot the strike
 subplot(1,2,1)
-polarhistogram(strike,nBins);
+% polarhistogram(strike,nBins);
+p1 = rose(strike,nBins);
 title('strike');
+view(90, -90);
 % plot the dip
 subplot(1,2,2)
-polarhistogram(dip,nBins);
+% polarhistogram(dip,nBins);
+rose(dip,nBins);
 title('dip');
+
+%%
 
 % make another version and change some of the properties
 h = figure;

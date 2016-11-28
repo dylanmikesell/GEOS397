@@ -1,0 +1,155 @@
+\documentclass[10pt,fleqn]{article}
+
+\usepackage{graphicx}
+\usepackage[tableposition=top]{caption}
+\usepackage{natbib}
+\usepackage{floatrow}
+\floatsetup[table]{capposition=top}
+
+\usepackage[]{mcode}
+
+\usepackage{fancyhdr}
+% \usepackage[margin=1in,showframe]{geometry}
+\usepackage[margin=1in]{geometry}
+\usepackage{tabularx} % for \textwidth table
+\usepackage{multicol}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  urlcolor=blue,
+  citecolor=gray,
+  pdftitle={DM Curriculum Vitae},
+  pdfauthor={Dylan Mikesell},
+  pdfsubject={Curriculum Vitae},
+}
+
+\usepackage[yyyymmdd,hhmmss]{datetime}
+
+\pagestyle{fancy}
+% \rfoot{Created on \today\ at \currenttime}
+\rfoot{\today}
+\cfoot{}
+\lfoot{Page \thepage}
+
+
+\lhead{Boise State University}
+\chead{GEOS 397}
+\rhead{Fall 2016}
+% \fancyfoot[C]{\thepage} % old way before adding compile time
+% \renewcommand{\headrulewidth}{0pt} % remove horizontal line
+\setlength{\headsep}{12pt} % set separation between course name and header
+% \setlength{\hoffset}{-0.5in} % set separation between course name and header
+% \setlength{\textwidth}{7in}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\title{Computation in the geosciences}
+
+\date{\empty}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+
+
+\usepackage{siunitx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+
+% \renewcommand{\chaptertitle}[1]{\chaptitlefont\MakeUppercase{#1}}
+
+\begin{document}
+
+\textbf{L23: class exercises} -- Try to implement/solve the following problems in MATLAB.
+
+\section*{Polar plotting and the rose diagram}
+
+Use the following piece of MATLAB code to load data related to fault strike and dip.
+
+\begin{lstlisting}
+% load the data
+fid = fopen('dipData.txt');
+header = fgetl(fid);
+% strike, dip, dip_direction
+cnt = 0;
+while ~feof(fid)
+    cnt = cnt + 1;
+    strike(cnt)    = str2double(fgetl(fid));
+    dip(cnt)       = str2double(fgetl(fid));
+    direction{cnt} = strtrim( fgetl(fid) );
+end
+fclose(fid);
+\end{lstlisting}
+
+Now use \textbf{rose()} to plot the strike and dip in a two column subplot. Make the number of bins used in the histogram correspond to a bin width of 20 degrees. Keep in mind that the polar plot goes from 0 to 360 degrees.
+
+\textit{Do the axes conform to the standard orientation we use for azimuthal data in the geosciences? What do you need to change to fix this?
+}
+
+If you have MATLAB 2016B then you can use \textbf{polarhistogram()}, which offers a few more bells and whistles.
+
+\section*{Spider or Radar plots}
+
+Use the MATLAB "Get More Apps" button and search for \textit{Spider (Radar) Plot}. Make sure to unclick the Apps box on the left-hand side before searching. You should find an app made by Moses with version 1.5. When you find this app, install it. \textit{You may need your MathWorks login credentials.}
+
+Now you have added a function (\textbf{spider\_plot()}) that will allow you to make spider plots. Load the file \textit{spider\_data.mat}. This will load three variables.
+
+\begin{itemize}
+	\item elementData
+	\item traceElements
+	\item rockTypes
+\end{itemize}
+
+We now want to make a spider plot of the element data. Each axis of the spider plot will be one of the elements contained in the cell \textit{traceElements}. Because the data are varied in magnitude, I suggest plotting the \textbf{log10()} of the data matrix \textit{elementData}. Use the help command to figure out how to plot the spider diagram using \textbf{spider\_plot()}.
+
+After plotting, use 
+\begin{lstlisting}
+legend(rockTypes,'Location','northeastoutside');
+\end{lstlisting}
+to set the legend for the data.
+
+Another approach that people use for this type of data is column plotting. Here the x-axis just becomes the element instead of a number. Use the \textbf{plot()} command to make another plot with \textit{elementData}. Hint: Make sure to plot the transpose of this matrix and do not give an x-axis variable. We will set the x-axis variable with the following code after plotting the data.
+\begin{lstlisting}
+p1 = gca;
+p1.XTickLabel = traceElements;
+\end{lstlisting}
+
+You can set the legend again with the previous legend command.
+
+\section*{Ternary diagrams}
+
+Another important plot in the physical sciences is the ternary diagram. "It graphically depicts the ratios of the three variables as positions in an equilateral triangle. It is used in physical chemistry, petrology, mineralogy, metallurgy, and other physical sciences to show the compositions of systems composed of three species." This \href{https://en.wikipedia.org/wiki/Ternary_plot}{wikipedia} page gives a little more information if you are interested in writing a ternary plot function yourself.
+
+We will use an existing function someone wrote for MATLAB. In the L23 folder is another folder called \textit{alchemyst-ternplot}. Use the \textbf{addpath()} function to add this folder to your MATLAB path. Also, copy the following variables into your MATLAB script. This is an example of a materials application for the Zirconia, Alumina, Silica system.
+
+\begin{lstlisting}
+addpath('./alchemyst-ternplot/');
+% This is for 2D ternary plots from 
+% https://www.mathworks.com/matlabcentral/fileexchange/2299-alchemyst-ternplot
+
+Al2O3 = [0, 5,10,10,2,2,1,1,3,2,1,3,1,3,1,0,0,.10,.275,.500,.075,.50,.025,.20];
+ZrO2  = [2,40,40,45,2,2,2,2,2,2,2,2,0,0,0,1,0,.60,.450,.175,.325,.25,.450,.55];
+SiO2  = [2,55,50,45,2,0,2,3,2,3,4,3,2,2,0,0,1,.30,.275,.325,.600,.25,.525,.25];
+\end{lstlisting}
+
+Use \textbf{ternplot()} and \textbf{ternlabel()} to make a ternary plot of this data. Set the 'major' axis spacing to 5 and plot the data using the marker 'o'.
+
+\subsection*{Ternary diagrams with distributions}
+
+We can also plot the data as percent distributions using \textbf{ternplot\_pro()}. Try the following code.
+
+\begin{lstlisting}
+nBins = 10;
+nColors = 20;
+ternplot_pro(Al2O3,ZrO2,SiO2,nBins,nColors);
+ternlabel('Al2O3', 'ZrO2', 'SiO2');
+\end{lstlisting}
+
+\textit{What is the difference between this plot and the previous plot created with \textbf{ternplot()}?}
+
+\end{document}
+
+
+
+
+
+
+
+
