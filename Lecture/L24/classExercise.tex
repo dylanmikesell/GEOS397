@@ -76,7 +76,7 @@ and these three components together make the Cartesian coordinate vector represe
 Assuming that we have two vectors ($\vec{u}$ and $\vec{v}$), we can find the angle between those two vectors from the dot product.
 \begin{eqnarray} \nonumber
   \vec{u}\cdot\vec{v} &=& |\vec{u}||\vec{v}|\cos(\theta) \\ \nonumber
-  \theta &=& \frac{cos^{-1}(\vec{u}\cdot\vec{v})}{|\vec{u}||\vec{v}|}
+  \theta &=& \cos^{-1}\left(\frac{\vec{u}\cdot\vec{v}}{|\vec{u}||\vec{v}|}\right)
 \end{eqnarray}
 Use \textbf{dot()}, \textbf{acosd()} and \textbf{norm()} to compute the rake from the following datasets. For a refresher of the graphical approach to do this, check \href{https://www.uwgb.edu/dutchs/structge/SL85FindPitch.HTM}{this link}. Keep in mind that \textit{pitch} and \textit{rake} are the same thing; different groups of geologists use the different terminology.
 
