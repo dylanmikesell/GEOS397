@@ -59,103 +59,115 @@
 
 \textbf{L24: class exercises} -- Try to implement/solve the following problems in MATLAB.
 
-\section*{Calculating Rake}
+\section*{Calculate rake}
 
 Recall that the rake represents the angle between a linear feature and a line defining the strike of a plane.  When the lineation’s trend and plunge are measured, the rake can be determined easily using Cartesian coordinates and the concept of a dot product, or scalar product. 
 
-\subsection*{Question 1}
+The first step in the process of estimating the rake is to convert our data from their spherical components into their NED components. You want to use the plunge and trend of the lineation and the trend of the line representing the strike of the plane. \textit{Note: the rake is the angle between lineation and the strike of the plane with zero dip. Therefore, we can represent the plane as a line and instead of using strike and dip, use trend and plunge. In this case, the trend is the strike and the plunge is zero.}
 
+From our notes we know that 
+\begin{eqnarray}
+  N &=& \cos(plunge)\cos(trend) \\
+  E &=& \cos(plunge)\sin(trend) \\
+  D &=& \sin(plunge)
+\end{eqnarray}
+and these three components together make the Cartesian coordinate vector representing this line (i.e. $\vec{u}=[N, E, D]$).
 
+Assuming that we have two vectors ($\vec{u}$ and $\vec{v}$), we can find the angle between those two vectors from the dot product.
+\begin{eqnarray} \nonumber
+  \vec{u}\cdot\vec{v} &=& |\vec{u}||\vec{v}|\cos(\theta) \\ \nonumber
+  \theta &=& \frac{cos^{-1}(\vec{u}\cdot\vec{v})}{|\vec{u}||\vec{v}|}
+\end{eqnarray}
+Use \textbf{dot()}, \textbf{acosd()} and \textbf{norm()} to compute the rake from the following datasets. For a refresher of the graphical approach to do this, check \href{https://www.uwgb.edu/dutchs/structge/SL85FindPitch.HTM}{this link}. Keep in mind that \textit{pitch} and \textit{rake} are the same thing; different groups of geologists use the different terminology.
 
-Use the following piece of MATLAB code to load data related to fault strike and dip.
-
-\begin{lstlisting}
-% load the data
-fid = fopen('dipData.txt');
-header = fgetl(fid);
-% strike, dip, dip_direction
-cnt = 0;
-while ~feof(fid)
-    cnt = cnt + 1;
-    strike(cnt)    = str2double(fgetl(fid));
-    dip(cnt)       = str2double(fgetl(fid));
-    direction{cnt} = strtrim( fgetl(fid) );
-end
-fclose(fid);
-\end{lstlisting}
-
-Now use \textbf{rose()} to plot the strike and dip in a two column subplot. Make the number of bins used in the histogram correspond to a bin width of 20 degrees. Keep in mind that the polar plot goes from 0 to 360 degrees.
-
-\textit{Do the axes conform to the standard orientation we use for azimuthal data in the geosciences? What do you need to change to fix this?
-}
-
-If you have MATLAB 2016B then you can use \textbf{polarhistogram()}, which offers a few more bells and whistles.
-
-\section*{Spider or Radar plots}
-
-Use the MATLAB "Get More Apps" button and search for \textit{Spider (Radar) Plot}. Make sure to unclick the Apps box on the left-hand side before searching. You should find an app made by Moses with version 1.5. When you find this app, install it. \textit{You may need your MathWorks login credentials.}
-
-Now you have added a function (\textbf{spider\_plot()}) that will allow you to make spider plots. Load the file \textit{spider\_data.mat}. This will load three variables.
-
-\begin{itemize}
-	\item elementData
-	\item traceElements
-	\item rockTypes
-\end{itemize}
-
-We now want to make a spider plot of the element data. Each axis of the spider plot will be one of the elements contained in the cell \textit{traceElements}. Because the data are varied in magnitude, I suggest plotting the \textbf{log10()} of the data matrix \textit{elementData}. Use the help command to figure out how to plot the spider diagram using \textbf{spider\_plot()}.
-
-After plotting, use 
-\begin{lstlisting}
-legend(rockTypes,'Location','northeastoutside');
-\end{lstlisting}
-to set the legend for the data.
-
-Another approach that people use for this type of data is column plotting. Here the x-axis just becomes the element instead of a number. Use the \textbf{plot()} command to make another plot with \textit{elementData}. Hint: Make sure to plot the transpose of this matrix and do not give an x-axis variable. We will set the x-axis variable with the following code after plotting the data.
-\begin{lstlisting}
-p1 = gca;
-p1.XTickLabel = traceElements;
-\end{lstlisting}
-
-You can set the legend again with the previous legend command.
-
-\section*{Ternary diagrams}
-
-Another important plot in the physical sciences is the ternary diagram. "It graphically depicts the ratios of the three variables as positions in an equilateral triangle. It is used in physical chemistry, petrology, mineralogy, metallurgy, and other physical sciences to show the compositions of systems composed of three species." This \href{https://en.wikipedia.org/wiki/Ternary_plot}{wikipedia} page gives a little more information if you are interested in writing a ternary plot function yourself.
-
-We will use an existing function someone wrote for MATLAB. In the L23 folder is another folder called \textit{alchemyst-ternplot}. Use the \textbf{addpath()} function to add this folder to your MATLAB path. Also, copy the following variables into your MATLAB script. This is an example of a materials application for the Zirconia, Alumina, Silica system.
+\begin{multicols}{3}
+\subsection*{Dataset 1}
 
 \begin{lstlisting}
-addpath('./alchemyst-ternplot/');
-% This is for 2D ternary plots from 
-% https://www.mathworks.com/matlabcentral/fileexchange/2299-alchemyst-ternplot
-
-Al2O3 = [0, 5,10,10,2,2,1,1,3,2,1,3,1,3,1,0,0,.10,.275,.500,.075,.50,.025,.20];
-ZrO2  = [2,40,40,45,2,2,2,2,2,2,2,2,0,0,0,1,0,.60,.450,.175,.325,.25,.450,.55];
-SiO2  = [2,55,50,45,2,0,2,3,2,3,4,3,2,2,0,0,1,.30,.275,.325,.600,.25,.525,.25];
+% measured striation data
+plunge = 45; % [deg]
+trend  = 230; % [deg]
+% measured strike of plane
+strike = 190; % [deg]
 \end{lstlisting}
 
-Use \textbf{ternplot()} and \textbf{ternlabel()} to make a ternary plot of this data. Set the 'major' axis spacing to 5 and plot the data using the marker 'o'.
+Answer should be rake=57 deg.
 
-\subsection*{Ternary diagrams with distributions}
-
-We can also plot the data as percent distributions using \textbf{ternplot\_pro()}. Try the following code.
+\subsection*{Dataset 2}
 
 \begin{lstlisting}
-nBins = 10;
-nColors = 20;
-ternplot_pro(Al2O3,ZrO2,SiO2,nBins,nColors);
-ternlabel('Al2O3', 'ZrO2', 'SiO2');
+% measured striation data
+plunge = 22; % [deg]
+trend  = 320; % [deg]
+% measured strike of plane
+strike = 300; % [deg]
 \end{lstlisting}
 
-\textit{What is the difference between this plot and the previous plot created with \textbf{ternplot()}?}
+Answer should be rake=29 deg.
+
+\subsection*{Dataset 3}
+
+\begin{lstlisting}
+% measured striation data
+plunge = 30.3; % [deg]
+trend  = 182.1; % [deg]
+% measured strike of plane
+strike = 53; % [deg]
+\end{lstlisting}
+
+Answer should be rake=123 deg.
+\end{multicols}
+
+\textit{Question: Which part of this process should you automate by writing a function?}
+
+\pagebreak
+
+\section*{Finding the true dip}
+
+To see the graphical approach to this problem look at \href{https://www.uwgb.edu/dutchs/structge/SL83Plane2AD.HTM}{this link}.
+
+Just as we can use calculations in the Cartesian coordinate system to compute rake, we can also compute the true strike and dip of a plane given two observations of the apparent strike and dip of the plane.
+
+The problem boils down to finding the plane that contains two lines.
+\textit{Note: The apparent dip is just the dip as seen in a plane oblique to the strike. The strike of the section plane is then the trend of the line and the apparent dip is then the plunge.}
+
+To find the plane that contains the two lines we turn to the cross product. Using the two vectors for our lines, we cannot directly determine the strike and dip of the plane, but we can determine the pole to the plane. Recall that the pole to the plane is normal to the plane and that the cross between two vectors gives you the normal to those two vectors. From the pole of the plane, we can compute the strike and dip.
+
+Given the observation of orientations of two joint faces
+\begin{lstlisting}
+% line 1;
+t1 = 209; % trend 1
+p1 = 22; % plunge 1
+% line 2
+t2 = 56; % trend 2
+p2 = 37; % plunge 2
+\end{lstlisting}
+compute the true strike and dip of the plane containing the joints.
+
+\textbf{Step 1:}
+You first need to convert the spherical representation of the data to their Cartesian representation to make a vector for each line.
+
+\textbf{Step 2:}
+Use \textbf{cross()} to compute the cross product. Keep in mind that the D-component should be positive down. Therefore, if the D-component is negative, you have two options.
+\begin{enumerate}
+  \item Multiply the cross product result by -1 to change the direction of the vector to point in the opposite direction
+  \item Change the order of the cross product $\rightarrow \vec{u}\times \vec{v} = - \vec{v}\times\vec{u}$. 
+\end{enumerate}
+
+\textbf{Step 3:}
+Use \textbf{norm()} to make sure that you are dealing with a unit vector for the pole before transforming back to strike and dip.
+
+\textbf{Step 4:}
+From the Cartesian vector of the pole, convert back to spherical coordinates to get the plunge and trend of the pole. You should use \textbf{atan2d()} for the trend so that you get the correct quadrant.
+
+\textbf{Step 5:}
+Convert from the pole to the plane. To convert from a poles trend and plunge to a planes strike and dip we use the following:
+\begin{eqnarray} \nonumber
+  strike &=& trend + 90 \\ \nonumber
+  dip &=& 90 -  plunge
+\end{eqnarray}
+
+\textit{The answer should be strike=38 and dip=68 deg.}
+
 
 \end{document}
-
-
-
-
-
-
-
-

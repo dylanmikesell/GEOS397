@@ -4,6 +4,8 @@
 
 ### 1) Update from github & organize term project presentations
 ---
-### 2) On board description of spherical and cartesian coordinate representations of lines and plane
+### 2) On board description of spherical and cartesian coordinate representations of lines and planes
 
 ### 3) Student exercise
+
+
